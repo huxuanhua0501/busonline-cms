@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:redis="http://www.springframework.org/schema/redis"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/redis http://www.springframework.org/schema/redis/spring-redis-1.0.xsd">
+
+	
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${config.redis.pool.maxIdle}" />
+		<property name="maxTotal" value="${config.redis.pool.maxTotal}" />
+		<property name="maxWaitMillis" value="${config.redis.pool.maxWaitMillis}" />
+		<property name="testOnBorrow" value="${config.redis.pool.testOnBorrow}" />
+		<property name="testOnReturn" value="${config.redis.pool.testOnReturn}" />
+	</bean>
+	
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="${config.redis.host}" type="java.lang.String"/>
+		<constructor-arg index="2" value="${config.redis.port}" type="int"/>
+		<constructor-arg index="3" value="2000" />
+		<!-- <constructor-arg index="4"/> <constructor-arg index="5" value="15"/> -->
+	</bean>
+
+
+	<mvc:annotation-driven />
+
+<!-- 	<context:component-scan base-package="net.busonline.core.redis">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	 	<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+	 	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan> -->
+
+</beans>
