@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.busonline.dictionary.dao.DictionaryMapper">
+<insert id="insertdict">
+	INSERT INTO dictionary (
+		dictionary_name,
+		parent_id,
+		create_time
+	)
+	VALUES 
+        (#{map.dictionaryname}, 
+        #{map.parentid}, 
+        #{map.createtime})
+</insert>
+
+<select id="selectDicItme" resultType="java.util.Map">
+	   SELECT
+		d.id AS id,
+		d.dictionary_name AS dictionaryname,
+		d.parent_id AS parentid,
+		d.create_time AS createtime,
+		d.modify_time AS modifytime
+	FROM
+		dictionary d;
+</select>
+
+
+<select id="selectDicTwo" resultType="java.util.Map">
+	SELECT
+		d.id AS id,
+		d.dictionary_name AS dictionaryname,
+		d.parent_id AS parentid,
+		d.create_time AS createtime,
+		d.modify_time AS modifytime
+	FROM
+		dictionary d
+	WHERE  d.parent_id=#{id};
+</select>
+<update id="updateDicname">
+		UPDATE dictionary
+		SET dictionary_name = #{map.dictionaryname},
+		  	modify_time = #{map.modifytime}
+		WHERE
+		id = #{map.id}
+</update>
+ <delete id="delDic">
+	   DELETE
+		FROM
+			dictionary
+		WHERE
+			parent_id = #{id} OR id=#{id};
+ </delete>
+ <delete id="delDicTwo">
+	   DELETE
+		FROM
+			dictionary
+		WHERE
+			id=#{id};
+ </delete>
+</mapper>
