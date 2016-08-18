@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.busonline.api.dao.IBusGatherMapper">
+<!--插入线路信息  -->
+<insert id="insertBusLine" parameterType="net.busonline.api.model.vo.BusLine" useGeneratedKeys="true" keyProperty="id">
+ insert into bus_line (line_id,city_id,linkdir,line_name,line_name_bd,price,start_time,end_time,dictionary_id)
+ values(#{busLine.line_id},#{busLine.city_id},#{busLine.linkdir},#{busLine.lineName},
+ #{busLine.linename_bd},#{busLine.price},#{busLine.start_time},#{busLine.end_time},#{busLine.dictionary_id})
+</insert>
+<!--插入线路信息  -->
+<insert id="insertBusBite" parameterType="map" >
+	insert into bus_stop (name,line_id,stopseq,linedir,blat,blon,lat,lon) values
+	<foreach collection="list" item="item" index="index" separator="," > 
+        (#{item.name},#{line_id},#{index},#{linedir},#{item.lat},#{item.lon},#{item.glat},#{item.glon}) 
+    </foreach> 
+</insert>
+<!--查找所有线路  -->
+<select id="finBusLineInfo" parameterType="map" resultType="String">
+	SELECT line_name FROM bus_line WHERE line_name LIKE CONCAT(CONCAT('%', #{busline}), '%');
+</select>
+<!--查找城市  -->
+<select id="findCity" parameterType="map" resultType="String">
+	SELECT name_cn FROM city 
+</select>
+	
+	
+</mapper>
