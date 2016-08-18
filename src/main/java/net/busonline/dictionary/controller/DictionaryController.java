@@ -29,7 +29,7 @@ public class DictionaryController {
 
 	}
 	/**
-	 *  查询所有一级词典
+	 *  查询所有词典
 	 * @return
 	 */
 	@RequestMapping(value = "/selectDicItme", method = { RequestMethod.GET, RequestMethod.POST })
@@ -78,13 +78,13 @@ public class DictionaryController {
 		return  dictionaryService.delDic(id);
 
 	}
-	/**
-	 * 查询所有字典
-	 * @return
-	 */
-	@RequestMapping(value = "/selectDicItmeAll", method = { RequestMethod.GET, RequestMethod.POST })
-	public String selectDicItmeAll() {
-		return  dictionaryService.selectDicItmeAll();
-
-	}
+//	/**
+//	 * 查询所有字典
+//	 * @return
+//	 */
+//	@RequestMapping(value = "/selectDicItmeAll", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String selectDicItmeAll() {
+//		return  dictionaryService.selectDicItmeAll();
+//
+//	}
 }

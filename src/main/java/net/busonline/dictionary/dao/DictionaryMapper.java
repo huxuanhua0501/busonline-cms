@@ -12,7 +12,7 @@ public interface DictionaryMapper {
 	 */
  public void  insertdict(@Param("map")Map<String,Object>map);
  /**
-  * 查询所有一级词典
+  * 查询所有词典
   * @return
   */
  public List<Map<String,Object>> selectDicItme();
