@@ -47,9 +47,9 @@
 				}
 			});
 	    };
-
-       	 selectList2();
-       
+        if(leve2){
+          selectList2();
+        }
 		var addlevel = function() {
 			$.ajax({
 				url: 'http://192.168.109.227:40000/dict/insertdict',
