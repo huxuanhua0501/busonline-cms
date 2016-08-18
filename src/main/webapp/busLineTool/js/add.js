@@ -71,7 +71,7 @@
 
       //添加一级目录索引
       $(".add").click(function(){
-      	 var idx=$(this).index();
+      	 var idx=$($(".add")).index(this);
       	 if(idx==0){
       	 	  dictionaryname=$dictionaryname.val();
       	 	  parentid=0;
