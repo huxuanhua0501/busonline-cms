@@ -26,15 +26,15 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	@Override
 	public String insertdict(String dictionaryname, String parentid) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(dictionaryname)) {
+			logger.debug("net.busonline.dictionary.service.impl.BusApiService.insertdict.001===dictionaryname参数异常");
+			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.insertdict.001", "dictionaryname参数异常");
+		}
+		if (PubMethod.isEmpty(parentid)) {
+			logger.debug("net.busonline.dictionary.service.impl.BusApiService.insertdict.002===parentid参数异常");
+			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.insertdict.002", "parentid参数异常");
+		}
 		try {
-			if (PubMethod.isEmpty(dictionaryname)) {
-				logger.debug("net.busonline.dictionary.service.impl.BusApiService.insertdict.001===dictionaryname参数异常");
-				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.insertdict.001", "dictionaryname参数异常");
-			}
-			if (PubMethod.isEmpty(parentid)) {
-				logger.debug("net.busonline.dictionary.service.impl.BusApiService.insertdict.002===parentid参数异常");
-				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.insertdict.002", "parentid参数异常");
-			}
 			List<Map<String,Object>> listmap = selectDicByName(dictionaryname);
 			if(!listmap.isEmpty()){
 				Map<String, Object> map = new HashMap<String, Object>();
@@ -68,11 +68,11 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	@Override
 	public String selectDicTwo(String id) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(id)) {
+			logger.debug("net.busonline.dictionary.service.impl.BusApiService.selectDicTwo.001===id参数异常");
+			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.selectDicTwo.001", "id参数异常");
+		}
 		try {
-			if (PubMethod.isEmpty(id)) {
-				logger.debug("net.busonline.dictionary.service.impl.BusApiService.selectDicTwo.001===id参数异常");
-				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.selectDicTwo.001", "id参数异常");
-			}
 			 
 			return this.jsonSuccess(dictionaryMapper.selectDicTwo(id));
 		} catch (Exception e) {
@@ -84,15 +84,15 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	@Override
 	public String updateDicname(String dictionaryname, String id) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(dictionaryname)) {
+			logger.debug("net.busonline.dictionary.service.impl.BusApiService.updateDicname.001===dictionaryname参数异常");
+			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.updateDicname.001", "dictionaryname参数异常");
+		}
+		if (PubMethod.isEmpty(id)) {
+			logger.debug("net.busonline.dictionary.service.impl.BusApiService.updateDicname.002===id参数异常");
+			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.updateDicname.002", "id参数异常");
+		}
 		try {
-			if (PubMethod.isEmpty(dictionaryname)) {
-				logger.debug("net.busonline.dictionary.service.impl.BusApiService.updateDicname.001===dictionaryname参数异常");
-				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.updateDicname.001", "dictionaryname参数异常");
-			}
-			if (PubMethod.isEmpty(id)) {
-				logger.debug("net.busonline.dictionary.service.impl.BusApiService.updateDicname.002===id参数异常");
-				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.updateDicname.002", "id参数异常");
-			}
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("dictionaryname", dictionaryname);
 			map.put("parentid", id);
@@ -108,11 +108,11 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	@Override
 	public String delDic(String id) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(id)) {
+			logger.debug("net.busonline.dictionary.service.impl.BusApiService.delDic.001===id参数异常");
+			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.delDic.002", "id参数异常");
+		}
 		try {
-			if (PubMethod.isEmpty(id)) {
-				logger.debug("net.busonline.dictionary.service.impl.BusApiService.delDic.001===id参数异常");
-				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.delDic.002", "id参数异常");
-			}
 			dictionaryMapper.delDic(id);
 			return this.jsonSuccess();
 		} catch (Exception e) {
@@ -125,11 +125,11 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	@Override
 	public String delDicTwo(String id) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(id)) {
+			logger.debug("net.busonline.dictionary.service.impl.BusApiService.delDicTwo.001===id参数异常");
+			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.delDicTwo.002", "id参数异常");
+		}
 		try {
-			if (PubMethod.isEmpty(id)) {
-				logger.debug("net.busonline.dictionary.service.impl.BusApiService.delDicTwo.001===id参数异常");
-				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.delDicTwo.002", "id参数异常");
-			}
 			dictionaryMapper.delDicTwo(id);
 			return this.jsonSuccess();
 		} catch (Exception e) {
@@ -141,8 +141,8 @@ public class DictionaryService extends BaseService implements IDictionaryService
 
 	@Override
 	public String selectDicOne() {
-		// TODO Auto-generated method stub
 		try {
+		// TODO Auto-generated method stub
 			return this.jsonSuccess(dictionaryMapper.selectDicOne());
 		} catch (Exception e) {
 			logger.debug("updateDicname查询异常", e);
