@@ -24,7 +24,7 @@
 				}
 			});
 	    };
-
+        selectList();
 	     var selectList2=function(){
 	     	 leve2=$('.levelone option:selected').val();
             $.ajax({
@@ -63,6 +63,7 @@
 					console.log(res);
                   if(res.code==200){
                      selectList();
+                     selectList2();
                   	 alert("添加成功");
                   }
 				}
