@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 public interface IDictionaryService {
-	 public void  insertdict(String dictionaryname,String parentid);
+	 public String  insertdict(String dictionaryname,String parentid);
      public String selectDicItme();
 	 public String selectDicTwo(String id);
 	 public String updateDicname(String dictionaryname,String id);
