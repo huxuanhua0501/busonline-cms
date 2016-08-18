@@ -24,7 +24,7 @@
 		dictionary d;
 </select>
 
-<select id="selectDicItme" resultType="java.util.Map">
+<select id="selectDicOne" resultType="java.util.Map">
 	SELECT
 		d.id AS id,
 		d.dictionary_name AS dictionaryname,

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+		#l-map{height:100%;width:100%;}
+		#r-result {width:100%;}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=m9SOYnHfGRGK8GezoC3hCqo5"></script>
+	<title>巴士在线公交线路及周边信息采集</title>
+</head>
+<body>
+	<div id="l-map"></div>
+	<div id="a" style="position:absolute;left:10px;top:10px;">
+		城市：<input type="text" id="city" value="北京" style="width: 80px;"/><input type="button" onclick="changeCity()" value="切换城市">&nbsp;&nbsp;&nbsp;&nbsp;
+		线路：<input type="text" id="lineName" value="" style="width: 80px;"/>&nbsp;
+		关键字：<input type="text" id="keyword" value="" style="width: 120px;"/>&nbsp;
+		范围：<input type="text" id="num" value="1000" style="width: 50px;"/>&nbsp;
+		<input type="button" onclick="search()" value="查询"></input>&nbsp;<font size="1"><br/>双击地图添加点，已有点上右键删除</font>
+	</div>
+	<div id="markerText" style="position:absolute;left:200px;top:200px;background-color: white;width: 400px;height: 200px;display: none;">
+		<input type="hidden" id="maker_lng" value="" />
+		<input type="hidden" id="maker_lat" value="" />
+		<p>&nbsp;&nbsp;&nbsp;标注名：<input type="text" id="marker_title" value="" /></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;描述：<input type="text" id="marker_text" value="" style="width: 300px;"/></p>
+		<p>详情链接：<input type="text" id="marker_url" value="" style="width: 300px;"/></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" onclick="saveMarker()" value="保存"></input>
+		<input type="button" onclick="closeDiv()" value="关闭"></input></p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("l-map");            // 创建Map实例
+	map.centerAndZoom(document.getElementById('city').value,12); 
+	map.enableScrollWheelZoom(true);
+	map.disableDoubleClickZoom();
+	//右键双击添加标注
+	map.addEventListener('dblclick',function(e){
+		document.getElementById('markerText').style.display = 'block';
+		document.getElementById('maker_lng').value = e.point.lng;
+		document.getElementById('maker_lat').value = e.point.lat;
+		
+	});
+	//加标注点marker
+    function saveMarker(){
+		var lng = document.getElementById('maker_lng').value;
+		var lat = document.getElementById('maker_lat').value;
+		var title = document.getElementById('marker_title').value;
+		var content = document.getElementById('marker_text').value;
+		var url = document.getElementById('marker_url').value;
+		if(lng && lat && title && content){
+			addMarker(new BMap.Point(lng,lat),title,content,url);
+			closeDiv();
+		}else{
+			alert("请输入标注名和描述");
+		}
+	}
+	//关闭浮层
+	function closeDiv(){
+		document.getElementById('markerText').style.display = 'none';
+	}
+	//关键字检索
+	var keywords = [];
+	var num = 0;//检索范围
+	var lineObjs = [];
+	var overlays = [];
+	function addMarker(point,title,content,url){
+		var marker = new BMap.Marker(point);
+		map.addOverlay(marker);
+		marker.disableMassClear();				
+		var windowOpts = {
+			width : 300,     // 信息窗口宽度
+			height: 160,     // 信息窗口高度
+			title : title , // 信息窗口标题
+			enableMessage:false //设置允许信息窗发送短息
+		}
+		if(!url){
+			url = "#";
+		}	
+		var infoWindow = new BMap.InfoWindow("<p>"+content+"&nbsp;&nbsp;<a href='"+url+"' target='blank' >详情地址</a></p>",windowOpts);
+		marker.addEventListener('click',function(){						
+			map.openInfoWindow(infoWindow,point);
+		});
+		//删除
+		
+		marker.addEventListener('rightclick',function(){
+			map.removeOverlay(this);
+		});
+	}
+	var local =  new BMap.LocalSearch(map, {
+		renderOptions: {map: map, autoViewport: false},
+		onMarkersSet:function(pois){
+			if(pois){
+				for(var i=0;i<pois.length;i++){
+					var point = pois[i].point;
+					addMarker(point,pois[i].title,pois[i].address,pois[i].detailUrl);
+					
+				}
+			}
+			map.clearOverlays();
+		}
+	});
+	
+	var busline = new BMap.BusLineSearch(map,{
+        renderOptions:{map:map,panel:"results"},
+        onGetBusListComplete: function(result){
+            if(result) {
+                var fstLine = result.getBusListItem(0);//获取第一个公交列表显示到map上
+				busline.getBusLine(fstLine);
+				
+            }
+        },
+		onMarkersSet:function(markers){
+			markers[0].setLabel(new BMap.Label(document.getElementById('lineName').value));
+			markers[markers.length-1].setLabel(new BMap.Label(document.getElementById('lineName').value));
+			
+			for(var i=0;i<markers.length;i++){
+				var point = markers[i].getPosition();
+				if(keywords.length>0){					
+					local.searchNearby(keywords,point,num);
+				}
+			}
+			for(var i=0;i<map.getOverlays().length;i++){
+				map.getOverlays()[i].disableMassClear();
+			}
+		}
+    });
+	function changeCity(){
+		var city = document.getElementById('city').value;
+		if(city){
+			map.centerAndZoom(document.getElementById('city').value,12);
+		}else{
+			alert("请输入城市");
+		}
+	}
+	function search(){
+		var busName = document.getElementById('lineName').value;
+		if(busName){
+			busline.getBusList(busName);
+			
+		}else{
+			alert("请输入线路名");
+		}
+		var keyword =  document.getElementById('keyword').value;
+		keywords = keyword.split(",");
+		num =  document.getElementById('num').value;
+	}
+	
+</script>

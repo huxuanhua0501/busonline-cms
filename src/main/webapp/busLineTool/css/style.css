@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/**
+ * @authors 	Your Name (you@example.org)
+ * @date    	2016-08-16 10:39:57
+ * @version 	$Id$
+ */
+*{margin:0;padding:0;}
+body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+
+ul li{list-style: none;}
+.fr{float: right;}
+.fl{float: left;}
+#l-map{height:100%;width:100%;}
+#r-result {width:100%;}
+.topbar{width:100%;   position: fixed; top:0;left:0;z-index:10;}
+.topbar_1{width: 100%;height: 50px;background-color: #0644f5;color: #fff; font-size: 14px;}
+.topbar_1 span{ display: inline-block;margin:10px 0 0 20px;}
+.topbar_1 ul{display: inline-block;}
+.topbar_1 ul li{ display: inline-block;margin: 0 20px; }
+.topbar_1 select,.cityBtn{margin: 10px 20px;}
+.topbar_2{width:100%; height: 25px;padding:10px; background-color: #e6e7d8; position: relative;}
+.onbuslineShow{ position: absolute; left: 0; top:45px;background-color: #fff;width:500px; height: 850px;  overflow-x: hidden; display: none;}
+.onbuslineBlock{width:456px;  overflow: hidden;margin:15px 20px 0;}
+.onbuslineNum{font-size: 20px; padding-left: 20px; padding-top: 15px;}
+.onbuslineBlock_l{width:30px; height:70px;border:1px solid #0644f5; background-color: #0644f5; text-align: center; color: #fff;padding:8px 0;}
+.onbuslineBlock_r{width:402px;height:70px;padding:8px 0  8px 10px;border:1px solid #0644f5;}
+.onbuslineBlock_r p{padding-left: 8px;}
+.onbuslineBlock_r p:first-child{font-weight: bold;margin-bottom: 15px;}
+.buslineSites{width:450px; line-height: 35px;border:1px solid #ccc;padding-left: 10px;}
+.popup{width:300px;height: 200px;border-radius: 5px; padding:20px;background-color: #fff;position: absolute;left:50%; top:30%;margin-left: -150px;z-index: 100;  display: none;}
+.popup input[type="button"]{width:80px;height: 30px;margin-right: 20px;}
+.popup input[type="text"]{width:240px;height: 30px;}
+.popup tr td{ height: 50px;}
+.times{padding-right: 30px;}
+.stationsbox>p{padding-left: 20px;}
+.popup table{text-align: center;}
+.popup table tr{line-height: 34px;}
+.popup table tr td:first-child{padding-right: 10px;}
+.popup table tr td:nth-child(2){text-align: left;}
+.topbar_1 ul li.caiji ul,.topbar_1 ul li.shuju ul，.topbar_1 ul li.yewu ul，.topbar_1 ul li.zidian ul{font-size: 12px;}
+.topbar_1 ul li.caiji,.topbar_1 ul li.shuju,.topbar_1 ul li.yewu,.topbar_1 ul li.zidian{position: relative;}
+.caiji ul,.shuju ul,.yewu ul,.zidian ul{display: none;position: absolute;background-color: #0644f5;z-index: 1000;}
+.caiji ul li,.shuju ul li,.yewu ul li,.zidian ul li{margin:0;font-size: 12px;width: 100%;text-align: center;padding:5px 0;}
+.caiji:hover ul,.shuju:hover ul,.yewu:hover ul,.zidian:hover ul{display: block;}
+.caiji ul li:hover,.shuju ul li:hover,.yewu ul li:hover,.zidian ul li:hover{background-color: #fff;color: #0644f5;}
+.tianjia{padding:20px;}
+.add{margin-left: 10px;}
+.label_name{margin-right: 20px;width: 200px;text-align: right;float: left;}
+.tianjia_box{overflow: hidden;}
+.tianjia_box li{float: left;}
+.tianjia_in{margin-bottom: 10px;}
+.tianjia_in span{margin-right: 5px;}
+.tips{font-size: 12px;color: #3c8dbc;margin-left: 220px;}
+.liebiao table tr:first-child{border-bottom: 1px solid red;}
+.liebiao table tr th,td{padding:8px;background-color: #fff;text-align: left;}
+.liebiao table tr td{background-color: #f9f9f9;}
+.liebiao table tr a{margin-right: 5px;text-decoration: none;}
+.xiugai{margin-left: 50px;}
+.liebiao_box {width: 500px;}
+.liebiao_box li{border-bottom: 1px dashed #ccc;padding:8px 0 4px 0;}
+.two_add{font-size: 14px;text-align: center;}
