@@ -60,7 +60,6 @@
 					dictionaryname: dictionaryname
 				},
 				success: function(res) {
-					console.log(res);
                   if(res.code==200){
                      selectList();
                      selectList2();
@@ -72,11 +71,10 @@
 
       //添加一级目录索引
       $(".add").click(function(){
-      	
       	 var idx=$(this).index();
       	 if(idx==0){
       	 	  dictionaryname=$dictionaryname.val();
-
+      	 	  parentid=0;
 				if (dictionaryname) {
 					addlevel();
 				} else {
