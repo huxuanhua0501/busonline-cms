@@ -31,8 +31,8 @@ public class BaseService {
 
 	protected String jsonSuccess(Object mapObject) {
 		Map<String, Object> allMap = new HashMap<String, Object>();
-		allMap.put("state", 0);
-		allMap.put("sendTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+		allMap.put("code", 200);
+		allMap.put("msg", "SUCCESS");
 		if (null != mapObject) {
 			allMap.put("data", mapObject);
 		}
@@ -51,13 +51,15 @@ public class BaseService {
 	
 	protected String jsonSuccess() {
 		Map<String, Object> allMap = new HashMap<String, Object>();
-		allMap.put("success", true);
+		allMap.put("code", 200);
+		allMap.put("msg", "success");
 		return JSON.toJSONString(allMap);
 	}
 	
 	protected String jsonFailure() {
 		Map<String, Object> allMap = new HashMap<String, Object>();
-		allMap.put("success", false);
+		allMap.put("code", 200);
+		allMap.put("msg", "error");
 		return JSON.toJSONString(allMap);
 	}
 	protected String jsonFailure2() {
@@ -104,11 +106,9 @@ public class BaseService {
 	 * @since v1.0
 	*/
 	protected String paramsFailure(String errSubcode,String message) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("success", false);
-		map.put("errCode", 0);
-		map.put("errSubcode",errSubcode);
-		map.put("message",message);
-		return JSON.toJSONString(map);
+		Map<String, Object> allMap = new HashMap<String, Object>();
+		allMap.put("code", errSubcode);
+		allMap.put("msg", message);
+		return JSON.toJSONString(allMap);
 	}
 }

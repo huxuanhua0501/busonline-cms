@@ -33,7 +33,7 @@ DictionaryMapper dictionaryMapper;
 		return this.jsonSuccess(dictionaryMapper.selectDicItme());
 	}
 	@Override
-	public List<Map<String, Object>> selectDicTwo(String id) {
+	public String selectDicTwo(String id) {
 		// TODO Auto-generated method stub
 		dictionaryMapper.selectDicTwo(id);
 		return null;
