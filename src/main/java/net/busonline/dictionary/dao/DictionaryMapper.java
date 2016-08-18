@@ -42,5 +42,8 @@ public interface DictionaryMapper {
   * @return
   */
  public List<Map<String,Object>> selectDicOne(); 
-
+ /**
+  * 根据名字查询，是否存在
+  */
+ public List<Map<String,Object>> selectDicByName(String dictionaryname); 
 }

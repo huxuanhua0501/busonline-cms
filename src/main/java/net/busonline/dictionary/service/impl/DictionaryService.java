@@ -3,6 +3,7 @@ package net.busonline.dictionary.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.busonline.core.base.BaseService;
+import net.busonline.core.exception.ServiceException;
+import net.busonline.core.util.PubMethod;
 import net.busonline.dictionary.dao.DictionaryMapper;
 import net.busonline.dictionary.service.IDictionaryService;
 
@@ -24,12 +27,25 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	public String insertdict(String dictionaryname, String parentid) {
 		// TODO Auto-generated method stub
 		try {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("dictionaryname", dictionaryname);
-			map.put("parentid", parentid);
-			map.put("createtime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-			dictionaryMapper.insertdict(map);
-			return this.jsonSuccess();
+			if (PubMethod.isEmpty(dictionaryname)) {
+				logger.debug("net.busonline.dictionary.service.impl.BusApiService.insertdict.001===dictionaryname参数异常");
+				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.insertdict.001", "dictionaryname参数异常");
+			}
+			if (PubMethod.isEmpty(parentid)) {
+				logger.debug("net.busonline.dictionary.service.impl.BusApiService.insertdict.002===parentid参数异常");
+				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.insertdict.002", "parentid参数异常");
+			}
+			List<Map<String,Object>> listmap = selectDicByName(dictionaryname);
+			if(!listmap.isEmpty()){
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("dictionaryname", dictionaryname);
+				map.put("parentid", parentid);
+				map.put("createtime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+				dictionaryMapper.insertdict(map);
+				return this.jsonSuccess();
+			}else{
+				return this.jsonSuccess2();	
+			}
 		} catch (Exception e) {
 			logger.debug("入库异常", e);
 			return this.jsonFailure();
@@ -53,6 +69,11 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	public String selectDicTwo(String id) {
 		// TODO Auto-generated method stub
 		try {
+			if (PubMethod.isEmpty(id)) {
+				logger.debug("net.busonline.dictionary.service.impl.BusApiService.selectDicTwo.001===id参数异常");
+				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.selectDicTwo.001", "id参数异常");
+			}
+			 
 			return this.jsonSuccess(dictionaryMapper.selectDicTwo(id));
 		} catch (Exception e) {
 			logger.debug("selectDicTwo查询异常", e);
@@ -64,6 +85,14 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	public String updateDicname(String dictionaryname, String id) {
 		// TODO Auto-generated method stub
 		try {
+			if (PubMethod.isEmpty(dictionaryname)) {
+				logger.debug("net.busonline.dictionary.service.impl.BusApiService.updateDicname.001===dictionaryname参数异常");
+				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.updateDicname.001", "dictionaryname参数异常");
+			}
+			if (PubMethod.isEmpty(id)) {
+				logger.debug("net.busonline.dictionary.service.impl.BusApiService.updateDicname.002===id参数异常");
+				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.updateDicname.002", "id参数异常");
+			}
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("dictionaryname", dictionaryname);
 			map.put("parentid", id);
@@ -80,6 +109,10 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	public String delDic(String id) {
 		// TODO Auto-generated method stub
 		try {
+			if (PubMethod.isEmpty(id)) {
+				logger.debug("net.busonline.dictionary.service.impl.BusApiService.delDic.001===id参数异常");
+				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.delDic.002", "id参数异常");
+			}
 			dictionaryMapper.delDic(id);
 			return this.jsonSuccess();
 		} catch (Exception e) {
@@ -93,6 +126,10 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	public String delDicTwo(String id) {
 		// TODO Auto-generated method stub
 		try {
+			if (PubMethod.isEmpty(id)) {
+				logger.debug("net.busonline.dictionary.service.impl.BusApiService.delDicTwo.001===id参数异常");
+				throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.delDicTwo.002", "id参数异常");
+			}
 			dictionaryMapper.delDicTwo(id);
 			return this.jsonSuccess();
 		} catch (Exception e) {
@@ -111,6 +148,14 @@ public class DictionaryService extends BaseService implements IDictionaryService
 			logger.debug("updateDicname查询异常", e);
 			return this.jsonFailure();
 		}
+	}
+
+	@Override
+	public List<Map<String,Object>> selectDicByName(String dictionaryname) {
+		// TODO Auto-generated method stub
+		List<Map<String,Object>>list =dictionaryMapper.selectDicByName(dictionaryname);
+	 
+		return list;
 	}
 
 }

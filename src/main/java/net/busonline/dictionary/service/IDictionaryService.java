@@ -13,4 +13,5 @@ public interface IDictionaryService {
 	 public String delDic(String id);
 	 public String delDicTwo(String id);
 	 public String selectDicOne(); 
+	 public List<Map<String,Object>> selectDicByName(String dictionaryname); 
 }

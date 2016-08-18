@@ -49,6 +49,18 @@
 		dictionary d
 	WHERE  d.parent_id=#{id};
 </select>
+<select id="selectDicByName" resultType="java.util.Map">
+	SELECT
+		d.id AS id,
+		d.dictionary_name AS dictionaryname,
+		d.parent_id AS parentid,
+		d.create_time AS createtime,
+		d.modify_time AS modifytime
+	FROM
+		dictionary d
+	WHERE  d.dictionary_name=#{dictionaryname};
+</select>
+
 <update id="updateDicname">
 		UPDATE dictionary
 		SET dictionary_name = #{map.dictionaryname},

@@ -32,7 +32,7 @@ public class BaseService {
 	protected String jsonSuccess(Object mapObject) {
 		Map<String, Object> allMap = new HashMap<String, Object>();
 		allMap.put("code", 200);
-		allMap.put("msg", "SUCCESS");
+		allMap.put("msg", "success");
 		if (null != mapObject) {
 			allMap.put("data", mapObject);
 		}
@@ -53,6 +53,12 @@ public class BaseService {
 		Map<String, Object> allMap = new HashMap<String, Object>();
 		allMap.put("code", 200);
 		allMap.put("msg", "success");
+		return JSON.toJSONString(allMap);
+	}
+	protected String jsonSuccess2() {
+		Map<String, Object> allMap = new HashMap<String, Object>();
+		allMap.put("code", 000);
+		allMap.put("msg", "errr");
 		return JSON.toJSONString(allMap);
 	}
 	
