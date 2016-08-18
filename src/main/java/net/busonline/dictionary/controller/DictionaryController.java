@@ -78,13 +78,13 @@ public class DictionaryController {
 		return  dictionaryService.delDic(id);
 
 	}
-//	/**
-//	 * 查询所有字典
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/selectDicItmeAll", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String selectDicItmeAll() {
-//		return  dictionaryService.selectDicItmeAll();
-//
-//	}
+	/**
+	 * 查询一级字典
+	 * @return
+	 */
+	@RequestMapping(value = "/selectDicOne", method = { RequestMethod.GET, RequestMethod.POST })
+	public String selectDicOne() {
+		return  dictionaryService.selectDicOne();
+
+	}
 }

@@ -38,9 +38,9 @@ public interface DictionaryMapper {
   */
  public void delDicTwo(@Param("id")String id);
  /**
-  * 查询所有一级二级字典
+  * 查询所有一级字典
   * @return
   */
- public List<Map<String,Object>> selectDicItmeAll(); 
+ public List<Map<String,Object>> selectDicOne(); 
 
 }

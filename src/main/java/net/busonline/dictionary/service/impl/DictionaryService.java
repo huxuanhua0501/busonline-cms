@@ -103,10 +103,10 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	}
 
 	@Override
-	public String selectDicItmeAll() {
+	public String selectDicOne() {
 		// TODO Auto-generated method stub
 		try {
-			return this.jsonSuccess(dictionaryMapper.selectDicItmeAll());
+			return this.jsonSuccess(dictionaryMapper.selectDicOne());
 		} catch (Exception e) {
 			logger.debug("updateDicname查询异常", e);
 			return this.jsonFailure();

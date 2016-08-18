@@ -12,5 +12,5 @@ public interface IDictionaryService {
 	 public String updateDicname(String dictionaryname,String id);
 	 public String delDic(String id);
 	 public String delDicTwo(String id);
-	 public String selectDicItmeAll(); 
+	 public String selectDicOne(); 
 }

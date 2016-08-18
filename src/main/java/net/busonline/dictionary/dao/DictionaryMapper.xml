@@ -24,6 +24,19 @@
 		dictionary d;
 </select>
 
+<select id="selectDicItme" resultType="java.util.Map">
+	SELECT
+		d.id AS id,
+		d.dictionary_name AS dictionaryname,
+		d.parent_id AS parentid,
+		d.create_time AS createtime,
+		d.modify_time AS modifytime
+	FROM
+		dictionary d
+	WHERE
+		d.parent_id = 0;
+</select>
+
 
 <select id="selectDicTwo" resultType="java.util.Map">
 	SELECT
