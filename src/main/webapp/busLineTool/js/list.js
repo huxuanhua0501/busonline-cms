@@ -8,7 +8,7 @@
 				dataType: 'json',
 				success: function(res) {
                   if(code==200){
-                  	 var resData=res.data.one;
+                  	 var resData=res.data.arr;
                   	 var html="";
                   	 var html2="";
                   	 for(var i=0;i<resData[i];i++){
