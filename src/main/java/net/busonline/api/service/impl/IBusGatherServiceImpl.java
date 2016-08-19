@@ -85,7 +85,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 */
 	@Override
 	public Response validateBusLineName(Map<String, Object> map) {
-		String str = getBusLineId(map.get("busLineName").toString());
+		String str = getBusLineId(map.get("buslinename").toString());
 		if(null != str && !str.equals("")){
 			return new Response().success();
 		}
