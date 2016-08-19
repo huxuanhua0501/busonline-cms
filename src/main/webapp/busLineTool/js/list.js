@@ -101,12 +101,12 @@
        });
       //修改
 
-      $(".xiugai").on(".click",function(){
+      $(".xiugai").on("click",function(){
       	 indexnum=$(this).attr("data-id");
       	 $(".updataWindow").show();
       });
        //修改保存
-       $(".savaBtn").on(".click",function(){
+       $(".savaBtn").on("click",function(){
         	dictionary=$('.dictionary').val();
       	    update();
       });

@@ -69,8 +69,6 @@
 				},
 				success: function(res) {
                   if(res.code==200){
-
-                     selectList();
                   	 alert("添加成功");
                   	 if(parentid>0){
                   	 	 selectList();
