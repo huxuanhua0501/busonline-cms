@@ -108,7 +108,7 @@ public class DictionaryService extends BaseService implements IDictionaryService
 		try {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("dictionaryname", dictionaryname);
-			map.put("parentid", id);
+			map.put("id", id);
 			map.put("modifytime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 			dictionaryMapper.updateDicname(map);
 			return this.jsonSuccess();
