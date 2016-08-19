@@ -113,5 +113,9 @@
 				}
       	 }
       	
+      });
+      $(".levelone").change(function(){
+      	 parentid=$('.levelone option:selected').val();
+      	 selectList2();
       })
 })()
