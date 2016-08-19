@@ -7,7 +7,7 @@
 				type: 'post',
 				dataType: 'json',
 				success: function(res) {
-                  if(code==200){
+                  if(res.code==200){
                   	 var resData=res.data.arr;
                   	 var html="";
                   	 var html2="";
@@ -38,7 +38,7 @@
 					dictionaryname: dictionary
 				},
 				success: function(res) {
-                  if(code==200){
+                  if(res.code==200){
                   	 alert("修改成功");
                   }
                   else{
@@ -56,7 +56,7 @@
 					parentid:indexnum
 				},
 				success: function(res) {
-                  if(code==200){
+                  if(res.code==200){
                   	 alert("删除成功");
                   }
                   else{
@@ -74,7 +74,7 @@
 					parentid:indexnum
 				},
 				success: function(res) {
-                  if(code==200){
+                  if(res.code==200){
                   	 alert("删除成功");
                   }
                   else{

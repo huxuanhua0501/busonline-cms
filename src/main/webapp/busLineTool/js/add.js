@@ -66,6 +66,9 @@
                   if(res.code==200){
                      selectList();
                   	 alert("添加成功");
+                  	 $dictionaryname.val("");
+                  	 $dictionaryname2.val("");
+
                   }
                   else{
                   	alert("添加失败");
