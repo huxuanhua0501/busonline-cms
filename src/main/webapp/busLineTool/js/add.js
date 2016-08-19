@@ -39,7 +39,7 @@
 				type: 'post',
 				dataType: 'json',
 				data: {
-					parentid:leve2,
+					id:leve2,
 				},
 				success: function(res) {
                   if(res.code==200){
