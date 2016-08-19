@@ -65,7 +65,6 @@
 				success: function(res) {
                   if(res.code==200){
                      selectList();
-                     selectList2();
                   	 alert("添加成功");
                   }
                   else{
