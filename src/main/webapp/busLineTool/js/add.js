@@ -65,8 +65,16 @@
 				},
 				success: function(res) {
                   if(res.code==200){
+
                      selectList();
                   	 alert("添加成功");
+                  	 if(parentid){
+                  	 	 selectList();
+                  	 	 selectList2();
+                  	 }
+                  	 else{
+                  	 	 selectList();
+                  	 }
                   	 $dictionaryname.val("");
                   	 $dictionaryname2.val("");
 

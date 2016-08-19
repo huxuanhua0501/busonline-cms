@@ -12,7 +12,7 @@
                   	 var resData=res.data.arr;
                   	 var html="";
                   	 var html2="";
-            
+                  	 console.log(resData);
                   	 for(var i=0;i<resData[i].length;i++){
                   	 	for(var j=0;j<resData[i].two.length;j++){
                   	 		html2+='<li><span>'+resData[i].two[j].dictionaryname+'</span><a href="javascript:;" class="xiugai" data-id="'+resData[i].two[j].id+'" data-level="2">修改</a><a href="javascript:;" '
