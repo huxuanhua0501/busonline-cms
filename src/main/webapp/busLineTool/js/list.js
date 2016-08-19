@@ -41,6 +41,9 @@
 				success: function(res) {
                   if(res.code==200){
                   	 alert("修改成功");
+                  	 $(".updataWindow").hide();
+                  	  listShow();
+                  	
                   }
                   else{
                   	 alert("修改失败");
@@ -58,7 +61,10 @@
 				},
 				success: function(res) {
                   if(res.code==200){
-                  	 alert("删除成功");
+                  	 
+                  	  alert("删除成功");
+                  	   listShow();
+
                   }
                   else{
                   	 alert("删除失败");
@@ -77,6 +83,7 @@
 				success: function(res) {
                   if(res.code==200){
                   	 alert("删除成功");
+                  	  listShow();
                   }
                   else{
                   	 alert("删除失败");
