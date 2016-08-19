@@ -88,9 +88,6 @@
 	  	 	url:'/busonline-cms/iBusGather/dictionary.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
-	  	 	data: {
-           category_id: classValue
-          },
 	  	 	success:function(res){
 				if (res.code == 200) {
 					var citys = res.data.city,
