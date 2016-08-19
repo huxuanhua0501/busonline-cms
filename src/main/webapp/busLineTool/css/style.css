@@ -60,4 +60,4 @@ ul li{list-style: none;}
 .liebiao_box {width: 500px;}
 .liebiao_box li{border-bottom: 1px dashed #ccc;padding:8px 0 4px 0;}
 .two_add{font-size: 14px;text-align: center;}
-.updataWindow{width:300px;height: 100px;border-radius: 5px; padding:20px;background-color: #fff;position: absolute;left:30%; top:30%;z-index: 100;border: 1px solid #ccc; }
+.updataWindow{width:300px;height: 100px;border-radius: 5px; padding:20px;background-color: #fff;position: absolute;left:30%; top:30%;z-index: 100;border: 1px solid #ccc;display: none; }
