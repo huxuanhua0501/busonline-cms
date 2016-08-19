@@ -21,6 +21,9 @@
                      concent="";
                      options="";
                   }
+                  else{
+                  	alert("添加失败");
+                  }
 				}
 			});
 	    };
@@ -64,6 +67,9 @@
                      selectList();
                      selectList2();
                   	 alert("添加成功");
+                  }
+                  else{
+                  	alert("添加失败");
                   }
 				}
 			});
