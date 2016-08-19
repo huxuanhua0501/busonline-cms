@@ -157,14 +157,14 @@
 		      var  busNameBd=$(".busNameBd").eq(savaIdx).html();
 		       var busName=$("#busName").val();
 		       var price=$(".price").eq(savaIdx).html();
-		       var cityvalue = $citylist.find("option:selected").val();
+		       cityid=$citylist.find("option:selected").val();
 		       var  datas = {};
 					datas.start_time = starttime;
 					datas.end_time = endtime;
 					datas.linename = busName;
 					datas.linename_bd = busNameBd;
 					datas.linkdir = linkdirval;
-					datas.city_id = cityvalue;
+					datas.city_id = cityid;
 					datas.linetype = networkType;
 					datas.price = price;
 					datas.site = sitearr;
