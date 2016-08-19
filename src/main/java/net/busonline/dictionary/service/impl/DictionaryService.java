@@ -39,7 +39,7 @@ public class DictionaryService extends BaseService implements IDictionaryService
 		}
 		try {
 			List<Map<String,Object>> listmap = selectDicByName(dictionaryname);
-			if(!listmap.isEmpty()){
+			if(listmap.isEmpty()){
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("dictionaryname", dictionaryname);
 				map.put("parentid", parentid);
