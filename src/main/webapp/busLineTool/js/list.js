@@ -85,7 +85,7 @@
 			});
 		};
       //修改
-      $(".xiugai").on("click",function(){
+      $(".tableList").on("click",'.xiugai',function(){
       	 indexnum=$(this).attr("data-id");
       	 $(".updataWindow").show();
       });
@@ -95,7 +95,7 @@
       	    update();
       });
       //删除索引
-       $(".delete").on("click",function(){
+       $(".tableList").on("click",'.delete',function(){
         	indexnum=$(this).attr("data-id");
        	   var level=$(this).attr("data-level");
 
