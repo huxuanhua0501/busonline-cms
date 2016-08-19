@@ -1,6 +1,6 @@
 package net.busonline.api.aop;
 
-import net.busonline.api.model.Response;
+import net.busonline.core.model.Response;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

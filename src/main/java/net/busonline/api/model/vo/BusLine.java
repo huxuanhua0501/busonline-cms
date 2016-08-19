@@ -10,7 +10,7 @@ import java.util.List;
 public class BusLine {
 	private int id;
 	private String line_id;
-	private String lineName;
+	private String linename;
 	private String linename_bd;
 	private String linkdir;
 	private String city_id;
@@ -32,11 +32,12 @@ public class BusLine {
 	public void setLine_id(String line_id) {
 		this.line_id = line_id;
 	}
-	public String getLineName() {
-		return lineName;
+	
+	public String getLinename() {
+		return linename;
 	}
-	public void setLineName(String lineName) {
-		this.lineName = lineName;
+	public void setLinename(String linename) {
+		this.linename = linename;
 	}
 	public String getLinename_bd() {
 		return linename_bd;

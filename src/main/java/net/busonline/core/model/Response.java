@@ -1,4 +1,4 @@
-package net.busonline.api.model;
+package net.busonline.core.model;
 
 public class Response {
 	private static final String SUCCESS = "success";

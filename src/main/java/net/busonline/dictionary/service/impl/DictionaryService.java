@@ -1,6 +1,7 @@
 package net.busonline.dictionary.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
 
 import net.busonline.core.base.BaseService;
 import net.busonline.core.exception.ServiceException;
@@ -57,8 +60,18 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	public String selectDicItme() {
 		// TODO Auto-generated method stub
 		try {
-			dictionaryMapper.selectDicItme();
-			return this.jsonSuccess(dictionaryMapper.selectDicItme());
+			List<Map<String,Object>>listmap = dictionaryMapper.selectDicOne();
+			Map<String,Object> onemap = new HashMap<String,Object>();
+			Map<String,Object> twomap = new HashMap<String,Object>();
+			List<String>returnlist = new ArrayList<String>();
+			for(int i = 0 ;i<listmap.size();i++){
+				List<Map<String,Object>>twolist = dictionaryMapper.selectDicTwo(listmap.get(i).get("id").toString()); 
+				listmap.get(i).put("two", twolist);
+				onemap.put("one",listmap.get(i));
+				returnlist.add(JSON.toJSONString(onemap));
+			}
+			twomap.put("arr",returnlist );
+			return this.jsonSuccess(twomap);
 		} catch (Exception e) {
 			logger.debug("selectDicItme查询异常", e);
 			return this.jsonFailure();
