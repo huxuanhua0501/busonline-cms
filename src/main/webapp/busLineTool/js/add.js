@@ -4,6 +4,8 @@
 	     dictionaryname,parentid=0,
 	     leve2=$('.levelone option:selected').val();
 	    var selectList=function(){
+	    	  $(".tianjia_box").append(concent);
+              $(".levelone").append(options);
             $.ajax({
 				url: 'http://192.168.109.227:40000/dict/selectDicOne',
 				type: 'post',
