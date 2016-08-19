@@ -27,9 +27,9 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	DictionaryMapper dictionaryMapper;
 
 	@Override
-	public String insertdict(String dictionaryname, String parentid) {
+	public String insertdict(String dictionaryname1, String parentid) {
 		// TODO Auto-generated method stub
-		if (PubMethod.isEmpty(dictionaryname)) {
+		if (PubMethod.isEmpty(dictionaryname1)) {
 			logger.debug("net.busonline.dictionary.service.impl.BusApiService.insertdict.001===dictionaryname参数异常");
 			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.insertdict.001", "dictionaryname参数异常");
 		}
@@ -38,21 +38,24 @@ public class DictionaryService extends BaseService implements IDictionaryService
 			throw new ServiceException("net.busonline.dictionary.service.impl.BusApiService.insertdict.002", "parentid参数异常");
 		}
 		try {
-			List<Map<String,Object>> listmap = selectDicByName(dictionaryname);
+			
+			String []dictionaryname = dictionaryname1.split(",");
+			
+			for(int i = 0 ;i<dictionaryname.length ;i++){
+			List<Map<String,Object>> listmap = selectDicByName(dictionaryname[i]);
 			if(listmap.isEmpty()){
 				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("dictionaryname", dictionaryname);
+				map.put("dictionaryname", dictionaryname[i]);
 				map.put("parentid", parentid);
 				map.put("createtime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-				dictionaryMapper.insertdict(map);
-				return this.jsonSuccess();
-			}else{
-				return this.jsonSuccess2();	
+				dictionaryMapper.insertdict(map);	 
+			}
 			}
 		} catch (Exception e) {
 			logger.debug("入库异常", e);
 			return this.jsonFailure();
 		}
+		return  this.jsonSuccess();
 
 	}
 
