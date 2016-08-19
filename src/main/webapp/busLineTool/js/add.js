@@ -4,7 +4,8 @@
 	     dictionaryname,parentid=0,
 	     leve2=$('.levelone option:selected').val();
 	    var selectList=function(){
-	    	  $(".tianjia_box,.levelone").html("");
+	    	  $(".tianjia_box").html(" ");
+	    	  $(".levelone").html(" ");
             $.ajax({
 				url: 'http://192.168.109.227:40000/dict/selectDicOne',
 				type: 'post',
@@ -19,9 +20,10 @@
                   	 }
                      $(".tianjia_box").append(concent);
                       $(".levelone").append(options);
-                      selectList2();
                      concent="";
                      options="";
+                      selectList2();
+                     
                   }
                   else{
                   	alert("添加失败");
@@ -31,9 +33,8 @@
 	    };
         selectList();
 	     var selectList2=function(){
-	     	$(".addlist").html("");
+	     	$(".addlist").html(" ");
 	     	 leve2=$('.levelone option:selected').val();
-	     	 console.log(leve2);
             $.ajax({
 				url: 'http://192.168.109.227:40000/dict/selectDicTwo',
 				type: 'post',
