@@ -174,7 +174,7 @@
 					url: 'http://192.168.109.227:40000/iBusGather/upload.do',
 					type: 'post',
 					dataType: 'json',
-					data: JSON.stringify(datas),
+					data: JSON.stringify(datas)
 					success: function(res) {
                            if(res.code==200){
                            	 alert("插入成功");
