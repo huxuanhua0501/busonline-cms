@@ -33,7 +33,7 @@
 	    };
         selectList();
 	     var selectList2=function(){
-	     	$(".addlist").html(" ");
+	     	$(".leve2con").html(" ");
 	     	 leve2=$('.levelone option:selected').val();
             $.ajax({
 				url: 'http://192.168.109.227:40000/dict/selectDicTwo',
@@ -49,7 +49,7 @@
                   	 for(var i=0;i<resData.length;i++){
                   	 	leveCon+="<span>"+resData[i].dictionaryname+"</span>";
                   	 }
-                      $(".addlist").append(leveCon);
+                      $(".leve2con").append(leveCon);
                      leveCon="";
                   }
 				}
