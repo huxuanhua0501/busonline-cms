@@ -63,12 +63,12 @@ public class DictionaryService extends BaseService implements IDictionaryService
 			List<Map<String,Object>>listmap = dictionaryMapper.selectDicOne();
 			Map<String,Object> onemap = new HashMap<String,Object>();
 			Map<String,Object> twomap = new HashMap<String,Object>();
-			List<String>returnlist = new ArrayList<String>();
+			List<Map<String,Object>>returnlist = new ArrayList<Map<String,Object>>();
 			for(int i = 0 ;i<listmap.size();i++){
 				List<Map<String,Object>>twolist = dictionaryMapper.selectDicTwo(listmap.get(i).get("id").toString()); 
 				listmap.get(i).put("two", twolist);
-				onemap.put("one",listmap.get(i));
-				returnlist.add(JSON.toJSONString(onemap));
+				//onemap.put("one",listmap.get(i));
+				returnlist.add(listmap.get(i));
 			}
 			twomap.put("arr",returnlist );
 			return this.jsonSuccess(twomap);

@@ -17,7 +17,7 @@
 <!-- 查找所有线路 -->
 <select id="finBusLineInfo" parameterType="map" resultType="String">
 	SELECT line_name FROM bus_line WHERE line_name LIKE CONCAT(CONCAT('%', #{busline}), '%')
-	and city_id = #{cityid} and linkdir = #{linkdir}
+	and city_id = #{cityid}
 </select>
 <!--查找城市  -->
 <select id="findCity" parameterType="map" resultType="net.busonline.api.model.vo.Common">
