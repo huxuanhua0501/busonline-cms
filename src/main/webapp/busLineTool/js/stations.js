@@ -92,7 +92,6 @@
 				if (res.code == 200) {
 					var citys = res.data.city,
 						linetypes = res.data.linetype,
-						linkdirs = res.data.linkdir,
 						citysCon = "",
 						linetypecon = "",
 						linkdircon = "";
@@ -102,12 +101,10 @@
 					for (var j = 0; j < linetypes.length; j++) {
 						linetypecon += '<label><input name="networkType" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
 					}
-					for (var k = 0; k < linkdirs.length; k++) {
-						linkdircon += '<label><input name="linkdir" type="radio" value="' + linkdirs[k].id + '"/>' + linkdirs[k].name + ' </label>';
-					}
+				
 					$("#citylist").html(citysCon);
 					$("#network").html(linetypecon);
-					$("#dir").html(linkdircon);
+					
 					$("input[name=networkType]:eq(0),input[name=linkdir]:eq(0)").attr("checked", 'checked');
 				}
 				else{
