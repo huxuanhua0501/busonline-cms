@@ -19,6 +19,7 @@
                   	 }
                      $(".tianjia_box").append(concent);
                       $(".levelone").append(options);
+                      selectList2();
                      concent="";
                      options="";
                   }
@@ -30,7 +31,9 @@
 	    };
         selectList();
 	     var selectList2=function(){
+	     	$(".addlist").html("");
 	     	 leve2=$('.levelone option:selected').val();
+	     	 console.log(leve2);
             $.ajax({
 				url: 'http://192.168.109.227:40000/dict/selectDicTwo',
 				type: 'post',
@@ -68,7 +71,7 @@
 
                      selectList();
                   	 alert("添加成功");
-                  	 if(parentid){
+                  	 if(parentid>0){
                   	 	 selectList();
                   	 	 selectList2();
                   	 }

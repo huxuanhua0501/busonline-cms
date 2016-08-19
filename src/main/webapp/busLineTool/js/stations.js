@@ -85,7 +85,7 @@
        //请求字典信息接口
 	  var ajaxDictionaries=function(){
 	  	 $.ajax({
-	  	 	url:'http://192.168.117.10:8080/busonline-cms/iBusGather/dictionary.do',
+	  	 	url:'/iBusGather/dictionary.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	success:function(res){
@@ -117,7 +117,7 @@
       //查询是否采集接口
 		  var ajaxcollectionbus=function(){
 		  	  $.ajax({
-		  	 	url:'http://192.168.117.10:8080/busonline-cms/iBusGather/busName.do?cityid='+cityid+'&busline='+busNameval,
+		  	 	url:'/iBusGather/busName.do?cityid='+cityid+'&busline='+busNameval,
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	success:function(res){
@@ -138,7 +138,7 @@
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
 		  	  $.ajax({
-		  	 	url:'http://192.168.117.10:8080/busonline-cms/iBusGather/validate.do?buslinename='+busNamNew,
+		  	 	url:'/iBusGather/validate.do?buslinename='+busNamNew+'&cityid='+cityid,
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	success:function(res){
@@ -155,7 +155,7 @@
 		 var ajaxSave=function(){
 		    	var sitearr=[];
 		    	var siteNameObj={};
-		    	var savaIdx=$(".open").index();
+		    	var savaIdx=$(".open").find(".showhid").index();
 		    	var $stationSite=$(".stationSite");
 		    	for(var i=0;i<$stationSite.length;i++){
                         siteNameObj.name=$stationSite.eq(i).html();
@@ -168,26 +168,26 @@
 		    	}
 		    	var networkType=$("input[name=networkType]:checked").val();
 		    	var linkdirval=$("input[name=linkdir]:checked").val();
-		       var startTime=$(".startTime").eq(savaIdx).html();
-		       var endtime=$(".startTime").eq(savaIdx).html();
+		       var starttime=$(".startTime").eq(savaIdx).html();
+		       var endtime=$(".endTime").eq(savaIdx).html();
 		      var  busNameBd=$(".busNameBd").eq(savaIdx).html();
 		       var busName=$("#busName").val();
 		       var price=$(".price").eq(savaIdx).html();
 		       var cityvalue = $citylist.find("option:selected").val();
 				$.ajax({
-					url: 'http://192.168.109.227:40000/busonline-cms/iBusGather/upload.do',
+					url: '/iBusGather/upload.do',
 					type: 'post',
 					dataType: 'json',
 					data: {
+						start_time: starttime,
+						end_time: endtime,
 						linename: busName,
 						linename_bd: busNameBd,
 						linkdir: linkdirval,
 						city_id: cityvalue,
 						linetype: 2,
 						price: price,
-						start_time: startTime,
-						end_time: endtime,
-						site:sitearr
+						site: JSON.stringify(sitearr)
 					},
 					success: function(res) {
                            if(res.code==200){
@@ -203,6 +203,7 @@
         //点击保存按钮
         $("#save").click(function(){
         	 busNamNew=$("#busName").val();
+        	 cityid=$citylist.find("option:selected").val();
         	if(busNamNew){
                ajaxTestInsert();//验证是否可以插入
         	}
