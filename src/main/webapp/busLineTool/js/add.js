@@ -15,7 +15,7 @@
                   	 var concent="",options="";
                   	 for(var i=0;i<resData.length;i++){
                   	 	concent+="<li>"+resData[i].dictionaryname+"</li>";
-                  	 	options+="<option value ='"+resData[i].id+"'>"+resData[i].dictionaryname+"</option>  "
+                  	 	options+="<option value ='"+resData[i].id+"'>"+resData[i].dictionaryname+"</option>";
                   	 }
                      $(".tianjia_box").append(concent);
                       $(".levelone").append(options);
