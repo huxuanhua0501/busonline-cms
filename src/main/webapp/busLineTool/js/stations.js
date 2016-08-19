@@ -162,6 +162,7 @@
 					url: '/iBusGather/upload.do',
 					type: 'post',
 					dataType: 'json',
+					contentType: 'application/json;charse=UTF-8',
 					data: {
 						start_time: starttime,
 						end_time: endtime,

@@ -84,9 +84,19 @@
 				}
 			});
 		};
-		//删除二级索引
-       $(".delete").click(function(){
-       	   indexnum=$(this).attr("data-id");
+      //修改
+      $(".xiugai").on("click",function(){
+      	 indexnum=$(this).attr("data-id");
+      	 $(".updataWindow").show();
+      });
+       //修改保存
+       $(".savaBtn").on("click",function(){
+        	dictionary=$('.dictionary').val();
+      	    update();
+      });
+      //删除索引
+       $(".delete").on("click",function(){
+        	indexnum=$(this).attr("data-id");
        	   var level=$(this).attr("data-level");
 
 			if (confirm("确定要删除吗？")) {
@@ -97,20 +107,7 @@
 				}
 				
 			}
-       	   
-       });
-      //修改
-
-      $(".xiugai").on("click",function(){
-      	 indexnum=$(this).attr("data-id");
-      	 $(".updataWindow").show();
       });
-       //修改保存
-       $(".savaBtn").on("click",function(){
-        	dictionary=$('.dictionary').val();
-      	    update();
-      });
-
       $(".cancel").click(function(){
       	  $(".updataWindow").hide();
       });
