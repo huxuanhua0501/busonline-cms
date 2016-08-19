@@ -18,8 +18,8 @@
                   	 	concent+="<li>"+resData[i].dictionaryname+"</li>";
                   	 	options+="<option value ='"+resData[i].id+"'>"+resData[i].dictionaryname+"</option>";
                   	 }
-                     $(".tianjia_box").append(concent);
-                      $(".levelone").append(options);
+                     $(".tianjia_box").html(concent);
+                     $(".levelone").html(options);
                      concent="";
                      options="";
                       selectList2();

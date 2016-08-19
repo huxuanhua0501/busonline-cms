@@ -162,6 +162,7 @@
 					url: '/iBusGather/upload.do',
 					type: 'post',
 					dataType: 'json',
+					contentType:"application/json",
 					data: {
 						start_time: starttime,
 						end_time: endtime,
@@ -184,7 +185,7 @@
 				});
 
 		  }
-		  
+
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
 		  	  $.ajax({

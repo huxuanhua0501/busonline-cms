@@ -21,7 +21,6 @@
 							'">删除</a></td><td><ul class="liebiao_box">' + html2 + '</ul></td></tr>';
 						html2 = "";
 					}
-                  	 console.log(html);
                   	 $(".tableList").append(html);
                   	 html="";
 
@@ -101,15 +100,17 @@
        	   
        });
       //修改
-      $(".xiugai").click(function(){
+
+      $(".xiugai").on(".click",function(){
       	 indexnum=$(this).attr("data-id");
-      	$(".updataWindow").show();
+      	 $(".updataWindow").show();
       });
        //修改保存
-      $(".savaBtn").click(function(){
-      	dictionary=$('.dictionary').val();
-      	update();
+       $(".savaBtn").on(".click",function(){
+        	dictionary=$('.dictionary').val();
+      	    update();
       });
+
       $(".cancel").click(function(){
       	  $(".updataWindow").hide();
       });
