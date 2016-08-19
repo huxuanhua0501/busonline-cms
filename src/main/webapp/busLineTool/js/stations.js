@@ -3,9 +3,12 @@
 		$busName = $("#lineName"),
 		$search = $("#search"),
 		cityval = $citylist.find("option:selected").text(),
+		cityid=$citylist.find("option:selected").val(),
 		tmpRet = "", //全局变量，存储返回结果
 		tmpRetIndex = 0, //数据下标
 		stations = "",
+		busNameval,
+		busNamNew,
 		collect = []; //存放线路名称
 		var map = new BMap.Map("l-map"); // 创建Map实例
 		map.centerAndZoom(cityval, 12);
@@ -59,12 +62,13 @@
 		//切换城市
 		$citylist.on("change", function() {
 			cityval = $citylist.find("option:selected").text();
+			cityid=$citylist.find("option:selected").val();
             map.centerAndZoom(cityval,12);
             $(".onbuslineShow").css("display","none");
 		});
 		//查询线路
          $search.click(function(){
-			var busNameval = $busName.val();
+			 busNameval = $busName.val();
 				if (busNameval) {
 					busline.getBusList(busNameval);
 				} else {
@@ -78,77 +82,88 @@
          	$(".stationsbox,.popup").hide();
 			return false;
          });
-          //请求字典信息接口
-	
+       //请求字典信息接口
 	  var ajaxDictionaries=function(){
-	  	 // $.ajax({
-	  	 // 	url:'http://www.baidu.com',
-	  	 // 	type:'post',
-	  	 // 	dataType:'json',
-	  	 // 	data: {
-           //category_id: classValue
-     //      },
-	  	 // 	success:function(res){
-                 
-	  	 // 	}
-	  	 // });
-	  	  var ajaxdatas={"code":200,"msg":"success","data":{"city":[{ "id":1, "name":"北京" },{ "id":2, "name":"南京市" }],"linetype":[{ "id":2, "name":"A网"}],"linkdir":[{"id":3, "name":"上行" },{"id":2, "name":"下行" },{"id":1, "name":"其他" } ]}};
-          var citys=ajaxdatas.data.city,
-              linetypes=ajaxdatas.data.linetype,
-              linkdirs=ajaxdatas.data.linkdir,
-              citysCon="",linetypecon="",linkdircon="";
-           for(var i=0;i<citys.length;i++){
-              citysCon+='<option value="'+citys[i].id+'">'+citys[i].name+'</option>';
-           }
-           for(var j=0;j<linetypes.length;j++){
-              linetypecon+='<label><input name="networkType" type="radio" value="'+linetypes[j].id+'"/>'+linetypes[j].name+' </label>';
-           } 
-            for(var k=0;k<linkdirs.length;k++){
-              linkdircon+='<label><input name="linkdir" type="radio" value="'+linkdirs[k].id+'"/>'+linkdirs[k].name+' </label>';
-           } 
-            $("#citylist").html(citysCon); 
-            $("#network").html(linetypecon); 
-            $("#dir").html(linkdircon); 
-            $("input[name=networkType]:eq(0),input[name=linkdir]:eq(0)").attr("checked",'checked');
+	  	 $.ajax({
+	  	 	url:'/busonline-cms/iBusGather/dictionary.do',
+	  	 	type:'post',
+	  	 	dataType:'json',
+	  	 	success:function(res){
+				if (res.code == 200) {
+					var citys = res.data.city,
+						linetypes = res.data.linetype,
+						linkdirs = res.data.linkdir,
+						citysCon = "",
+						linetypecon = "",
+						linkdircon = "";
+					for (var i = 0; i < citys.length; i++) {
+						citysCon += '<option value="' + citys[i].id + '">' + citys[i].name + '</option>';
+					}
+					for (var j = 0; j < linetypes.length; j++) {
+						linetypecon += '<label><input name="networkType" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
+					}
+					for (var k = 0; k < linkdirs.length; k++) {
+						linkdircon += '<label><input name="linkdir" type="radio" value="' + linkdirs[k].id + '"/>' + linkdirs[k].name + ' </label>';
+					}
+					$("#citylist").html(citysCon);
+					$("#network").html(linetypecon);
+					$("#dir").html(linkdircon);
+					$("input[name=networkType]:eq(0),input[name=linkdir]:eq(0)").attr("checked", 'checked');
+				}
+				else{
+					alert("查询异常");
+				}
+	  	 	}
+	  	 });        
 	  };
 
 	  ajaxDictionaries();//初始化城市，类型，上行下行
 
       //查询是否采集接口
 		  var ajaxcollectionbus=function(){
-		  	  // $.ajax({
-		  	 // 	url:'http://www.baidu.com',
-		  	 // 	type:'post',
-		  	 // 	dataType:'json',
-		  	 // 	data: {
-	     //        //category_id: classValue
-	     //      },
-		  	 // 	success:function(res){
-	                 
-		  	 // 	}
-		  	 // });
-		     var ajaxdatas={"code":200,"msg":"success","data":{ "busline":[ "915快区间(东大桥环岛-东直门枢纽站)","915路(东直门枢纽站-南彩汽车站)" ]}};
-		     var collectarr=ajaxdatas.data.busline;
-              for(var h=0; h<collect.length;h++){
-              	 if($.inArray(collect[h], collectarr)>=0){
-              	 	$(".identity").eq(h).html("已采集").parent().css({"background-color":"#f00","border-color":"#f00"});
-              	 }
-              }
+		  	  $.ajax({
+		  	 	url:'/busonline-cms/iBusGather/busName.do',
+		  	 	type:'post',
+		  	 	dataType:'json',
+		  	 	data: {
+	              busline: busNameval,
+	              cityid:cityid
+	          },
+		  	 	success:function(res){
+					if (res.code == 200) {
+						var collectarr = res.data.busline;
+						for (var h = 0; h < collect.length; h++) {
+							if ($.inArray(collect[h], collectarr) >= 0) {
+								$(".identity").eq(h).html("已采集").parent().css({
+									"background-color": "#f00",
+									"border-color": "#f00"
+								});
+							}
+						}
+					} else {
+						alert("查询异常");
+					}
+		  	 	}
+		  	 });	    
 		  }
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
-		  	  // $.ajax({
-		  	 // 	url:'http://www.baidu.com',
-		  	 // 	type:'post',
-		  	 // 	dataType:'json',
-		  	 // 	data: {
-	     //        //category_id: classValue
-	     //      },
-		  	 // 	success:function(res){
-	                   
-		  	 // 	}
-		  	 // });
-               ajaxSave();
+		  	  $.ajax({
+		  	 	url:'/busonline-cms/iBusGather/validate.do',
+		  	 	type:'post',
+		  	 	dataType:'json',
+		  	 	data: {
+	              buslinename: busNamNew
+	          },
+		  	 	success:function(res){
+					if (res.code == 200) {
+                        ajaxSave();
+					} else {
+						alert("插入失败");
+					}
+		  	 	}
+		  	 });
+              
 		  }
 		 //保存接口调用
 		 var ajaxSave=function(){
@@ -173,30 +188,35 @@
 		       var busName=$("#busName").val();
 		       var price=$(".price").eq(savaIdx).html();
 		       var cityvalue = $citylist.find("option:selected").val();
-				// $.ajax({
-				// 	url: 'http://www.baidu.com',
-				// 	type: 'post',
-				// 	dataType: 'json',
-				// 	data: {
-				// 		linename: "巴士在线线路名称",
-				// 		linename_bd: "百度线路名称",
-				// 		linkdir: linkdirval,
-				// 		city_id: 1,
-				// 		linetype: 2,
-				// 		price: "2",
-				// 		start_time: "开始时间",
-				// 		end_time: "结束时间",
-				// 		site:sitearr
-				// 	},
-				// 	success: function(res) {
-
-				// 	}
-				// });
+				$.ajax({
+					url: '/busonline-cms/iBusGather/upload.do',
+					type: 'post',
+					dataType: 'json',
+					data: {
+						linename: busName,
+						linename_bd: busNameBd,
+						linkdir: linkdirval,
+						city_id: cityvalue,
+						linetype: 2,
+						price: price,
+						start_time: startTime,
+						end_time: endtime,
+						site:sitearr
+					},
+					success: function(res) {
+                           if(res.code==200){
+                           	 alert("插入成功");
+                           }
+                           else{
+                           	 alert("插入失败");
+                           }
+					}
+				});
 
 		  }
         //点击保存按钮
         $("#save").click(function(){
-        	var busNamNew=$("#busName").val();
+        	 busNamNew=$("#busName").val();
         	if(busNamNew){
                ajaxTestInsert();//验证是否可以插入
         	}
