@@ -1,5 +1,6 @@
 package net.busonline.api.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	public Response insertBusInfo(BusLine busLine) {
 		Map<String,Object> param = new HashMap<String, Object>();
 		BusLine busLineInfo = busLine;
-		busLineInfo.setLine_id(getBusLineId(busLine.getLinename()));
+		busLineInfo.setLine_id(getBusLineId(busLine.getLinename(),busLine.getCity_id()));
 		//插入线路信息
 		iBusGatherMapper.insertBusLine(busLineInfo);
 		//插入站点信息
@@ -70,7 +71,8 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	@Override
 	public Response findBusDictionary(Map<String, Object> map) {
 		Map<String,Object> result = new HashMap<String,Object>();
-		List<Common> citys = iBusGatherMapper.findCity(map);
+		//List<Common> citys = iBusGatherMapper.findCity(map);
+		List<Common> citys = findCitys();
 		String parent_id = ProFileUtil.getPropertiesValue("dictionary.properties", "segment");
 		List<Common> segment = iBusGatherMapper.findSegment(parent_id);
 		result.put("city", citys);
@@ -85,7 +87,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 */
 	@Override
 	public Response validateBusLineName(Map<String, Object> map) {
-		String str = getBusLineId(map.get("buslinename").toString());
+		String str = getBusLineId(map.get("buslinename").toString(),map.get("cityid").toString());
 		if(null != str && !str.equals("")){
 			return new Response().success();
 		}
@@ -97,14 +99,14 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 * @param busLine
 	 * @return
 	 */
-	public String getBusLineId(String busLineName){
+	public String getBusLineId(String busLineName,String cityid){
 		Connection conn = DButils.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String str = null;
 		try{
 		  stmt = conn.createStatement();
-		  String sql= "select id from bus_line where name = " + busLineName.trim();
+		  String sql= "select id from bus_line where name = " + busLineName.trim()+" and area_id="+cityid;
 		  rs = stmt.executeQuery(sql);
 		  while (rs.next()){
 			   str = rs.getString("id");
@@ -117,8 +119,29 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 		return str;
 	}
 	
-	
-	
+	public List<Common> findCitys(){
+		Connection conn = DButils.getConnection();
+		Statement stmt = null;
+		ResultSet rs = null;
+		List<Common> list = new ArrayList<Common>();
+		Common common = null;
+		try{
+		  stmt = conn.createStatement();
+		  String sql= "select id,name from area";
+		  rs = stmt.executeQuery(sql);
+		  while (rs.next()){
+			  common = new Common();
+			  common.setId(rs.getString("id"));
+			  common.setName(rs.getString("name"));
+			  list.add(common);
+		  }
+		}catch(SQLException e){
+			logger.debug("数据库异常");
+		}finally{
+			DButils.closeResources(conn, null, rs);
+        }
+		return list;
+	}
 	
 	
 
