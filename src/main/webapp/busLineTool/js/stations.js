@@ -85,7 +85,7 @@
        //请求字典信息接口
 	  var ajaxDictionaries=function(){
 	  	 $.ajax({
-	  	 	url:'/iBusGather/dictionary.do',
+	  	 	url:'http://192.168.109.227:40000/iBusGather/dictionary.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	success:function(res){
@@ -107,9 +107,7 @@
 					
 					$("input[name=networkType]:eq(0),input[name=linkdir]:eq(0)").attr("checked", 'checked');
 				}
-				else{
-					alert("查询异常");
-				}
+				
 	  	 	}
 	  	 });        
 	  };
@@ -119,13 +117,9 @@
       //查询是否采集接口
 		  var ajaxcollectionbus=function(){
 		  	  $.ajax({
-		  	 	url:'/iBusGather/busName.do',
+		  	 	url:'http://192.168.109.227:40000/iBusGather/busName.do?cityid='+cityid+'&busline='+busNameval,
 		  	 	type:'post',
 		  	 	dataType:'json',
-		  	 	data: {
-	              busline: busNameval,
-	              cityid:cityid
-	          },
 		  	 	success:function(res){
 					if (res.code == 200) {
 						var collectarr = res.data.busline;
@@ -146,12 +140,9 @@
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
 		  	  $.ajax({
-		  	 	url:'/iBusGather/validate.do',
+		  	 	url:'http://192.168.109.227:40000/iBusGather/validate.do?buslinename='+busNamNew,
 		  	 	type:'post',
 		  	 	dataType:'json',
-		  	 	data: {
-	              buslinename: busNamNew
-	          },
 		  	 	success:function(res){
 					if (res.code == 200) {
                         ajaxSave();
@@ -186,7 +177,7 @@
 		       var price=$(".price").eq(savaIdx).html();
 		       var cityvalue = $citylist.find("option:selected").val();
 				$.ajax({
-					url: '/iBusGather/upload.do',
+					url: 'http://192.168.109.227:40000/iBusGather/upload.do',
 					type: 'post',
 					dataType: 'json',
 					data: {
