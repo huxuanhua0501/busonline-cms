@@ -85,7 +85,7 @@
        //请求字典信息接口
 	  var ajaxDictionaries=function(){
 	  	 $.ajax({
-	  	 	url:'/busonline-cms/iBusGather/dictionary.do',
+	  	 	url:'/iBusGather/dictionary.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	success:function(res){
@@ -122,7 +122,7 @@
       //查询是否采集接口
 		  var ajaxcollectionbus=function(){
 		  	  $.ajax({
-		  	 	url:'/busonline-cms/iBusGather/busName.do',
+		  	 	url:'/iBusGather/busName.do',
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	data: {
@@ -149,7 +149,7 @@
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
 		  	  $.ajax({
-		  	 	url:'/busonline-cms/iBusGather/validate.do',
+		  	 	url:'/iBusGather/validate.do',
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	data: {
@@ -189,7 +189,7 @@
 		       var price=$(".price").eq(savaIdx).html();
 		       var cityvalue = $citylist.find("option:selected").val();
 				$.ajax({
-					url: '/busonline-cms/iBusGather/upload.do',
+					url: '/iBusGather/upload.do',
 					type: 'post',
 					dataType: 'json',
 					data: {
