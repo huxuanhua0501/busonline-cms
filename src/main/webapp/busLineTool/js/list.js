@@ -32,7 +32,7 @@
 	    listShow();
 		var update = function() {
 			$.ajax({
-				url: 'http://192.168.109.227:40000/dict/selectDicTwo',
+				url: 'http://192.168.109.227:40000/dict/updateDicname',
 				type: 'post',
 				dataType: 'json',
 				data: {
