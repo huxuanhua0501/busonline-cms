@@ -10,7 +10,7 @@
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 <!-- 解决ajax返回string乱码,需要在annotation-driven之前 -->
-<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
 			<list>
 				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -22,9 +22,9 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 				</bean>
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 	<bean
-		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
 			<list>
 				<ref bean="stringHttpMessageConverter" />
