@@ -41,8 +41,9 @@
 				success: function(res) {
                   if(res.code==200){
                   	 alert("修改成功");
+                  	 listShow();
                   	 $(".updataWindow").hide();
-                  	  listShow();
+                  	
                   	
                   }
                   else{

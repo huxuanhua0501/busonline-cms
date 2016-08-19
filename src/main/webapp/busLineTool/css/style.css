@@ -52,6 +52,7 @@ ul li{list-style: none;}
 .tianjia_in{margin-bottom: 10px;}
 .tianjia_in span{margin-right: 5px;}
 .tips{font-size: 12px;color: #3c8dbc;margin-left: 220px;}
+.liebiao{width:80%;}
 .liebiao table tr:first-child{border-bottom: 1px solid red;}
 .liebiao table tr th,td{padding:8px;background-color: #fff;text-align: left;}
 .liebiao table tr td{background-color: #f9f9f9;}
@@ -62,3 +63,4 @@ ul li{list-style: none;}
 .two_add{font-size: 14px;text-align: center;}
 .updataWindow{width:300px;height: 100px;border-radius: 5px; padding:20px;background-color: #fff;position: absolute;left:30%; top:30%;z-index: 100;border: 1px solid #ccc;display: none; }
 .main{width:100%; padding-top: 100px;}
+.updataWindow input[type="button"]{width:80px;height: 30px;margin-right: 20px;margin-top:30px;}
