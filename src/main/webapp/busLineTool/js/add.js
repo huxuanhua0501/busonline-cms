@@ -4,8 +4,8 @@
 	     dictionaryname,parentid=0,
 	     leve2=$('.levelone option:selected').val();
 	    var selectList=function(){
-	    	  $(".tianjia_box").append(concent);
-              $(".levelone").append(options);
+	    	  $(".leve1con").html(" ");
+              $(".leve2con").append("");
             $.ajax({
 				url: 'http://192.168.109.227:40000/dict/selectDicOne',
 				type: 'post',
@@ -18,8 +18,8 @@
                   	 	concent+="<li>"+resData[i].dictionaryname+"</li>";
                   	 	options+="<option value ='"+resData[i].id+"'>"+resData[i].dictionaryname+"</option>  "
                   	 }
-                     $(".tianjia_box").append(concent);
-                      $(".levelone").append(options);
+                     $(".leve1con").html(concent);
+                      $(".leve2con").html(options);
                      concent="";
                      options="";
                   }
