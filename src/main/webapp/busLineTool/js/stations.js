@@ -165,10 +165,10 @@
 					datas.linename_bd = busNameBd;
 					datas.linkdir = linkdirval;
 					datas.city_id = cityvalue;
-					datas.linetype = cityvalue;
-					datas.price = cityvalue;
+					datas.linetype = networkType;
+					datas.price = price;
 					datas.site = sitearr;
-                
+       
 
 				$.ajax({
 					url: 'http://192.168.109.227:40000/iBusGather/upload.do',
