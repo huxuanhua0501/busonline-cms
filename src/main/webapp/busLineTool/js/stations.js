@@ -167,7 +167,7 @@
 					datas.city_id = cityvalue;
 					datas.linetype = cityvalue;
 					datas.price = cityvalue;
-					datas.site = JSON.stringify(sitearr);
+					datas.site = sitearr;
 
 
 				$.ajax({
