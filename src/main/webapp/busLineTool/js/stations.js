@@ -159,9 +159,9 @@
 		       var price=$(".price").eq(savaIdx).html();
 		       var cityvalue = $citylist.find("option:selected").val();
 				$.ajax({
-					url: '/iBusGather/upload.do',
+					url: 'http://192.168.109.227:40000/iBusGather/upload.do',
 					type: 'post',
-					dataType: 'text',
+					dataType: 'json',
 					data: {
 						start_time: starttime,
 						end_time: endtime,

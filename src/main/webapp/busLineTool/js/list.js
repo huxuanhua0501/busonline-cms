@@ -35,7 +35,7 @@
 				type: 'post',
 				dataType: 'json',
 				data: {
-					parentid:indexnum,
+					id:indexnum,
 					dictionaryname: dictionary
 				},
 				success: function(res) {
@@ -54,7 +54,7 @@
 				type: 'post',
 				dataType: 'json',
 				data: {
-					parentid:indexnum
+					id:indexnum
 				},
 				success: function(res) {
                   if(res.code==200){
@@ -72,7 +72,7 @@
 				type: 'post',
 				dataType: 'json',
 				data: {
-					parentid:indexnum
+					id:indexnum
 				},
 				success: function(res) {
                   if(res.code==200){
