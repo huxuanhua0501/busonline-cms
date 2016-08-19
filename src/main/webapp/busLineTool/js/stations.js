@@ -168,23 +168,23 @@
 					datas.linetype = networkType;
 					datas.price = price;
 					datas.site = sitearr;
+						$.ajax({
+							url: 'http://192.168.109.227:40000/iBusGather/upload.do',
+							type: 'post',
+							dataType: 'json',
+							data:{
+								busLine:JSON.stringify(datas)
+							},
+							success: function(res) {
+								if (res.code == 200) {
+									alert("插入成功");
+								} else {
+									alert("插入失败");
+								}
+							}
+						});
 
-       $.ajax({
-					url: 'http://192.168.109.227:40000/iBusGather/upload.do',
-					type: 'post',
-					dataType: 'json',
-					data: datas.toString(),
-					success: function(res) {
-                           if(res.code==200){
-                           	 alert("插入成功");
-                           }
-                           else{
-                           	 alert("插入失败");
-                           }
-					}
-				});
-
-		  }
+					};
 
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
