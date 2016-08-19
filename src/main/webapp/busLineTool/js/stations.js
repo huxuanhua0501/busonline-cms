@@ -135,23 +135,7 @@
 		  	 	}
 		  	 });	    
 		  }
-	     //验证是否可以插入接口
-		  var ajaxTestInsert=function(){
-		  	  $.ajax({
-		  	 	url:'/iBusGather/validate.do?buslinename='+busNamNew+'&cityid='+cityid,
-		  	 	type:'post',
-		  	 	dataType:'json',
-		  	 	success:function(res){
-					if (res.code == 200) {
-                        ajaxSave();
-					} else {
-						alert("插入失败");
-					}
-		  	 	}
-		  	 });
-              
-		  }
-		 //保存接口调用
+		   //保存接口调用
 		 var ajaxSave=function(){
 		    	var sitearr=[];
 		    	var siteNameObj={};
@@ -200,6 +184,24 @@
 				});
 
 		  }
+		  
+	     //验证是否可以插入接口
+		  var ajaxTestInsert=function(){
+		  	  $.ajax({
+		  	 	url:'/iBusGather/validate.do?buslinename='+busNamNew+'&cityid='+cityid,
+		  	 	type:'post',
+		  	 	dataType:'json',
+		  	 	success:function(res){
+					if (res.code == 200) {
+                        ajaxSave();
+					} else {
+						alert("插入失败");
+					}
+		  	 	}
+		  	 });
+              
+		  }
+		
         //点击保存按钮
         $("#save").click(function(){
         	 busNamNew=$("#busName").val();
