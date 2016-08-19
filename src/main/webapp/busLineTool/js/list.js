@@ -14,7 +14,7 @@
                   	 var html2="";
 					for (var i = 0; i < resData.length; i++) {
 						for (var j = 0; j < resData[i].two.length; j++) {
-							html2 += '<li><span>' + resData[i].two[j].dictionaryname + '</span><a href="javascript:;" class="xiugai" data-id="' + resData[i].two[j].id + '" data-level="2">修改</a><a href="javascript:;" '
+							html2 += '<li><span>' + resData[i].two[j].dictionaryname + '</span><a href="javascript:;" class="xiugai" data-id="' + resData[i].two[j].id + '" data-level="2">修改</a><a href="javascript:;" '+
 							'class="delete" data-level="2" data-id="' + resData[i].two[j].id + '">删除</a></li>';
 						}
 						html +='<tr><td>' + (i + 1) + '</td><td>' + resData[i].dictionaryname + '<a href="javascript:;" class="xiugai" data-level="1" data-id="' + resData[i].id + '">修改</a><a href="javascript:;" class="delete" data-level="1" data-id="' + resData[i].id +
