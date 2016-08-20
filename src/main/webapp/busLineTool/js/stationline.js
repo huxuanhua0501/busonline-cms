@@ -188,6 +188,7 @@
 	  	 	success:function(res){
 				if (res.code == 200) {
 					alert("修改成功");
+					$(".updateWindow").hide();
 					loadData();
 				}
 				else{
@@ -198,7 +199,7 @@
     };
      var busLineDelete=function(){
     	  $.ajax({
-	  	 	url:'/lineview/updateLinebyid',
+	  	 	url:'/lineview/delLineandstopbyid',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
@@ -222,7 +223,7 @@
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
-                id:lineId
+                lineId:lineId
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
