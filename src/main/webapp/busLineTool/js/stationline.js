@@ -223,7 +223,7 @@
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
-                lineId:lineId
+                lineid:lineId
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
