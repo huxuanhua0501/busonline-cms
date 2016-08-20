@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.busonline.api.dao.LineViewMapper">
+	<select id="getAllLine" resultType="java.util.Map">
+			SELECT
+			bl.id AS id,
+			bl.line_id AS lineid,
+			bl.linkdir AS linkdir,
+			bl.line_name AS linename,
+			bl.line_name_bd AS linenamebd,
+			bl.price AS price,
+			bl.line_type AS linetype,
+			bl.dictionary_id AS dictionaryid,
+		    bl.installation_number AS installationnumber,
+		    bl.match_number AS matchnumber,
+		    dc.dictionary_name,
+		    bl.dictionary_id
+		FROM
+			bus_line bl
+		LEFT JOIN city ct ON ct.id = bl.city_id
+        LEFT JOIN  dictionary dc ON dc.id = bl.dictionary_id
+		WHERE 1=1
+	   <if test="map.linename!=null and map.linename!=''">
+		AND	bl.line_name like  CONCAT('%',#{map.linename},'%') 
+		</if>
+		<if test="map.cityname!=null and map.cityname!=''">
+		AND ct.name_cn=#{map.cityname}
+		</if>
+	<if test="map.linkdir!=null and map.linkdir!=''">
+	     AND bl.linkdir IN
+	    <foreach item="item1" index="index" collection="map.linkdir" 
+	              open="(" separator="," close=")">
+	             #{item1}
+	        </foreach>
+	 
+		</if>
+	 
+   <if test="map.linetype!=null and map.linetype!=''">
+        AND bl.line_type IN 
+       <foreach item="item1" index="index" collection="map.linetype" 
+	              open="(" separator="," close=")">
+	             #{item1}
+	        </foreach>
+		</if>
+   <if test="map.dictionaryid!=null and map.dictionaryid!=''">
+		AND bl.dictionary_id IN  
+		   <foreach item="item1" index="index" collection="map.dictionaryid" 
+	              open="(" separator="," close=")">
+	             #{item1}
+	        </foreach>
+		</if>
+			limit #{map.page.offset},#{map.page.pageSize}		
+	</select>
+	
+	
+		<select id="getAllLineCount" resultType="java.lang.Long">
+			SELECT
+			count(1)
+		FROM
+			bus_line bl
+		LEFT JOIN city ct ON ct.id = bl.city_id
+        LEFT JOIN  dictionary dc ON dc.id = bl.dictionary_id
+		WHERE 1=1
+	   <if test="map.linename!=null and map.linename!=''">
+		AND	bl.line_name like  CONCAT('%',#{map.linename},'%') 
+		</if>
+		<if test="map.cityname!=null and map.cityname!=''">
+		AND ct.name_cn=#{map.cityname}
+		</if>
+	<if test="map.linkdir!=null and map.linkdir!=''">
+	     AND bl.linkdir IN
+	    <foreach item="item1" index="index" collection="map.linkdir" 
+	              open="(" separator="," close=")">
+	             #{item1}
+	        </foreach>
+	 
+		</if>
+	 
+   <if test="map.linetype!=null and map.linetype!=''">
+        AND bl.line_type IN 
+       <foreach item="item1" index="index" collection="map.linetype" 
+	              open="(" separator="," close=")">
+	             #{item1}
+	        </foreach>
+		</if>
+   <if test="map.dictionaryid!=null and map.dictionaryid!=''">
+		AND bl.dictionary_id IN  
+		   <foreach item="item1" index="index" collection="map.dictionaryid" 
+	              open="(" separator="," close=")">
+	             #{item1}
+	        </foreach>
+		</if>
+		 
+	</select>
+	 <delete id="delLinebyid">
+		DELETE
+			FROM
+				bus_line
+			WHERE
+				id =#{id}
+	 </delete>
+	 <delete id="delstopbylineid">
+			DELETE
+			FROM
+				bus_stop
+			WHERE
+				line_id =#{id}
+	 </delete>
+	 
+	 <update id="updatestop">
+		UPDATE bus_stop
+		SET name =#{map.name},
+		 linedir =#{map.linedir},
+		 lat =#{map.lat}, 
+		 lon =#{map.lon}, 
+		 stop_type =#{map.stoptype}
+		WHERE
+			id =#{map.id}
+</update>
+
+
+ <update id="updateLinebyid">
+		UPDATE bus_line
+		SET line_name = #{map.linename},
+		 dictionary_id = #{map.dictionaryid},
+		 line_type = #{map.linetype},
+		 linkdir = #{map.linkdir},
+		 installation_number = #{map.installationnumber},
+		 match_number = #{map.matchnumber}
+		WHERE
+			id =#{map.id}
+</update>
+
+ <select id="getLineById" resultType="java.util.Map" >
+		  		
+		  SELECT
+			b.line_name,
+			b.linkdir,
+			b.price,
+			b.start_time,
+			b.end_time,
+			b.line_type,
+			b.dictionary_id,
+		  b.id
+		
+		FROM
+			bus_line b
+		  WHERE b.id=#{id}
+		  		
+</select>
+<select id="selectstopcount" resultType="java.lang.Long" >
+   SELECT 
+     count(1) 
+   FROM 
+     bus_stop 
+   WHERE 
+     line_id=#{id}
+</select>
+
+
+<select id="selectstartstop" resultType="java.util.Map" >
+		   SELECT
+			name AS startstop
+		FROM
+			bus_stop
+		WHERE
+			line_id = #{id}
+		ORDER BY
+			stopseq ASC
+LIMIT 1
+</select>
+<select id="selectendstop" resultType="java.util.Map" >
+	  SELECT
+		name AS endstop
+	FROM
+		bus_stop
+	WHERE
+		line_id = #{id}
+	ORDER BY
+		stopseq DESC
+	LIMIT 1
+</select>
+</mapper>
