@@ -233,7 +233,7 @@
                         station+='<tr><td>'+resData[i].stopseq+'</td><td>'+resData[i].endstop+'</td><td>'+resData[i].stoptype+'</td><td>'+resData[i].lon+'</td><td>'+resData[i].lat+
                         '</td><td><a  class="stationUpdate" data-station="'+resData[i].id+'">修改</a></td></tr>';
 					}
-					$(".buslineStation").after(html);
+					$(".buslineStation").after(station);
 				}
 				
 	  	 	}
