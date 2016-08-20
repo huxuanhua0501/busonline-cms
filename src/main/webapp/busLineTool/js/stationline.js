@@ -68,7 +68,7 @@
        "pageSize": size,
        'cityname': cityval,
        'linename': oBusName,
-       "linkdir ": buslinedir,
+       "linkdir": buslinedir,
        "linetype": buslevel,
        'dictionaryid': network
      }, function(data) { //第一次先访问第一页获取总条数
