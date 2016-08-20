@@ -28,6 +28,18 @@
 	  	 });        
 	  };
 
-	  ajaxDictionaries();//初始化城市，类型，上行下行
-
+	 // ajaxDictionaries();//初始化城市，类型，上行下行
+      $("#condition").click(function(){
+      	$(".conditionBox").show();
+      });
+       $("#cancelCondition").click(function(){
+      	$(".conditionBox").hide();
+      });
+       $(".main").on("click",".busUpdate",function(){
+           $(".updateWindow").show();
+       });
+        $("#cancelUpdate,.close").click(function(){
+      	$(".updateWindow").hide();
+      });
+  
 })()
