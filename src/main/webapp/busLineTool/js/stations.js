@@ -151,8 +151,8 @@
 		    	}
 		    	var networkType=$("input[name=networkType]:checked").val();
 		    	var linkdirval=$("input[name=linkdir]:checked").val();
-		       var starttime=$(".startTime").eq(savaIdx).html();
-		       var endtime=$(".endTime").eq(savaIdx).html();
+		       var starttime=$(".onbuslineBlock").eq(savaIdx).find(".startTime").html();
+		       var endtime=$(".onbuslineBlock").eq(savaIdx).find(".endTime").html();
 		       var  busNameBd=$(".busNameBd").eq(savaIdx).html();
 		       var busName=$("#busName").val();
 		       var price=$(".price").eq(savaIdx).html();
