@@ -35,7 +35,7 @@
     //查询数据分页
    var pageNum = 0;
    var $content = $('#ajax_content'); //数据列表容器
-   var size = 20; //每页显示条数据
+   var size = 10; //每页显示条数据
    //组装数据
    var inintData = function(e, data, cur) {
      e.nextAll().remove(); //先清空遗留数据
