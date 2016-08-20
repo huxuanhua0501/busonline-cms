@@ -55,6 +55,15 @@ public class LineViewService extends BaseService implements ILineViewService {
 		}
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<Map<String, Object>> listMap = lineViewMapper.getAllLine(map);
+		for(int i = 0 ; i<listMap.size();i++){
+			
+			String endstop = lineViewMapper.selectendstop(listMap.get(i).get("id").toString());
+			String startstop = lineViewMapper.selectstartstop(listMap.get(i).get("id").toString());
+			Long totalstop = lineViewMapper.selectstopcount(listMap.get(i).get("id").toString());
+			listMap.get(i).put("startstop", startstop);
+			listMap.get(i).put("endstop", endstop);
+			listMap.get(i).put("totalstop", totalstop);
+		}
 		Long totalCount = lineViewMapper.getAllLineCount(map);
 		resultMap.put("total", totalCount);
 		if (totalCount % page.getPageSize() > 0) {
@@ -112,7 +121,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 		Map<String, Object> map =lineViewMapper.getLineById(id);
 		Long totalstop = lineViewMapper.selectstopcount(id);
 		String endstop = lineViewMapper.selectendstop(id);
-		String startstop = lineViewMapper.selectendstop(id);
+		String startstop = lineViewMapper.selectstartstop(id);
 		map.put("totalstop", totalstop);
 		map.put("endstop", endstop);
 		map.put("startstop", startstop);
