@@ -31,7 +31,7 @@ ul li{list-style: none;}
 .onbuslineBlock_r p{padding-left: 8px;}
 .onbuslineBlock_r p:first-child{font-weight: bold;margin-bottom: 15px;}
 .buslineSites{width:450px; line-height: 35px;border:1px solid #ccc;padding-left: 10px;}
-.popup{width:400px;height: 200px;border-radius: 5px; padding:20px;background-color: #fff;position: absolute;left:50%; top:30%;margin-left: -150px;z-index: 100;  display: none;}
+.popup{width:400px;height: 300px;border-radius: 5px; padding:20px;background-color: #fff;position: absolute;left:50%; top:30%;margin-left: -150px;z-index: 100;  display: none;}
 .popup input[type="button"]{width:80px;height: 30px;margin-right: 20px;}
 .popup input[type="text"]{width:240px;height: 30px;}
 .popup tr td{ height: 50px;}

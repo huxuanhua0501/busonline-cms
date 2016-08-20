@@ -104,7 +104,6 @@
 				
 					$("#citylist").html(citysCon);
 					$("#network").html(linetypecon);
-					
 					$("input[name=networkType]:eq(0),input[name=linkdir]:eq(0)").attr("checked", 'checked');
 				}
 				
@@ -178,6 +177,9 @@
 							success: function(res) {
 								if (res.code == 200) {
 									alert("插入成功");
+									$(".buslineSites").removeClass('open');
+									$(".showhid").html("+途径站点");
+						         	$(".stationsbox,.popup").hide();
 									busline.getBusList(busNameval);
 								} else {
 									alert("插入失败");
