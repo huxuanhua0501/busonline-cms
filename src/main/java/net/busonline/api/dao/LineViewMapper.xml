@@ -107,10 +107,9 @@
 				line_id =#{id}
 	 </delete>
 	 
-	 <update id="updatestop">
+	 <update id="updatestopbyid">
 		UPDATE bus_stop
-		SET name =#{map.name},
-		 linedir =#{map.linedir},
+		SET name =#{map.stopname},
 		 lat =#{map.lat}, 
 		 lon =#{map.lon}, 
 		 stop_type =#{map.stoptype}
@@ -158,7 +157,22 @@
 </select>
 
 
-<select id="selectstartstop" resultType="java.util.Map" >
+	<select id="selectstopbylineid" resultType="java.util.Map" >
+		SELECT
+			bs.id AS id,
+			bs.lat AS lat,
+			bs.lon AS lon,
+			bs.stop_type AS stoptype,
+		  bs.name AS endstop,
+		  bs.stopseq AS stopseq
+		FROM
+			bus_stop bs
+		WHERE
+			line_id = #{lineid}
+		ORDER BY
+			stopseq ASC
+</select>
+<select id="selectstartstop" resultType="java.lang.String" >
 		   SELECT
 			name AS startstop
 		FROM
@@ -169,7 +183,7 @@
 			stopseq ASC
 LIMIT 1
 </select>
-<select id="selectendstop" resultType="java.util.Map" >
+<select id="selectendstop" resultType="java.lang.String">
 	  SELECT
 		name AS endstop
 	FROM

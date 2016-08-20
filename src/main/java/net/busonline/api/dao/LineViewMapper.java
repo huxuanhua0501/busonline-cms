@@ -39,17 +39,25 @@ public interface LineViewMapper {
 	public Map<String,Object> getLineById(String id);
 	
 	/**
-	 * 查询单条线路
-	 * @param id
+	 * 查询站点
+	 * @param lineid
 	 * @return
 	 */
-	public Map<String,Object> selectstartstop(String id);
+	
+	public Map<String,Object> selectstopbylineid(String lineid);
+	
 	/**
 	 * 查询单条线路
 	 * @param id
 	 * @return
 	 */
-	public Map<String,Object> selectendstop(String id);
+	public String selectstartstop(String id);
+	/**
+	 * 查询站点
+	 * @param id
+	 * @return
+	 */
+	public String selectendstop(String id);
 	/**
 	 * 查询单条线路
 	 * @param id

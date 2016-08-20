@@ -15,14 +15,16 @@ import net.busonline.core.base.BaseService;
 import net.busonline.core.base.Page;
 import net.busonline.core.util.PubMethod;
 import net.busonline.dictionary.service.impl.DictionaryService;
+
 @Service
 public class LineViewService extends BaseService implements ILineViewService {
 	public static Logger logger = LoggerFactory.getLogger(DictionaryService.class);
 	@Autowired
 	public LineViewMapper lineViewMapper;
+
 	@Override
-	public String getAllLine(String currentPage,String pageSize,String cityname, String linename, String linkdir1, String linetype1,
-			String dictionaryid1) {
+	public String getAllLine(String currentPage, String pageSize, String cityname, String linename, String linkdir1,
+			String linetype1, String dictionaryid1) {
 		// TODO Auto-generated method stub
 		Page page = new Page();
 		if (!PubMethod.isEmpty(currentPage)) {
@@ -52,17 +54,103 @@ public class LineViewService extends BaseService implements ILineViewService {
 			map.put("dictionaryid", dictionaryid);
 		}
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<Map<String,Object>>listMap = lineViewMapper.getAllLine(map);
+		List<Map<String, Object>> listMap = lineViewMapper.getAllLine(map);
 		Long totalCount = lineViewMapper.getAllLineCount(map);
 		resultMap.put("total", totalCount);
-		if(totalCount%page.getPageSize()>0){
-			resultMap.put ("totalPage", totalCount/page.getPageSize()+1);			
-		}else{
-			resultMap.put("totalPage", totalCount/page.getPageSize());			
+		if (totalCount % page.getPageSize() > 0) {
+			resultMap.put("totalPage", totalCount / page.getPageSize() + 1);
+		} else {
+			resultMap.put("totalPage", totalCount / page.getPageSize());
 		}
-		//resultMap.put ("totalPage", totalCount/Integer.parseInt(pageSize)+1);		
+		// resultMap.put ("totalPage", totalCount/Integer.parseInt(pageSize)+1);
 		resultMap.put("listAudit", listMap);
 		return this.jsonSuccess(resultMap);
 	}
 
+	@Override
+	public String delLineandstopbyid(String id) {
+		// TODO Auto-generated method stub
+		try {
+			lineViewMapper.delstopbylineid(id);
+			lineViewMapper.delLinebyid(id);
+			return this.jsonSuccess();
+		} catch (Exception e) {
+			return this.jsonFailure();
+		}
+
+	}
+
+	@Override
+	public String selectendstop(String lineid) {
+		// TODO Auto-generated method stub
+		try {
+			return this.jsonSuccess(lineViewMapper.selectstopbylineid(lineid));
+		} catch (Exception e) {
+			return this.jsonFailure();
+		}
+	}
+
+	@Override
+	public String updatestopbyid(String id,String stopname,String lat,String lon,String stoptype) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("stopname", stopname);
+		map.put("lat", lat);
+		map.put("lon", lon);
+		map.put("stoptype", stoptype);
+		try {
+			 lineViewMapper.updatestopbyid(map);
+			 return this.jsonSuccess();
+		} catch (Exception e) {
+			return this.jsonFailure();
+		}
+	}
+
+	public String getLineById(String id){
+//		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map =lineViewMapper.getLineById(id);
+		Long totalstop = lineViewMapper.selectstopcount(id);
+		String endstop = lineViewMapper.selectendstop(id);
+		String startstop = lineViewMapper.selectendstop(id);
+		map.put("totalstop", totalstop);
+		map.put("endstop", endstop);
+		map.put("startstop", startstop);
+		try {
+		return this.jsonSuccess(map);
+		} catch (Exception e) {
+			return this.jsonFailure();
+		}
+	}
+
+	@Override
+	public String updateLinebyid(String linename, String dictionaryid, String linetype, String linkdir,
+			String installationnumber, String matchnumber, String id) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+        map.put("linename", linename);
+        map.put("dictionaryid", dictionaryid);
+        map.put("linetype", linetype);
+        map.put("linkdir", linkdir);
+        map.put("installationnumber", installationnumber);
+        map.put("matchnumber", matchnumber);
+        map.put("id", id);
+        lineViewMapper.updateLinebyid(map);
+        try {
+    		return this.jsonSuccess();
+    		} catch (Exception e) {
+    			return this.jsonFailure();
+    		}
+	}
+
+	@Override
+	public String delLinebyid(String id) {
+		// TODO Auto-generated method stub
+		lineViewMapper.delLinebyid(id);
+		  try {
+	    		return this.jsonSuccess();
+	    		} catch (Exception e) {
+	    			return this.jsonFailure();
+	    		}
+	}
 }
