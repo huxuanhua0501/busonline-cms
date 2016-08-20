@@ -80,25 +80,25 @@
 				   	 	</li>
 				   	 	<li>
 				   	 		<input type="button" value="搜索">
-				   	 		<input type="button" value="取消">
+				   	 		<input type="button" id="cancelCondition" value="取消">
 				   	 	</li>
 				   	 </ul>
 				</div>
 </div>
 <div class="main">
 	<h2><span>线路列表</span><span style="display:none;">站点列表</span></h2>
-	<table border="0" class="mainList" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<table border="0" class="mainList buslineDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 		<tr class="buslineTable"><th>序号</th><th>线路</th><th>等级</th><th>公司</th><th>类型</th><th>方向</th><th>配车数</th><th>安装数</th><th>始发站</th><th>终点站</th><th>站点数</th><th>操作</th></tr>
 		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td>方向</td><td>配车数</td><td>安装数</td><td>始发站</td><td>终点站</td><td>站点数</td><td><a class="stationList" >查看站点</a><a  class="busUpdate">修改</a>
 			<a  class="busDelete">删除</a></td></tr>
 	</table>
-	<table border="0" class="mainList" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:60%;">
+	<table border="0" class="mainList stationDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:60%;">
 		<tr class="buslineStation"><th>序号</th><th>站点</th><th>等级</th><th>经度</th><th>纬度</th><th>操作</th></tr>
 		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td><a  class="stationUpdate">修改</a></td></tr>
 	</table>
 </div>
 <div class="updateWindow">
-	<p>X</p>
+	<p class="close">X</p>
 	<ul>
 		<li>
 			名称:
@@ -117,15 +117,15 @@
 		<li>等级：<select name="" id=""><option value="1">A</option><option value="1">B</option><option value="1">C</option><option value="1">D</option><option value="1">E</option></select></li>
 		<li>配车数:<input type="text"></li>
 		<li>安装数:<input type="text"></li>
-		<li>公交公司</li>
-		<li>始发站</li>
-		<li>终点站</li>
-		<li>站点数量</li>
-		<li>运营时间</li>
-		<li>基本票价</li>
+		<li>公交公司:<span class="company"></span></li>
+		<li>始发站:<span class="startStation"></span></li>
+		<li>终点站:<span class="endtStation"></span></li>
+		<li>站点数量:<span class="stationNum"></span></li>
+		<li>运营时间:<span class="stationTime"></span></li>
+		<li>基本票价：<span class="stationPrice"></span></li>
 		<li>
 				   	 		<input type="button" value="保存">
-				   	 		<input type="button" value="取消">
+				   	 		<input type="button" id="cancelUpdate" value="取消">
 		</li>
 	</ul>
 </div>

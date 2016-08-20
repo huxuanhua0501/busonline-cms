@@ -74,5 +74,7 @@ ul li{list-style: none;}
 .main h2{ font-size: 20px;}
 .main h2 span{ display: inline-block; margin:20px;  background-color: #0644f5;color: #fff;padding:5px 15px;}
 .mainList a{color: #f68c0f; margin-right: 15px; cursor:pointer;}
-.updateWindow{width:400px;height: 450px;border-radius: 5px; padding:10px;background-color: #fff;position: absolute;left:50%; top:20%;margin-left: -200px;z-index: 100;border: 1px solid #ccc;}
-.updateWindow ul li{line-height: 30px;}
+.updateWindow{width:400px;overflow:hidden;border-radius: 5px; padding:10px;background-color: #fff;position: absolute;left:50%; top:20%;margin-left: -200px;z-index: 100;border: 1px solid #ccc; display: none;}
+.updateWindow ul li{line-height: 35px;}
+.updateWindow p{ text-align: right; font-size: 20px;}
+.stationDetail{ display: none;}
