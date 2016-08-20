@@ -22,7 +22,7 @@ ul li{list-style: none;}
 .topbar_2 input[type="button"]{width:80px;height: 30px;margin-left: 20px;}
 
 .onbuslineShow{ position: absolute; left: 0; top:45px;background-color: #fff;width:500px; height: 850px;  overflow-x: hidden; display: none;}
-.conditionBox{position: absolute; left: 280px; top:100px;background-color: #fff;padding:30px; overflow-x: hidden;border:1px solid #ccc;}
+.conditionBox{position: absolute; left: 280px; top:100px;background-color: #fff;padding:30px; overflow-x: hidden;border:1px solid #ccc;display: none;}
 .conditionBox ul li{height: 40px;}
 .onbuslineBlock{width:456px;  overflow: hidden;margin:15px 20px 0;}
 .onbuslineNum{font-size: 20px; padding-left: 20px; padding-top: 15px;}
@@ -69,7 +69,10 @@ ul li{list-style: none;}
 .main{width:100%; padding-top: 100px;}
 .updataWindow input[type="button"]{width:80px;height: 30px;margin-right: 20px;margin-top:30px;}
 .updataWindow input[type="text"]{width:200px;height: 30px;}
-.mainList{width:80%;margin-left: 20px;}
-.mainList tr td,.mainList tr th{border:1px solid #333; line-height: 35px;}
+.mainList{width:90%;margin-left: 20px;}
+.mainList tr td,.mainList tr th{border:1px solid #333; line-height: 35px; text-align: center;}
 .main h2{ font-size: 20px;}
 .main h2 span{ display: inline-block; margin:20px;  background-color: #0644f5;color: #fff;padding:5px 15px;}
+.mainList a{color: #f68c0f; margin-right: 15px; cursor:pointer;}
+.updateWindow{width:400px;height: 450px;border-radius: 5px; padding:10px;background-color: #fff;position: absolute;left:50%; top:20%;margin-left: -200px;z-index: 100;border: 1px solid #ccc;}
+.updateWindow ul li{line-height: 30px;}

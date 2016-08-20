@@ -44,7 +44,7 @@
 				<option value="131">北京</option>
 			</select>
 				线路：
-				<input type="text" id="lineName" value="" style="width: 80px;"/>
+				<input type="text" id="lineName" placeholder="线路" style="width: 80px;"/>
 				<input type="button"  id="search" value="搜索线路">
 				<input type="button"  id="condition" value="条件筛选">
 				<input type="button"  id="lineList" value="导出线路表">
@@ -89,7 +89,45 @@
 	<h2><span>线路列表</span><span style="display:none;">站点列表</span></h2>
 	<table border="0" class="mainList" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 		<tr class="buslineTable"><th>序号</th><th>线路</th><th>等级</th><th>公司</th><th>类型</th><th>方向</th><th>配车数</th><th>安装数</th><th>始发站</th><th>终点站</th><th>站点数</th><th>操作</th></tr>
+		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td>方向</td><td>配车数</td><td>安装数</td><td>始发站</td><td>终点站</td><td>站点数</td><td><a class="stationList" >查看站点</a><a  class="busUpdate">修改</a>
+			<a  class="busDelete">删除</a></td></tr>
 	</table>
+	<table border="0" class="mainList" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:60%;">
+		<tr class="buslineStation"><th>序号</th><th>站点</th><th>等级</th><th>经度</th><th>纬度</th><th>操作</th></tr>
+		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td><a  class="stationUpdate">修改</a></td></tr>
+	</table>
+</div>
+<div class="updateWindow">
+	<p>X</p>
+	<ul>
+		<li>
+			名称:
+			<input type="text"></li>
+		<li >
+			类型：
+			<p id="network"></p>
+		</li>
+		<li>
+			方向：
+			<input type="checkbox" id="level_a">		
+			<lable for="level_a">上行</lable>
+			<input type="checkbox" id="level_b">		
+			<lable for="level_b">下行</lable>
+		</li>
+		<li>等级：<select name="" id=""><option value="1">A</option><option value="1">B</option><option value="1">C</option><option value="1">D</option><option value="1">E</option></select></li>
+		<li>配车数:<input type="text"></li>
+		<li>安装数:<input type="text"></li>
+		<li>公交公司</li>
+		<li>始发站</li>
+		<li>终点站</li>
+		<li>站点数量</li>
+		<li>运营时间</li>
+		<li>基本票价</li>
+		<li>
+				   	 		<input type="button" value="保存">
+				   	 		<input type="button" value="取消">
+		</li>
+	</ul>
 </div>
 	<script type="text/javascript" src = "js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src = "js/stationline.js"></script>

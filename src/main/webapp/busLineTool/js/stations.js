@@ -178,6 +178,7 @@
 							success: function(res) {
 								if (res.code == 200) {
 									alert("插入成功");
+									 $("#cancel").click();
 								} else {
 									alert("插入失败");
 								}
