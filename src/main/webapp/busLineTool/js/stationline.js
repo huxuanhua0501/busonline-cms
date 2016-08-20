@@ -230,7 +230,7 @@
 					var resData=res.data;
 				    var stationsAll="";
 					for(var i=0;i<resData.length;i++){
-                        stationsAll+='<tr><td>'+resData[i].stopseq+'</td><td>'+resData[i].endstop+'</td><td>'+resData[i].stoptype+'</td><td>'+resData[i].lon+'</td><td>'+resData[i].lat+
+                        stationsAll+='<tr><td>'+resData[i].stopseq+'</td><td class="endstop">'+resData[i].endstop+'</td><td class="stoptype">'+resData[i].stoptype+'</td><td class="lons">'+resData[i].lon+'</td><td class="lats">'+resData[i].lat+
                         '</td><td><a  class="stationUpdate" data-station="'+resData[i].id+'">修改</a></td></tr>';
 					}
 					$(".buslineStation").after(stationsAll);
@@ -318,7 +318,15 @@
      	$(".stationDetail,.stationTableList").hide();
      });
        $(".main").on("click",".stationUpdate",function(){
-          stationsId=$(this).attr("data-station");
+           stationsId=$(this).attr("data-station");
+           var endstop=$(this).siblings('endstop').html(),
+           stoptype=$(this).siblings('endstop').html(),
+           lons=$(this).siblings('endstop').html(),
+           lat=$(this).siblings('endstop').html();
+           $(".stationUpdateName").val(endstop);
+            $("#lon").val(lons);
+            $("#lat").val(lat);
+            $(".stationsLevel").val(stoptype);
            $(".updateStaionWindow").show();
        });
       $("#cancelstationUpdate,.closestation").click(function(){
