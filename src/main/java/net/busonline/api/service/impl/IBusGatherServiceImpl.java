@@ -37,7 +37,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 * 批量插入线路信息
 	 */
 	@Override
-	public Response insertBusInfo(BusLine busLine) {
+	public Response insertBusInfo(BusLine busLine) throws Exception{
 		Map<String,Object> param = new HashMap<String, Object>();
 		BusLine busLineInfo = busLine;
 		busLineInfo.setLine_id(getBusLineId(busLine.getLinename(),busLine.getCity_id()));
@@ -54,7 +54,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
      * 查找已采集所有线路
      */
 	@Override
-	public Response finBusLineInfo(Map<String, Object> map) {
+	public Response finBusLineInfo(Map<String, Object> map) throws Exception{
 		Map<String,Object> result = new HashMap<String,Object>();
 		List<String> busLine = iBusGatherMapper.finBusLineInfo(map);
 		if(busLine.size()>0){
@@ -69,7 +69,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
      * @return
      */
 	@Override
-	public Response findBusDictionary(Map<String, Object> map) {
+	public Response findBusDictionary(Map<String, Object> map) throws Exception{
 		Map<String,Object> result = new HashMap<String,Object>();
 		//List<Common> citys = iBusGatherMapper.findCity(map);
 		List<Common> citys = findCitys();
@@ -86,7 +86,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 * @return
 	 */
 	@Override
-	public Response validateBusLineName(Map<String, Object> map) {
+	public Response validateBusLineName(Map<String, Object> map) throws Exception{
 		String str = getBusLineId(map.get("buslinename").toString(),map.get("cityid").toString());
 		if(null != str && !str.equals("")){
 			return new Response().success();
@@ -99,7 +99,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 * @param busLine
 	 * @return
 	 */
-	public String getBusLineId(String busLineName,String cityid){
+	public String getBusLineId(String busLineName,String cityid) throws Exception{
 		Connection conn = DButils.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -119,7 +119,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 		return str;
 	}
 	
-	public List<Common> findCitys(){
+	public List<Common> findCitys() throws Exception{
 		Connection conn = DButils.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
