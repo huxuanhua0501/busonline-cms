@@ -80,16 +80,20 @@
 </div>
 <div class="main">
 	<h2><span class="buslineTableList">线路列表</span><span style="display:none;" class="stationTableList">站点列表 <a class="closeStation">X</a></span></h2>
-	<table border="0" class="mainList buslineDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-		<tr id="ajax_content"><th>序号</th><th>线路</th><th>等级</th><th>公司</th><th>类型</th><th>方向</th><th>配车数</th><th>安装数</th><th>始发站</th><th>终点站</th><th>站点数</th><th>操作</th></tr>
-		
-	</table>
+	<div class="buslineDetail">
+			<table border="0" class="mainList" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+			<tr id="ajax_content"><th>序号</th><th>线路</th><th>等级</th><th>公司</th><th>类型</th><th>方向</th><th>配车数</th><th>安装数</th><th>始发站</th><th>终点站</th><th>站点数</th><th>操作</th></tr>
+			
+		  </table>
+		   <div id='ajax_pager' class='pager'></div>
+	</div>
+	
 	<table border="0" class="mainList stationDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:70%;">
 		<tr class="buslineStation"><th>序号</th><th>站点</th><th>等级</th><th>经度</th><th>纬度</th><th>操作</th></tr>
-		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td><a  class="stationUpdate">修改</a></td></tr>
+		
 	</table>
 </div>
- <div id='ajax_pager' class='pager'></div>
+
 <div class="updateWindow">
 	<p class="close">X</p>
 	<ul>
@@ -125,12 +129,12 @@
 	<ul>
 		<li>
 			名称:
-			<input type="text"></li>
-		<li>等级：<select name="" id=""><option value="1">A</option><option value="1">B</option><option value="1">C</option><option value="1">D</option><option value="1">E</option></select></li>
-		<li>经度:<input type="text"></li>
-		<li>纬度:<input type="text"></li>
+			<input type="text" class="stationUpdateName"></li>
+		<li>等级：<select name="" id="stationsLevel"><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></li>
+		<li>经度:<input type="text" id="lon"></li>
+		<li>纬度:<input type="text" id="lat"></li>
 		<li>
-				   	 		<input type="button" value="保存">
+				   	 		<input type="button" class="stationSave" value="保存">
 				   	 		<input type="button" id="cancelstationUpdate" value="取消">
 		</li>
 	</ul>

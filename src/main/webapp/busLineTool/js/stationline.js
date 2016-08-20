@@ -139,55 +139,137 @@
             
 	   });
 	 var lineId;
-	 //修改
-    //  var  busLineUpdate=function(){
-    //        $.ajax({
-	  	//  	url:'/lineview/getLineById',
-	  	//  	type:'post',
-	  	//  	dataType:'json',
-	  	//  	data:{
-	  	//  		id:lineId
-	  	//  	}
-	  	//  	success:function(res){
-				// if (res.code == 200) {
-					
-				// }
+	 //修改按钮
+     var  busLineUpdate=function(){
+           $.ajax({
+	  	 	url:'/lineview/getLineById',
+	  	 	type:'post',
+	  	 	dataType:'json',
+	  	 	data:{
+	  	 		id:lineId
+	  	 	},
+	  	 	success:function(res){
+				if (res.code == 200) {
+					var resData=res.data;
+						$(".updateName").val(resData.linename);
+					    $("#dirction").val(resData.linkdir);
+					    $("input[type=radio][name=networkTypeRadio][value="+resData.dictionaryid+"]").attr("checked",'checked');
+					    $("#linetype").val(resData.linetype);
+						$(".matchNumber").val(resData.linetype);
+						$(".installationNumber").val(resData.linetype);
+						$(".company").html(resData.linetype);
+						$(".startStation").html(resData.startstop);
+						$(".endtStation").html(resData.endstop);
+						$(".stationNum").html(resData.totalstop);
+						$(".stationTime").html(resData.starttime+"-"+resData.endtime);
+						$(".stationPrice").html(resData.price);
+						$(".updateWindow").show();
+
+				}
 				
-	  	//  	}
-	  	//  });        
-    //  }
+	  	 	}
+	  	 });        
+     }
     var updateName,dictionaryid,linetype,linkdir,installationnumber,matchnumber;
-    // var saveLineBus=function(){
-    // 	  $.ajax({
-	  	//  	url:'/lineview/updateLinebyid',
-	  	//  	type:'post',
-	  	//  	dataType:'json',
-	  	//  	data:{
-	  	//  		linename:lineId,
-	  	//  		dictionaryid:,
-	  	//  		linetype:linetype,
-	  	//  		linkdir:linkdir,
-    //             installationnumber:installationnumber,
-    //             matchnumber:matchnumber,
-    //             id:lineId
-	  	//  	}
-	  	//  	success:function(res){
-				// if (res.code == 200) {
-				// 	alert("修改成功");
-				// 	loadData();
-				// }
-				// else{
-				// 	alert("修改失败");
-				// }
-	  	//  	}
-	  	//  });   
-    // }
+    var saveLineBus=function(){
+    	  $.ajax({
+	  	 	url:'/lineview/updateLinebyid',
+	  	 	type:'post',
+	  	 	dataType:'json',
+	  	 	data:{
+	  	 		linename:updateName,
+	  	 		dictionaryid:dictionaryid,
+	  	 		linetype:linetype,
+	  	 		linkdir:linkdir,
+                installationnumber:installationnumber,
+                matchnumber:matchnumber,
+                id:lineId
+	  	 	},
+	  	 	success:function(res){
+				if (res.code == 200) {
+					alert("修改成功");
+					loadData();
+				}
+				else{
+					alert("修改失败");
+				}
+	  	 	}
+	  	 });   
+    };
+     var busLineUpdate=function(){
+    	  $.ajax({
+	  	 	url:'/lineview/updateLinebyid',
+	  	 	type:'post',
+	  	 	dataType:'json',
+	  	 	data:{
+                id:lineId
+	  	 	},
+	  	 	success:function(res){
+				if (res.code == 200) {
+					alert("删除成功");
+					loadData();
+				}
+				else{
+					alert("删除成功");
+				}
+	  	 	}
+	  	 });   
+    };
+     var busLineStationList=function(){
+     	$(".buslineStation").nextAll().remove(); 
+    	  $.ajax({
+	  	 	url:'/lineview/selectendstop',
+	  	 	type:'post',
+	  	 	dataType:'json',
+	  	 	data:{
+                id:lineId
+	  	 	},
+	  	 	success:function(res){
+				if (res.code == 200) {
+					var resData=res.data;
+				    var station="";
+					for(var i=0;i<resData.length;i++){
+                        station+='<tr><td>'+resData[i].stopseq+'</td><td>'+resData[i].endstop+'</td><td>'+resData[i].stoptype+'</td><td>'+resData[i].lon+'</td><td>'+resData[i].lat+
+                        '</td><td><a  class="stationUpdate" data-station="'+resData[i].id+'">修改</a></td></tr>';
+					}
+					$(".buslineStation").after(html);
+				}
+				
+	  	 	}
+	  	 });   
+    };
+    var stationSave=function(){
+    	 $.ajax({
+	  	 	url:'/lineview/selectendstop',
+	  	 	type:'post',
+	  	 	dataType:'json',
+	  	 	data:{
+                id:stationsId,
+                stopname:stationUpdateName,
+                lon:lon,
+                lat:lat,
+                stoptype:stationsLevel
+	  	 	},
+	  	 	success:function(res){
+				if (res.code == 200) {
+					alert("修改成功");
+					busLineStationList();
+				}
+				else{
+					alert("修改失败");
+				}
+				
+	  	 	}
+	  	 });   
+    }
     $("#saveLine").click(function(){
           updateName=$(".updateName").val();
           linkdir = $("#dirction").find("option:selected").val();
           linetype= $("#linetype").find("option:selected").val();
-          installationnumber =$(".matchNumber").val();
-          matchnumber=$(".installationNumber").val();
+          dictionaryid=$("input[type='networkTypeRadio']:checked").val();
+          matchnumber =$(".matchNumber").val();
+          installationnumber=$(".installationNumber").val();
+          saveLineBus();
     });
       $("#condition").click(function(){
       	$(".conditionBox").show();
@@ -197,8 +279,15 @@
       });
        $(".main").on("click",".busUpdate",function(){
        	   lineId=$(this).attr("data-id");
-       	  // busLineUpdate();
-           $(".updateWindow").show();
+       	   busLineUpdate();
+           
+       });
+        $(".main").on("click",".busDelete",function(){
+       	   lineId=$(this).attr("data-id");
+       	   if (confirm("确定要删除吗？")) {
+				 busLineDelete();
+			}
+       	  
        });
         $("#cancelUpdate,.close").click(function(){
       	$(".updateWindow").hide();
@@ -206,9 +295,16 @@
           $(".main").on("click",".stationList",function(){
        	   lineId=$(this).attr("data-id");
        	  $(".buslineDetail").hide();
-     	  $(".stationDetail,.stationTableList").show();
+       	  busLineStationList();
        });
-
+     var stationUpdateName,stationsLevel,lon,lat,stationsId;
+     $(".stationSave").click(function(){
+     	stationUpdateName=$(".stationUpdateName").val();
+     	stationsLevel=$("#stationsLevel").find("option:selected").val();
+     	lon=$("#lon").val();
+     	lat=$("#lat").val();
+     	stationSave();
+     })
      $(".buslineTableList").click(function(){
      	$(".buslineDetail").show();
      	$(".updateStaionWindow").hide();
@@ -220,6 +316,7 @@
      	$(".stationDetail,.stationTableList").hide();
      });
        $(".main").on("click",".stationUpdate",function(){
+          stationsId=$(this).attr("data-station");
            $(".updateStaionWindow").show();
        });
       $("#cancelstationUpdate,.closestation").click(function(){
