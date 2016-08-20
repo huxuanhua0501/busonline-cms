@@ -225,8 +225,8 @@
                 collect=[];
 			for (var i = 0; i < onbuslineArr.length; i++) {
 				onbuslinelist += '<div class="onbuslineBlock"> <div class="onbuslineBlock_l fl"><p class="identity">未采集</p></div>' +
-					'<div class="onbuslineBlock_r fl" data-idx="'+i+'"><p class="busNameBd">' + onbuslineArr[i].name + '</p><p><span class="times">首末班：暂无</span>起步票价<span class="price">' + onbuslineArr[i]._poiType + '</span>元</p></div><div class="buslineSites fl' +
-					'"><p class="showhid">+途径站点</p><div class="stationsbox"></div></div></div>';
+					'<div class="onbuslineBlock_r fl" ><p class="busNameBd">' + onbuslineArr[i].name + '</p><p><span class="times">首末班：暂无</span>起步票价<span class="price">' + onbuslineArr[i]._poiType + '</span>元</p></div><div class="buslineSites fl' +
+					'" data-idx="'+i+'"><p class="showhid">+途径站点</p><div class="stationsbox"></div></div></div>';
 				collect.push(onbuslineArr[i].name);
 			}
 			$(".onbuslineShow").css("display", "block");
