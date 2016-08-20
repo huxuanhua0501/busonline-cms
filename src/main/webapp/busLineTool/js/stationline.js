@@ -15,16 +15,20 @@
 						linetypes = res.data.linetype,
 						citysCon = "",
 						linetypecon = "",
-						linkdircon = "";
+						linetypeconRadio = "";
 					for (var i = 0; i < citys.length; i++) {
 						citysCon += '<option value="' + citys[i].id + '">' + citys[i].name + '</option>';
 					}
 					for (var j = 0; j < linetypes.length; j++) {
 						linetypecon += '<label><input name="networkType" class="networkType" type="checkbox" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
+						linetypeconRadio+= '<label><input name="networkTypeRadio" class="networkType" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
 					}
 					$("#citylist").html(citysCon);
-					$(".network").html(linetypecon);
-	
+					$(".network").eq(0).html(linetypecon);
+					$(".network").eq(1).html(linetypeconRadio);
+					citysCon = "",
+					linetypecon = "",
+					linetypeconRadio = "";
 				}
 				
 	  	 	}
@@ -199,10 +203,12 @@
         $("#cancelUpdate,.close").click(function(){
       	$(".updateWindow").hide();
       });
-     $(".stationList").click(function(){
-     	$(".buslineDetail").hide();
-     	$(".stationDetail,.stationTableList").show();
-     });
+          $(".main").on("click",".stationList",function(){
+       	   lineId=$(this).attr("data-id");
+       	  $(".buslineDetail").hide();
+     	  $(".stationDetail,.stationTableList").show();
+       });
+
      $(".buslineTableList").click(function(){
      	$(".buslineDetail").show();
      	$(".updateStaionWindow").hide();
