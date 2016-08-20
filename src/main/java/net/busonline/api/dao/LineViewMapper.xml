@@ -133,14 +133,18 @@
  <select id="getLineById" resultType="java.util.Map" >
 		  		
 		  SELECT
-				IFNULL(b.line_name,'') as linename,
-				IFNULL(b.linkdir,'') as linkdir,
-				IFNULL(b.price ,'')as price,
-				IFNULL(b.start_time,'') as starttime,
-				IFNULL(b.end_time,'') as endtime,
-				IFNULL(b.line_type ,'')as linetype,
-				IFNULL(b.dictionary_id ,'')as dictionaryid,
-		        IFNULL(b.id,'')as id
+				IFNULL(bl.id,'') AS id,
+			IFNULL(bl.line_id,'') AS lineid,
+			IFNULL(bl.linkdir,'') AS linkdir,
+			IFNULL(bl.line_name ,'')AS linename,
+			IFNULL(bl.line_name_bd,'') AS linenamebd,
+			IFNULL(bl.price ,'')AS price,
+			IFNULL(bl.line_type ,'')AS linetype,
+			IFNULL(bl.dictionary_id,'') AS dictionaryid,
+		    IFNULL(bl.installation_number,'') AS installationnumber,
+		    IFNULL(bl.match_number,'') AS matchnumber,
+		    IFNULL(dc.dictionary_name ,'') AS dictionaryname,
+		    IFNULL(bl.dictionary_id,'')ASdictionaryid
 		
 		FROM
 			bus_line b
