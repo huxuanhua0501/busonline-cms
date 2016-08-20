@@ -79,3 +79,35 @@ ul li{list-style: none;}
 .updateWindow p,.updateStaionWindow p{ text-align: right; font-size: 20px;}
 .stationDetail{ display: none;}
 .closeStation{cursor: pointer;}
+
+
+
+/*分页插件*/
+.pager{width:100%; text-align: center;padding: 20px 0;}
+.pager a {
+    text-decoration: none;
+    border: 1px solid #e7ecf0;
+    color: #15B;
+}
+
+.pager a:hover {
+    background-color: #E6EBEF;
+}
+
+.pager> a, .pager span {
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+/*页码选中样式*/
+.pager .selectno {
+    background: #26B;
+    color: #fff;
+    border: 1px solid #AAE;
+}
+/*输入框样式*/
+.pager .numinput{ width: 50px;padding:3px 6px;}
+/*输入框右侧按钮样式*/
+.pager .numbutton{margin: 0 5px;padding:4px 10px;}

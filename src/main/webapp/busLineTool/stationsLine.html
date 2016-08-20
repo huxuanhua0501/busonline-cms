@@ -65,7 +65,7 @@
 				   	 		<input type="checkbox"  value="E" class="buslineLeve">E
 				   	 	</li>
 				   	 	<li >
-				   	 		类型：<span id="network"></span>
+				   	 		类型：<span class="network"></span>
 				   	 	</li>
 				   	 	<li>
 				   	 		方向：<input type="checkbox" value="0" class="buslineDir">上行			   	 	
@@ -81,15 +81,15 @@
 <div class="main">
 	<h2><span class="buslineTableList">线路列表</span><span style="display:none;" class="stationTableList">站点列表 <a class="closeStation">X</a></span></h2>
 	<table border="0" class="mainList buslineDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-		<tr class="buslineTable"><th>序号</th><th>线路</th><th>等级</th><th>公司</th><th>类型</th><th>方向</th><th>配车数</th><th>安装数</th><th>始发站</th><th>终点站</th><th>站点数</th><th>操作</th></tr>
-		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td>方向</td><td>配车数</td><td>安装数</td><td>始发站</td><td>终点站</td><td>站点数</td><td><a class="stationList" >查看站点</a><a  class="busUpdate">修改</a>
-			<a  class="busDelete">删除</a></td></tr>
+		<tr id="ajax_content"><th>序号</th><th>线路</th><th>等级</th><th>公司</th><th>类型</th><th>方向</th><th>配车数</th><th>安装数</th><th>始发站</th><th>终点站</th><th>站点数</th><th>操作</th></tr>
+		
 	</table>
 	<table border="0" class="mainList stationDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:70%;">
 		<tr class="buslineStation"><th>序号</th><th>站点</th><th>等级</th><th>经度</th><th>纬度</th><th>操作</th></tr>
 		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td><a  class="stationUpdate">修改</a></td></tr>
 	</table>
 </div>
+  <div id='ajax_pager' class='pager'></div>
 <div class="updateWindow">
 	<p class="close">X</p>
 	<ul>
@@ -98,14 +98,11 @@
 			<input type="text"></li>
 		<li >
 			类型：
-			<p id="network"></p>
+			<span class="network"></span>
 		</li>
 		<li>
 			方向：
-			<input type="checkbox" id="level_a">		
-			<lable for="level_a">上行</lable>
-			<input type="checkbox" id="level_b">		
-			<lable for="level_b">下行</lable>
+			<select name="" id="dirction"><option value="0">上行</option><option value="1">上行</option></select>
 		</li>
 		<li>等级：<select name="" id=""><option value="1">A</option><option value="1">B</option><option value="1">C</option><option value="1">D</option><option value="1">E</option></select></li>
 		<li>配车数:<input type="text"></li>
