@@ -322,11 +322,11 @@
            var endstop=$(this).parent().siblings('.endstop').html(),
            stoptype=$(this).parent().siblings('.stoptype').html(),
            lons=$(this).parent().siblings('.lons').html(),
-           lats=$(this).parent().siblings('.lat').html();
+           lats=$(this).parent().siblings('.lats').html();
            $(".stationUpdateName").val(endstop);
             $("#lon").val(lons);
             $("#lat").val(lats);
-            $(".stationsLevel").val(stoptype);
+            $(".stationsLevel").find("option[text="+stoptype+"]").attr("selected",true);
            $(".updateStaionWindow").show();
        });
       $("#cancelstationUpdate,.closestation").click(function(){
