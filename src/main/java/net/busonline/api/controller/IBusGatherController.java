@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+
 import net.busonline.api.model.vo.BusLine;
 import net.busonline.api.service.IBusGatherService;
 import net.busonline.core.model.Response;
@@ -24,8 +26,9 @@ public class IBusGatherController {
 	 * @return
 	 */
 	@RequestMapping("/upload")
-	public @ResponseBody Response upload(@RequestBody BusLine busLine)throws Exception{
-		return iBusGatherService.insertBusInfo(busLine);
+	public @ResponseBody Response upload(String busLine)throws Exception{
+		BusLine bus = JSON.parseObject(busLine, BusLine.class);
+		return iBusGatherService.insertBusInfo(bus);
 	}
 	/**
 	 * 返回采集过的线路名称
