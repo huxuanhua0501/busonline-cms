@@ -253,7 +253,7 @@
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
-					alert("修改成功");
+					alert("修改成功");$(".updateStaionWindow").hide();
 					busLineStationList();
 				}
 				else{

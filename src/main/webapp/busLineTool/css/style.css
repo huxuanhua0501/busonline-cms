@@ -43,7 +43,7 @@ ul li{list-style: none;}
 .popup table tr td:nth-child(2){text-align: left;}
 .topbar_1 ul li.caiji ul,.topbar_1 ul li.shuju ul，.topbar_1 ul li.yewu ul，.topbar_1 ul li.zidian ul{font-size: 12px;}
 .topbar_1 ul li.caiji,.topbar_1 ul li.shuju,.topbar_1 ul li.yewu,.topbar_1 ul li.zidian{position: relative;}
-.zidian a{color: #fff;}
+.topbar_1 a{color: #fff;}
 .caiji ul,.shuju ul,.yewu ul,.zidian ul{display: none;position: absolute;background-color: #0644f5;z-index: 1000;}
 .caiji ul li,.shuju ul li,.yewu ul li,.zidian ul li{margin:0;font-size: 12px;width: 100%;text-align: center;padding:5px 0;}
 .caiji:hover ul,.shuju:hover ul,.yewu:hover ul,.zidian:hover ul{display: block;}
