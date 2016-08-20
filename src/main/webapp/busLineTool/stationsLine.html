@@ -45,7 +45,7 @@
 			</select>
 				线路：
 				<input type="text" id="lineName" placeholder="线路" style="width: 80px;"/>
-				<input type="button"  id="search" value="搜索线路">
+				<input type="button"  id="searchBusLine" value="搜索线路">
 				<input type="button"  id="condition" value="条件筛选">
 				<input type="button"  id="lineList" value="导出线路表">
 				<input type="button"  id="staitionList" value="导出站点表">
@@ -58,41 +58,34 @@
 				 <div class="conditionBox">
 				   	 <ul>
 				   	 	<li>
-				   	 		等级：<input type="checkbox" id="level_a">				   	 	
-				   	 		<lable for="level_a">A</lable>
-				   	 		<input type="checkbox" id="level_b">				   	 	
-				   	 		<lable for="level_b">B</lable>
-				   	 		<input type="checkbox" id="level_c">				   	 	
-				   	 		<lable for="level_c">C</lable>
-				   	 		<input type="checkbox" id="level_d">				   	 	
-				   	 		<lable for="level_d">D</lable>
-				   	 		<input type="checkbox" id="level_e">				   	 	
-				   	 		<lable for="level_e">E</lable>
+				   	 		等级：<input type="checkbox" value="A" class="buslineLeve">A
+				   	 		<input type="checkbox"  value="B" class="buslineLeve">B
+				   	 		<input type="checkbox" value="C" class="buslineLeve">C
+				   	 		<input type="checkbox" value="D"  class="buslineLeve">D
+				   	 		<input type="checkbox"  value="E" class="buslineLeve">E
 				   	 	</li>
 				   	 	<li >
 				   	 		类型：<p id="network"></p>
 				   	 	</li>
 				   	 	<li>
-				   	 		方向：<input type="checkbox" id="level_a">				   	 	
-				   	 		<lable for="level_a">上行</lable>
-				   	 		<input type="checkbox" id="level_b">				   	 	
-				   	 		<lable for="level_b">下行</lable>
+				   	 		方向：<input type="checkbox" value="0" class="buslineDir">上行			   	 	
+				   	 		<input type="checkbox"  value="1" class="buslineDir">下行				   	 	
 				   	 	</li>
 				   	 	<li>
-				   	 		<input type="button" value="搜索">
+				   	 		<input type="button" id="searchCondition" value="搜索">
 				   	 		<input type="button" id="cancelCondition" value="取消">
 				   	 	</li>
 				   	 </ul>
 				</div>
 </div>
 <div class="main">
-	<h2><span>线路列表</span><span style="display:none;">站点列表</span></h2>
+	<h2><span class="buslineTableList">线路列表</span><span style="display:none;" class="stationTableList">站点列表 <a class="closeStation">X</a></span></h2>
 	<table border="0" class="mainList buslineDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 		<tr class="buslineTable"><th>序号</th><th>线路</th><th>等级</th><th>公司</th><th>类型</th><th>方向</th><th>配车数</th><th>安装数</th><th>始发站</th><th>终点站</th><th>站点数</th><th>操作</th></tr>
 		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td>方向</td><td>配车数</td><td>安装数</td><td>始发站</td><td>终点站</td><td>站点数</td><td><a class="stationList" >查看站点</a><a  class="busUpdate">修改</a>
 			<a  class="busDelete">删除</a></td></tr>
 	</table>
-	<table border="0" class="mainList stationDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:60%;">
+	<table border="0" class="mainList stationDetail" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:70%;">
 		<tr class="buslineStation"><th>序号</th><th>站点</th><th>等级</th><th>经度</th><th>纬度</th><th>操作</th></tr>
 		<tr><td>序号</td><td>线路</td><td>等级</td><td>公司</td><td>类型</td><td><a  class="stationUpdate">修改</a></td></tr>
 	</table>
@@ -129,6 +122,23 @@
 		</li>
 	</ul>
 </div>
+
+<div class="updateStaionWindow">
+	<p class="closestation">X</p>
+	<ul>
+		<li>
+			名称:
+			<input type="text"></li>
+		<li>等级：<select name="" id=""><option value="1">A</option><option value="1">B</option><option value="1">C</option><option value="1">D</option><option value="1">E</option></select></li>
+		<li>经度:<input type="text"></li>
+		<li>纬度:<input type="text"></li>
+		<li>
+				   	 		<input type="button" value="保存">
+				   	 		<input type="button" id="cancelstationUpdate" value="取消">
+		</li>
+	</ul>
+</div>
+
 	<script type="text/javascript" src = "js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src = "js/stationline.js"></script>
 
