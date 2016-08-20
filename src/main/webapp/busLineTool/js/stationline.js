@@ -123,7 +123,7 @@
 	  	 });        
 	  };
 
-	 // ajaxDictionaries();//初始化城市，类型，上行下行
+	  ajaxDictionaries();//初始化城市，类型，上行下行
       $("#condition").click(function(){
       	$(".conditionBox").show();
       });
