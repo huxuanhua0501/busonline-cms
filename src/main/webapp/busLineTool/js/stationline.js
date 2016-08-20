@@ -76,7 +76,7 @@
          'pagerName': 'ajax_pager',
          'mode': 'ajax',
          'needNumInput': true,
-         'dataCount': data.result.totalCount, //后台获取总条数
+         'dataCount': data.data.total, //后台获取总条数
          'viewCount': size, //配置每页显示
          'listCount': 7,
          'callback': function(e, i, c) { //分别代表e：数据父容器，i：当前页，c：每页显示多少条数据
