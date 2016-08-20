@@ -132,22 +132,22 @@
 	   });
 	 var lineId;
 	 //修改
-     var  busLineUpdate=function(){
-           $.ajax({
-	  	 	url:'/lineview/getLineById',
-	  	 	type:'post',
-	  	 	dataType:'json',
-	  	 	data:{
-	  	 		id:lineId
-	  	 	}
-	  	 	success:function(res){
-				if (res.code == 200) {
+    //  var  busLineUpdate=function(){
+    //        $.ajax({
+	  	//  	url:'/lineview/getLineById',
+	  	//  	type:'post',
+	  	//  	dataType:'json',
+	  	//  	data:{
+	  	//  		id:lineId
+	  	//  	}
+	  	//  	success:function(res){
+				// if (res.code == 200) {
 					
-				}
+				// }
 				
-	  	 	}
-	  	 });        
-     }
+	  	//  	}
+	  	//  });        
+    //  }
       $("#condition").click(function(){
       	$(".conditionBox").show();
       });
