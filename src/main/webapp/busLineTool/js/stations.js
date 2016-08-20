@@ -138,7 +138,7 @@
 		 var ajaxSave=function(){
 		    	var sitearr=[];
 		    	var siteNameObj={};
-		    	var savaIdx=$(".open").find(".showhid").index();
+		    	var savaIdx=$(".open").attr("data-idx");
 		    	var $stationSite=$(".stationSite");
 		    	for(var i=0;i<$stationSite.length;i++){
                         siteNameObj.name=$stationSite.eq(i).html();
@@ -153,7 +153,7 @@
 		    	var linkdirval=$("input[name=linkdir]:checked").val();
 		       var starttime=$(".startTime").eq(savaIdx).html();
 		       var endtime=$(".endTime").eq(savaIdx).html();
-		      var  busNameBd=$(".busNameBd").eq(savaIdx).html();
+		       var  busNameBd=$(".busNameBd").eq(savaIdx).html();
 		       var busName=$("#busName").val();
 		       var price=$(".price").eq(savaIdx).html();
 		       cityid=$citylist.find("option:selected").val();
@@ -225,7 +225,7 @@
                 collect=[];
 			for (var i = 0; i < onbuslineArr.length; i++) {
 				onbuslinelist += '<div class="onbuslineBlock"> <div class="onbuslineBlock_l fl"><p class="identity">未采集</p></div>' +
-					'<div class="onbuslineBlock_r fl"><p class="busNameBd">' + onbuslineArr[i].name + '</p><p><span class="times">首末班：暂无</span>起步票价<span class="price">' + onbuslineArr[i]._poiType + '</span>元</p></div><div class="buslineSites fl' +
+					'<div class="onbuslineBlock_r fl" data-idx="'+i+'"><p class="busNameBd">' + onbuslineArr[i].name + '</p><p><span class="times">首末班：暂无</span>起步票价<span class="price">' + onbuslineArr[i]._poiType + '</span>元</p></div><div class="buslineSites fl' +
 					'"><p class="showhid">+途径站点</p><div class="stationsbox"></div></div></div>';
 				collect.push(onbuslineArr[i].name);
 			}
