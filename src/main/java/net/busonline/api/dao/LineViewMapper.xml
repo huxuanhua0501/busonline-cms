@@ -14,7 +14,7 @@
 		    IFNULL(bl.installation_number,'') AS installationnumber,
 		    IFNULL(bl.match_number,'') AS matchnumber,
 		    IFNULL(dc.dictionary_name ,'') AS dictionaryname,
-		    IFNULL(bl.dictionary_id,'')ASdictionaryid
+		    IFNULL(bl.dictionary_id,'')AS dictionaryid
 		FROM
 			bus_line bl
 		LEFT JOIN city ct ON ct.id = bl.city_id
@@ -133,7 +133,7 @@
  <select id="getLineById" resultType="java.util.Map" >
 		  		
 		  SELECT
-				IFNULL(bl.id,'') AS id,
+			IFNULL(bl.id,'') AS id,
 			IFNULL(bl.line_id,'') AS lineid,
 			IFNULL(bl.linkdir,'') AS linkdir,
 			IFNULL(bl.line_name ,'')AS linename,
@@ -143,12 +143,11 @@
 			IFNULL(bl.dictionary_id,'') AS dictionaryid,
 		    IFNULL(bl.installation_number,'') AS installationnumber,
 		    IFNULL(bl.match_number,'') AS matchnumber,
-		    IFNULL(dc.dictionary_name ,'') AS dictionaryname,
-		    IFNULL(bl.dictionary_id,'')ASdictionaryid
+ 		    IFNULL(bl.dictionary_id,'')AS dictionaryid
 		
 		FROM
-			bus_line b
-		  WHERE b.id=#{id}
+			bus_line bl
+		  WHERE bl.id=#{id}
 		  		
 </select>
 <select id="selectstopcount" resultType="java.lang.Long" >
