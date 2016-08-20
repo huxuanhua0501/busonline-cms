@@ -64,7 +64,7 @@
    var loadData = function() {
      var loadFlag = false;
      $.getJSON('/lineview/getallLine', {
-       "currentPage ": 1,
+       "currentPage": 1,
        "pageSize": size,
        'cityname': cityval,
        'linename': oBusName,
@@ -152,6 +152,39 @@
 	  	//  	}
 	  	//  });        
     //  }
+    var updateName,dictionaryid,linetype,linkdir,installationnumber,matchnumber;
+    // var saveLineBus=function(){
+    // 	  $.ajax({
+	  	//  	url:'/lineview/updateLinebyid',
+	  	//  	type:'post',
+	  	//  	dataType:'json',
+	  	//  	data:{
+	  	//  		linename:lineId,
+	  	//  		dictionaryid:,
+	  	//  		linetype:linetype,
+	  	//  		linkdir:linkdir,
+    //             installationnumber:installationnumber,
+    //             matchnumber:matchnumber,
+    //             id:lineId
+	  	//  	}
+	  	//  	success:function(res){
+				// if (res.code == 200) {
+				// 	alert("修改成功");
+				// 	loadData();
+				// }
+				// else{
+				// 	alert("修改失败");
+				// }
+	  	//  	}
+	  	//  });   
+    // }
+    $("#saveLine").click(function(){
+          updateName=$(".updateName").val();
+          linkdir = $("#dirction").find("option:selected").val();
+          linetype= $("#linetype").find("option:selected").val();
+          installationnumber =$(".matchNumber").val();
+          matchnumber=$(".installationNumber").val();
+    });
       $("#condition").click(function(){
       	$(".conditionBox").show();
       });
@@ -160,7 +193,7 @@
       });
        $(".main").on("click",".busUpdate",function(){
        	   lineId=$(this).attr("data-id");
-       	   busLineUpdate();
+       	  // busLineUpdate();
            $(".updateWindow").show();
        });
         $("#cancelUpdate,.close").click(function(){
