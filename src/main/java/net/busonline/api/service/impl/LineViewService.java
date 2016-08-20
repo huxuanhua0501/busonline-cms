@@ -86,7 +86,6 @@ public class LineViewService extends BaseService implements ILineViewService {
 		} catch (Exception e) {
 			return this.jsonFailure();
 		}
-
 	}
 
 	@Override

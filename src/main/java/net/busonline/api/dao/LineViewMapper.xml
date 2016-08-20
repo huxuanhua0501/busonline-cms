@@ -37,16 +37,16 @@
 	 
    <if test="map.linetype!=null and map.linetype!=''">
         AND bl.line_type IN 
-       <foreach item="item1" index="index" collection="map.linetype" 
+       <foreach item="item3" index="index" collection="map.linetype" 
 	              open="(" separator="," close=")">
-	             #{item1}
+	             #{item3}
 	        </foreach>
 		</if>
    <if test="map.dictionaryid!=null and map.dictionaryid!=''">
 		AND bl.dictionary_id IN  
-		   <foreach item="item1" index="index" collection="map.dictionaryid" 
+		   <foreach item="item2" index="index" collection="map.dictionaryid" 
 	              open="(" separator="," close=")">
-	             #{item1}
+	             #{item2}
 	        </foreach>
 		</if>
 			limit #{map.page.offset},#{map.page.pageSize}		
@@ -133,14 +133,14 @@
  <select id="getLineById" resultType="java.util.Map" >
 		  		
 		  SELECT
-			b.line_name,
-			b.linkdir,
-			b.price,
-			b.start_time,
-			b.end_time,
-			b.line_type,
-			b.dictionary_id,
-		  b.id
+				IFNULL(b.line_name,'') as linename,
+				IFNULL(b.linkdir,'') as linkdir,
+				IFNULL(b.price ,'')as price,
+				IFNULL(b.start_time,'') as starttime,
+				IFNULL(b.end_time,'') as endtime,
+				IFNULL(b.line_type ,'')as linetype,
+				IFNULL(b.dictionary_id ,'')as dictionaryid,
+		        IFNULL(b.id,'')as id
 		
 		FROM
 			bus_line b
