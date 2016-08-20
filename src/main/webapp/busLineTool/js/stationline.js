@@ -83,7 +83,7 @@
            //(首次加载不进入此步骤)
            if (!loadFlag)
              return false;
-           $.getJSON('/queryAttributeByPageForAjax.do', {
+           $.getJSON('/lineview/getallLine', {
              "currentPage": i,
              "pageSize": c,
              'cityname': cityval,
