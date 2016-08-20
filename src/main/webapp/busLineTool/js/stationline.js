@@ -196,7 +196,7 @@
 	  	 	}
 	  	 });   
     };
-     var busLineUpdate=function(){
+     var busLineDelete=function(){
     	  $.ajax({
 	  	 	url:'/lineview/updateLinebyid',
 	  	 	type:'post',
