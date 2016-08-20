@@ -3,7 +3,6 @@
 <mapper namespace="net.busonline.api.dao.LineViewMapper">
 	<select id="getAllLine" resultType="java.util.Map">
 			SELECT
-			IFNULL(s.e_sign,'') AS sign,
 			IFNULL(bl.id,'') AS id,
 			IFNULL(bl.line_id,'') AS lineid,
 			IFNULL(bl.linkdir,'') AS linkdir,
