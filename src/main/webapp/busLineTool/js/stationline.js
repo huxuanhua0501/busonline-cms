@@ -24,7 +24,7 @@
 					}
 					$("#citylist").html(citysCon);
 					$(".network").html(linetypecon);
-					$("input[name=networkType]:eq(0),input[name=linkdir]:eq(0)").attr("checked", 'checked');
+	
 				}
 				
 	  	 	}
