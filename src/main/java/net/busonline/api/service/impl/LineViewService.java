@@ -94,6 +94,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 		try {
 			return this.jsonSuccess(lineViewMapper.selectstopbylineid(lineid));
 		} catch (Exception e) {
+			e.printStackTrace();
 			return this.jsonFailure();
 		}
 	}

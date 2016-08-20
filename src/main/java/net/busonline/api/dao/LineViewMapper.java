@@ -44,7 +44,7 @@ public interface LineViewMapper {
 	 * @return
 	 */
 	
-	public Map<String,Object> selectstopbylineid(String lineid);
+	public List<Map<String,Object>> selectstopbylineid(String lineid);
 	
 	/**
 	 * 查询单条线路
