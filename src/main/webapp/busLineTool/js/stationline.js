@@ -233,7 +233,7 @@
                         stationsAll+='<tr><td>'+resData[i].stopseq+'</td><td>'+resData[i].endstop+'</td><td>'+resData[i].stoptype+'</td><td>'+resData[i].lon+'</td><td>'+resData[i].lat+
                         '</td><td><a  class="stationUpdate" data-station="'+resData[i].id+'">修改</a></td></tr>';
 					}
-					$(".stationDetail").append(stationsAll);
+					$(".buslineStation").after(stationsAll);
 				}
 				
 	  	 	}
@@ -296,6 +296,7 @@
           $(".main").on("click",".stationList",function(){
        	   lineId=$(this).attr("data-id");
        	  $(".buslineDetail").hide();
+       	  $(".stationDetail,.stationTableList").show();
        	  busLineStationList();
        });
      var stationUpdateName,stationsLevel,lon,lat,stationsId;
