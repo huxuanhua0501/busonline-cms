@@ -319,13 +319,13 @@
      });
        $(".main").on("click",".stationUpdate",function(){
            stationsId=$(this).attr("data-station");
-           var endstop=$(this).siblings('endstop').html(),
-           stoptype=$(this).siblings('endstop').html(),
-           lons=$(this).siblings('endstop').html(),
-           lat=$(this).siblings('endstop').html();
+           var endstop=$(this).parent().siblings('.endstop').html(),
+           stoptype=$(this).parent().siblings('.stoptype').html(),
+           lons=$(this).parent().siblings('.lons').html(),
+           lats=$(this).parent().siblings('.lat').html();
            $(".stationUpdateName").val(endstop);
             $("#lon").val(lons);
-            $("#lat").val(lat);
+            $("#lat").val(lats);
             $(".stationsLevel").val(stoptype);
            $(".updateStaionWindow").show();
        });
