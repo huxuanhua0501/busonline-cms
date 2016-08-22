@@ -135,6 +135,11 @@
             
             
 	   });
+      //切换城市
+    $citylist.on("change", function() {
+      cityval = $citylist.find("option:selected").text();
+      loadData();
+    });
 	 var lineId;
 	 //修改按钮
      var  busLineUpdate=function(){
