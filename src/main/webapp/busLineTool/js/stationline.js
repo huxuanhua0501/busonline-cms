@@ -60,10 +60,6 @@
        '<a  class="busDelete"  data-id="'+info[i].id+'">删除</a></td></tr>';
      }
      e.after(html);
-       buslevel="";
-       network="";
-       buslinedir="";
-
    };
    var loadData = function() {
      var loadFlag = false;
@@ -131,7 +127,9 @@
             });
     
               loadData();
-
+              network="";
+              buslinedir="";
+              buslevel="";
             
             
 	   });
