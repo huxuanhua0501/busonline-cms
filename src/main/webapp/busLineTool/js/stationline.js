@@ -162,9 +162,9 @@
 						$(".company").html("暂无公司信息");
 						$(".startStation").html(resData.startstop);
 						$(".endtStation").html(resData.endstop);
-						$(".stationNum").html(resData.totalstop);
+						$(".stationNum").html(resData.totalstop+"个");
 						$(".stationTime").html(resData.starttime+"-"+resData.endtime);
-						$(".stationPrice").html(resData.price);
+						$(".stationPrice").html(resData.price+"元");
 						$(".updateWindow").show();
 
 				}
