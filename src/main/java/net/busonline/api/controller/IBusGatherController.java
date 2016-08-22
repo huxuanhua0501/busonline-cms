@@ -59,7 +59,7 @@ public class IBusGatherController {
 	 * @return
 	 */
 	
-	@RequestMapping(value="/validate" , method = { RequestMethod.POST })
+	@RequestMapping(value="/validate" )
 	public @ResponseBody Response validateBusLineName(HttpServletRequest request)throws Exception{
 		return iBusGatherService.validateBusLineName(HttpUtil.convert(request));
 	}
