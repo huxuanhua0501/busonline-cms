@@ -15,6 +15,7 @@ public class BusLine {
 	private String linkdir;
 	private String city_id;
 	private String linetype; //A网
+	private String city_name;
 	private String price;
 	private String start_time;
 	private String end_time;
@@ -62,6 +63,13 @@ public class BusLine {
 	}
 	public void setLinetype(String linetype) {
 		this.linetype = linetype;
+	}
+	
+	public String getCity_name() {
+		return city_name;
+	}
+	public void setCity_name(String city_name) {
+		this.city_name = city_name;
 	}
 	public String getPrice() {
 		return price;

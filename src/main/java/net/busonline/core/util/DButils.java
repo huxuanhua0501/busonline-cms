@@ -3,7 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;  
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
-import java.sql.SQLException;  
+import java.sql.SQLException;
+import java.sql.Statement;  
   
   
 
@@ -31,7 +32,7 @@ public class DButils {
 	        }  
 	        return conn;  
 	    }  
-	    public static void closeResources(Connection conn,PreparedStatement pstmt,ResultSet rs) {  
+	    public static void closeResources(Connection conn,Statement pstmt,ResultSet rs) {  
 	        if(null != rs) {  
 	            try {  
 	                rs.close();  

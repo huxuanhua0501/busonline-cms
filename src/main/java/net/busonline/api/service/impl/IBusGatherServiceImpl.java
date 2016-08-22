@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.alibaba.druid.support.ibatis.IbatisUtils;
+
 import net.busonline.core.model.Response;
 import net.busonline.core.util.DButils;
 import net.busonline.core.util.ProFileUtil;
@@ -40,7 +43,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	public Response insertBusInfo(BusLine busLine) throws Exception{
 		Map<String,Object> param = new HashMap<String, Object>();
 		BusLine busLineInfo = busLine;
-		busLineInfo.setLine_id(getBusLineId(busLine.getLinename(),busLine.getCity_id()));
+		busLineInfo.setLine_id(getBusLineId(busLine.getLinename(),busLine.getCity_name()));
 		//插入线路信息
 		iBusGatherMapper.insertBusLine(busLineInfo);
 		//插入站点信息
@@ -72,7 +75,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	public Response findBusDictionary(Map<String, Object> map) throws Exception{
 		Map<String,Object> result = new HashMap<String,Object>();
 		//List<Common> citys = iBusGatherMapper.findCity(map);
-		List<Common> citys = findCitys();
+		List<Common> citys = iBusGatherMapper.findCity(map);
 		String parent_id = ProFileUtil.getPropertiesValue("dictionary.properties", "segment");
 		List<Common> segment = iBusGatherMapper.findSegment(parent_id);
 		result.put("city", citys);
@@ -87,7 +90,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 */
 	@Override
 	public Response validateBusLineName(Map<String, Object> map) throws Exception{
-		String str = getBusLineId(map.get("buslinename").toString(),map.get("cityid").toString());
+		String str = getBusLineId(map.get("buslinename").toString(),map.get("cityname").toString());
 		if(null != str && !str.equals("")){
 			return new Response().success();
 		}
@@ -99,22 +102,25 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 * @param busLine
 	 * @return
 	 */
-	public String getBusLineId(String busLineName,String cityid) throws Exception{
+	public String getBusLineId(String busLineName,String cityName) throws Exception{
 		Connection conn = DButils.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String str = null;
 		try{
 		  stmt = conn.createStatement();
-		  String sql= "select id from bus_line where name = " + busLineName.trim()+" and area_id="+cityid;
+		  //String sql= "select id from bus_line where name = " + busLineName.trim()+" and area_id="+cityid;
+		  String sql = "select id from bus_line t inner JOIN area t1 on t.area_id = t1.id where t1.name = "+cityName.trim()+"and t.name = " + busLineName.trim();
+		  System.out.println(sql);
 		  rs = stmt.executeQuery(sql);
 		  while (rs.next()){
 			   str = rs.getString("id");
 		  }
 		}catch(SQLException e){
 			logger.debug("数据库异常");
+			e.printStackTrace();
 		}finally{
-			DButils.closeResources(conn, null, rs);
+			DButils.closeResources(conn, stmt, rs);
         }
 		return str;
 	}
@@ -137,8 +143,9 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 		  }
 		}catch(SQLException e){
 			logger.debug("数据库异常");
+			e.printStackTrace();
 		}finally{
-			DButils.closeResources(conn, null, rs);
+			DButils.closeResources(conn, stmt, rs);
         }
 		return list;
 	}

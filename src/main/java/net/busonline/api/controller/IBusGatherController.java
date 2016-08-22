@@ -1,7 +1,11 @@
 package net.busonline.api.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,7 +60,8 @@ public class IBusGatherController {
 	
 	@RequestMapping("/validate")
 	public @ResponseBody Response validateBusLineName(HttpServletRequest request)throws Exception{
-		return iBusGatherService.validateBusLineName(HttpUtil.convert(request));
+		Map<String,Object> map = new HashMap<String,Object>();
+		return iBusGatherService.validateBusLineName(map);
 	}
 	
 }
