@@ -1,4 +1,4 @@
-(function() {
+updateLinebyid(function() {
 	  var $buslineName=$("#lineName"),$citylist = $("#citylist"),
 	      oBusName,buslevel="",network="",buslinedir="";
 	  var  cityval = $citylist.find("option:selected").text();
@@ -183,9 +183,9 @@
 	  	 		dictionaryid:dictionaryid,
 	  	 		linetype:linetype,
 	  	 		linkdir:linkdir,
-                installationnumber:installationnumber,
-                matchnumber:matchnumber,
-                id:lineId
+          installationnumber:installationnumber,
+          matchnumber:matchnumber,
+          id:lineId
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
@@ -269,7 +269,8 @@
           updateName=$(".updateName").val();
           linkdir = $("#dirction").find("option:selected").val();
           linetype= $("#linetype").find("option:selected").val();
-          dictionaryid=$("input[type='networkTypeRadio']:checked").val();
+          dictionaryid=$("input[type='networkTypeRadio']:checked").text();
+
           matchnumber =$(".matchNumber").val();
           installationnumber=$(".installationNumber").val();
           saveLineBus();
