@@ -204,7 +204,7 @@
                         ajaxSave();
 					}
 					else if (res.code == 501){
-                                	alert("没有找到该线路");
+                                	alert("与业务数据不匹配，请联系管理员");
                     }
 					else {
 						alert("数据异常");

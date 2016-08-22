@@ -75,6 +75,7 @@ ul li{list-style: none;}
 .main h2 span{ display: inline-block; margin:20px;  background-color: #0644f5;color: #fff;padding:5px 15px;}
 .mainList a{color: #f68c0f; margin-right: 15px; cursor:pointer;}
 .updateWindow,.updateStaionWindow{width:320px;overflow:hidden;border-radius: 5px; padding:10px;background-color: #fff;position: absolute;left:50%; top:20%;margin-left: -160px;z-index: 100;border: 1px solid #ccc; display: none;}
+.updateStaionWindow{  position: fixed;top:40%;}
 .updateWindow ul li,.updateStaionWindow ul li{line-height: 35px;}
 .updateWindow p,.updateStaionWindow p{ text-align: right; font-size: 20px;}
 .stationDetail{ display: none;}
