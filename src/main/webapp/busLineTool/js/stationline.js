@@ -152,8 +152,13 @@
 					    $("#dirction").val(resData.linkdir);
 					    $("input[type=radio][name=networkTypeRadio][value="+resData.dictionaryid+"]").attr("checked",'checked');
 					    $("#linetype").val(resData.linetype);
-						$(".matchNumber").val(resData.matchnumber);
-						$(".installationNumber").val(resData.installationnumber);
+              if(resData.matchnumber){
+                $(".matchNumber").val(resData.matchnumber);
+              }
+						 if(resData.installationnumber){
+                $(".installationNumber").val(resData.installationnumber);
+              }
+						
 						$(".company").html("暂无公司信息");
 						$(".startStation").html(resData.startstop);
 						$(".endtStation").html(resData.endstop);
@@ -326,8 +331,7 @@
            $(".stationUpdateName").val(endstop);
             $("#lon").val(lons);
             $("#lat").val(lats);
-            $("#stationsLevel").find("option[text="+stoptype+"]").attr("selected",true);
-          
+            $("#stationsLevel").val(stoptype);
            $(".updateStaionWindow").show();
        });
       $("#cancelstationUpdate,.closestation").click(function(){
