@@ -326,7 +326,8 @@
            $(".stationUpdateName").val(endstop);
             $("#lon").val(lons);
             $("#lat").val(lats);
-            $(".stationsLevel").find("option[text="+stoptype+"]").attr("selected",true);
+            $("#stationsLevel").find("option[text="+stoptype+"]").attr("selected",true);
+          
            $(".updateStaionWindow").show();
        });
       $("#cancelstationUpdate,.closestation").click(function(){
