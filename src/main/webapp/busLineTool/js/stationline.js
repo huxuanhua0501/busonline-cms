@@ -129,13 +129,10 @@
                   buslinedir+=$(this).attr('value')+",";
               }
             });
-             if(!oBusName&&!buslevel&&!network&&!buslinedir){
-             	alert("请选择查询条件");
-             }
-            else{
+    
               loadData();
 
-            }
+            
             
 	   });
 	 var lineId;
