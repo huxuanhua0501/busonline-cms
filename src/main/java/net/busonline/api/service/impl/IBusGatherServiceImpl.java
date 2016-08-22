@@ -90,7 +90,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	 */
 	@Override
 	public Response validateBusLineName(Map<String, Object> map) throws Exception{
-		String str = getBusLineId(map.get("buslinename").toString(),map.get("cityname").toString());
+		String str = getBusLineId(map.get("buslinename").toString(),new String(map.get("cityname").toString().getBytes("iso-8859-1"), "UTF-8"));
 		if(null != str && !str.equals("")){
 			return new Response().success();
 		}
@@ -110,8 +110,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 		try{
 		  stmt = conn.createStatement();
 		  //String sql= "select id from bus_line where name = " + busLineName.trim()+" and area_id="+cityid;
-		  String sql = "select id from bus_line t inner JOIN area t1 on t.area_id = t1.id where t1.name = "+cityName.trim()+"and t.name = " + busLineName.trim();
-		  System.out.println(sql);
+		  String sql = "select t.id from bus_line t inner JOIN area t1 on t.area_id = t1.id where t1.name = '"+cityName.trim()+"' and t.name = " + busLineName.trim();
 		  rs = stmt.executeQuery(sql);
 		  while (rs.next()){
 			   str = rs.getString("id");
@@ -120,7 +119,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 			logger.debug("数据库异常");
 			e.printStackTrace();
 		}finally{
-			DButils.closeResources(conn, stmt, rs);
+			DButils.close();
         }
 		return str;
 	}

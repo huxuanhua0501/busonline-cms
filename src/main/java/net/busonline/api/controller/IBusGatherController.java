@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -58,10 +59,9 @@ public class IBusGatherController {
 	 * @return
 	 */
 	
-	@RequestMapping("/validate")
+	@RequestMapping(value="/validate" , method = { RequestMethod.POST })
 	public @ResponseBody Response validateBusLineName(HttpServletRequest request)throws Exception{
-		Map<String,Object> map = new HashMap<String,Object>();
-		return iBusGatherService.validateBusLineName(map);
+		return iBusGatherService.validateBusLineName(HttpUtil.convert(request));
 	}
 	
 }
