@@ -55,7 +55,7 @@
        else{
        	  dir="上行";
        }
-       html += '<tr><td>'+curList+'</td><td>'+info[i].linename+'</td><td>'+info[i].linetype+'</td><td>暂无</td><td>'+info[i].dictionaryname+'</td><td>'+dir+'</td><td>'+info[i].matchnumber+'</td><td>'+info[i].installationnumber+
+       html += '<tr><td>'+curList+'</td><td>'+info[i].linename+'</td><td>'+info[i].linetype+'</td><td>'+info[i].companyname+'</td><td>'+info[i].dictionaryname+'</td><td>'+dir+'</td><td>'+info[i].matchnumber+'</td><td>'+info[i].installationnumber+
        '</td><td>'+info[i].startstop+'</td><td>'+info[i].endstop+'</td><td>'+info[i].totalstop+'</td><td><a class="stationList" data-id="'+info[i].id+'">查看站点</a><a  class="busUpdate"  data-id="'+info[i].id+'">修改</a>'+
        '<a  class="busDelete"  data-id="'+info[i].id+'">删除</a></td></tr>';
      }
@@ -164,7 +164,7 @@
                 $(".installationNumber").val(resData.installationnumber);
               }
 						
-						$(".company").html("暂无公司信息");
+						$(".company").html(resData.companyname);
 						$(".startStation").html(resData.startstop);
 						$(".endtStation").html(resData.endstop);
 						$(".stationNum").html(resData.totalstop+"个");
