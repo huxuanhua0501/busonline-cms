@@ -241,7 +241,7 @@
     };
     var stationSave=function(){
     	 $.ajax({
-	  	 	url:'/lineview/selectendstop',
+	  	 	url:'/lineview/updatestopbyid',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
