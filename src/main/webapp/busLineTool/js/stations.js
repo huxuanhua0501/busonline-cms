@@ -28,6 +28,7 @@
 				}
 			}, //新加的获取经纬度
 			onBusLineHtmlSet: function(html) {
+				$(".stationsbox").html(" ");
 				html = "";
 				// $("img[id*='imgBLIcon']").click(function(){
 				// 	tmpRetIndex = $("img[id*='imgBLIcon']").index(this);
@@ -54,6 +55,7 @@
 					}
 					//$("#lineGeo").val(html);
 							$(".stationsbox").eq(tmpRetIndex).append(stations);
+							stations="";
 							$(".showhid").eq(tmpRetIndex).html("-途经站点"+sites.length+"个");
 							$(".popup").show();
 							$(".times").eq(tmpRetIndex).html("首末班：<span class='startTime'>" + startTime + "</span>-<span class='endTime'>" + endTime+"</span>");
