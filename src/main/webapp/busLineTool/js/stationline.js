@@ -269,8 +269,7 @@
           updateName=$(".updateName").val();
           linkdir = $("#dirction").find("option:selected").val();
           linetype= $("#linetype").find("option:selected").val();
-          dictionaryid=$("input[type='networkTypeRadio']:checked").text();
-
+          dictionaryid=$("input[name='networkTypeRadio']:checked").val();
           matchnumber =$(".matchNumber").val();
           installationnumber=$(".installationNumber").val();
           saveLineBus();
