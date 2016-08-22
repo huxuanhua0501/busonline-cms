@@ -183,8 +183,12 @@
 									$(".showhid").html("+途径站点");
 						         	$(".stationsbox,.popup").hide();
 									busline.getBusList(busNameval);
-								} else {
-									alert("插入失败");
+								} 
+                                if(res.code == 501){
+                                	alert("没有找到该线路");
+                                }
+								else {
+									alert("数据异常");
 								}
 							}
 						});
