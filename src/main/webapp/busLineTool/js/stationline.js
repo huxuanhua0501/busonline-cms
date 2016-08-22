@@ -1,4 +1,4 @@
-updateLinebyid(function() {
+(function() {
 	  var $buslineName=$("#lineName"),$citylist = $("#citylist"),
 	      oBusName,buslevel="",network="",buslinedir="";
 	  var  cityval = $citylist.find("option:selected").text();
