@@ -94,7 +94,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
      	if(null != str && !str.equals("")){
 				return new Response().success();
      	}
-		return new Response().failure();
+		return new Response().failure("未找到该线路","501");
 	 
 	}
 	
