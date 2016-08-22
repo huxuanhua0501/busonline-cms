@@ -203,16 +203,16 @@
 					if (res.code == 200) {
                         ajaxSave();
 					}
-					  if(res.code == 501){
+					else if (res.code == 501){
                                 	alert("没有找到该线路");
-                                }
-								else {
-									alert("数据异常");
-								}
+                    }
+					else {
+						alert("数据异常");
+						}
 		  	 	}
 		  	 });
               
-		  }
+		  };
 		
         //点击保存按钮
         $("#save").click(function(){
