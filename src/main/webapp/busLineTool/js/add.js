@@ -87,32 +87,31 @@
 				}
 			});
 		};
-
+    //正则判断输入格式
+   var regFunction = function(textString) {
+      var reg = /^[\u4e00-\u9fa5_a-zA-Z0-9]+[\,{0,1}\u4e00-\u9fa5_a-zA-Z0-9]*$/;
+      if (textString&&reg.test(textString)) {
+         addlevel();
+      } else {
+         alert("不能为空或多个关键词只能以英文逗号隔开，且不能有空格");
+      }
+   };
       //添加一级目录索引
       $(".add").click(function(){
       	 var idx=$(".add").index(this);
-      	 if(idx==0){
-      	 	  dictionaryname=$dictionaryname.val();
-      	 	  parentid=0;
-				if (dictionaryname) {
-					addlevel();
-				} else {
-					alert("目录索引不能为空");
-					return false;
-				}
-      	 }
-      	 if(idx==1){
-      	 	dictionaryname=$dictionaryname2.val();
-      	    parentid=$('.levelone option:selected').val();
-      	 	   if (dictionaryname) {
-					addlevel();
-				} else {
-					alert("目录索引不能为空");
-					return false;
-				}
-      	 }
-      	
+            if (idx == 0) {
+               dictionaryname = $dictionaryname.val();
+               parentid = 0;
+               regFunction(dictionaryname);
+            }
+         if (idx == 1) {
+            dictionaryname = $dictionaryname2.val();
+            parentid = $('.levelone option:selected').val();
+            regFunction(dictionaryname);
+      	 
+      	}
       });
+
       $(".levelone").change(function(){
       	 parentid=$('.levelone option:selected').val();
       	 selectList2();
