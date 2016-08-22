@@ -92,15 +92,15 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 	public Response validateBusLineName(Map<String, Object> map) throws Exception{
 		String str = getBusLineId(map.get("buslinename").toString(),new String(map.get("cityname").toString().getBytes("iso-8859-1"), "UTF-8"));
 		try{
-			if(null != str && !str.equals("")){
+//			if(null != str && !str.equals("")){
 				return new Response().success();
-			}
+//			}
 			
 		}catch(Exception e){
 			e.printStackTrace();
 			return new Response().failure();
 		}
-		return null;
+	 
 	}
 	
 	/**
