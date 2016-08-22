@@ -276,6 +276,9 @@
       	$(".conditionBox").show();
       });
        $("#cancelCondition").click(function(){
+        $("input[name = networkType]").attr("checked", false);
+        $(".buslineLeve").attr("checked", false);
+        $(".buslineDir").attr("checked", false);
       	$(".conditionBox").hide();
       });
        $(".main").on("click",".busUpdate",function(){
