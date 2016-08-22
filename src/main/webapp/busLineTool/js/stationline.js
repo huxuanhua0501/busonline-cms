@@ -155,9 +155,9 @@
 					    $("#dirction").val(resData.linkdir);
 					    $("input[type=radio][name=networkTypeRadio][value="+resData.dictionaryid+"]").attr("checked",'checked');
 					    $("#linetype").val(resData.linetype);
-						$(".matchNumber").val(resData.linetype);
-						$(".installationNumber").val(resData.linetype);
-						$(".company").html(resData.linetype);
+						$(".matchNumber").val(resData.matchnumber);
+						$(".installationNumber").val(resData.installationnumber);
+						$(".company").html("暂无公司信息");
 						$(".startStation").html(resData.startstop);
 						$(".endtStation").html(resData.endstop);
 						$(".stationNum").html(resData.totalstop);
