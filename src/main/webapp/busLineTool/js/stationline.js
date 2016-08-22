@@ -227,7 +227,7 @@
 					var resData=res.data;
 				    var stationsAll="";
 					for(var i=0;i<resData.length;i++){
-                        stationsAll+='<tr><td>'+resData[i].stopseq+'</td><td class="endstop">'+resData[i].endstop+'</td><td class="stoptype">'+resData[i].stoptype+'</td><td class="lons">'+resData[i].lon+'</td><td class="lats">'+resData[i].lat+
+                        stationsAll+='<tr><td>'+(i+1)+'</td><td class="endstop">'+resData[i].endstop+'</td><td class="stoptype">'+resData[i].stoptype+'</td><td class="lons">'+resData[i].lon+'</td><td class="lats">'+resData[i].lat+
                         '</td><td><a  class="stationUpdate" data-station="'+resData[i].id+'">修改</a></td></tr>';
 					}
 					$(".buslineStation").after(stationsAll);

@@ -80,7 +80,8 @@ ul li{list-style: none;}
 .updateWindow p,.updateStaionWindow p{ text-align: right; font-size: 20px;}
 .stationDetail{ display: none;}
 .closeStation{cursor: pointer;}
-
+.stationTableList{ position: relative;}
+.closeStation{position: absolute;rigth:5px; top:-5px; background-color: red;  display:inline-block;width:10px;height:10px;border-radius: 10px;}
 
 
 /*分页插件*/
