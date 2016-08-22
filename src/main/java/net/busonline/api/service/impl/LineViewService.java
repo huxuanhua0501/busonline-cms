@@ -73,7 +73,12 @@ public class LineViewService extends BaseService implements ILineViewService {
 		}
 		// resultMap.put ("totalPage", totalCount/Integer.parseInt(pageSize)+1);
 		resultMap.put("listAudit", listMap);
+		try{
 		return this.jsonSuccess(resultMap);
+		} catch (Exception e) {
+			logger.debug("异常数据===="+e);
+			return this.jsonFailure();
+		}
 	}
 
 	@Override
@@ -84,6 +89,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 			lineViewMapper.delLinebyid(id);
 			return this.jsonSuccess();
 		} catch (Exception e) {
+			logger.debug("异常数据===="+e);
 			return this.jsonFailure();
 		}
 	}
@@ -94,7 +100,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 		try {
 			return this.jsonSuccess(lineViewMapper.selectstopbylineid(lineid));
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.debug("异常数据===="+e);
 			return this.jsonFailure();
 		}
 	}
@@ -112,6 +118,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 			 lineViewMapper.updatestopbyid(map);
 			 return this.jsonSuccess();
 		} catch (Exception e) {
+			logger.debug("异常数据===="+e);
 			return this.jsonFailure();
 		}
 	}
@@ -128,6 +135,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 		try {
 		return this.jsonSuccess(map);
 		} catch (Exception e) {
+			logger.debug("异常数据===="+e);
 			return this.jsonFailure();
 		}
 	}
@@ -148,6 +156,7 @@ public class LineViewService extends BaseService implements ILineViewService {
         try {
     		return this.jsonSuccess();
     		} catch (Exception e) {
+    			logger.debug("异常数据===="+e);
     			return this.jsonFailure();
     		}
 	}
@@ -159,6 +168,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 		  try {
 	    		return this.jsonSuccess();
 	    		} catch (Exception e) {
+	    			logger.debug("异常数据===="+e);
 	    			return this.jsonFailure();
 	    		}
 	}
