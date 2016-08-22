@@ -54,6 +54,7 @@
 					}
 					//$("#lineGeo").val(html);
 							$(".stationsbox").eq(tmpRetIndex).append(stations);
+							$(".showhid").html("-途经站点"+sites.length+"个");
 							$(".popup").show();
 							$(".times").eq(tmpRetIndex).html("首末班：<span class='startTime'>" + startTime + "</span>-<span class='endTime'>" + endTime+"</span>");
 
