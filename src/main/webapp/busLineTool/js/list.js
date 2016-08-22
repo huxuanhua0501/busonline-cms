@@ -4,7 +4,7 @@
 	    var listShow=function(){
 	    	$(".first").nextAll().remove();
             $.ajax({
-				url: 'http://192.168.109.227:40000/dict/selectDicItme',
+				url: '/dict/selectDicItme',
 				type: 'post',
 				dataType: 'json',
 				success: function(res) {
@@ -31,7 +31,7 @@
 	    listShow();
 		var update = function() {
 			$.ajax({
-				url: 'http://192.168.109.227:40000/dict/updateDicname',
+				url: '/dict/updateDicname',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -54,7 +54,7 @@
 		};
        var deleteLevel2 = function() {
 			$.ajax({
-				url: 'http://192.168.109.227:40000/dict/delDicTwo',
+				url: '/dict/delDicTwo',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -75,7 +75,7 @@
 		};
 		  var deleteLevel1 = function() {
 			$.ajax({
-				url: 'http://192.168.109.227:40000/dict/delDic',
+				url: '/dict/delDic',
 				type: 'post',
 				dataType: 'json',
 				data: {

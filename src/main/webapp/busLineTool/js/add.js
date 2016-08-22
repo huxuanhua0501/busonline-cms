@@ -7,7 +7,7 @@
 	    	  $(".tianjia_box").html(" ");
 	    	  $(".levelone").html(" ");
             $.ajax({
-				url: 'http://192.168.109.227:40000/dict/selectDicOne',
+				url: '/dict/selectDicOne',
 				type: 'post',
 				dataType: 'json',
 				success: function(res) {
@@ -36,7 +36,7 @@
 	     	$(".leve2con").html(" ");
 	     	 leve2=$('.levelone option:selected').val();
             $.ajax({
-				url: 'http://192.168.109.227:40000/dict/selectDicTwo',
+				url: '/dict/selectDicTwo',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -60,7 +60,7 @@
         }
 		var addlevel = function() {
 			$.ajax({
-				url: 'http://192.168.109.227:40000/dict/insertdict',
+				url: '/dict/insertdict',
 				type: 'post',
 				dataType: 'json',
 				data: {

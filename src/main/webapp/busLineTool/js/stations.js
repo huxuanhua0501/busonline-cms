@@ -170,7 +170,7 @@
 					datas.price = price;
 					datas.site = sitearr;
 						$.ajax({
-							url: 'http://192.168.109.227:40000/iBusGather/upload.do',
+							url: '/iBusGather/upload.do',
 							type: 'post',
 							dataType: 'json',
 							data:{
