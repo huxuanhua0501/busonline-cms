@@ -95,6 +95,7 @@
       //修改
       $(".tableList").on("click",'.xiugai',function(){
       	 indexnum=$(this).attr("data-id");
+      	 $(".dictionary").val("");
       	 $(".updataWindow").show();
       });
        //修改保存
