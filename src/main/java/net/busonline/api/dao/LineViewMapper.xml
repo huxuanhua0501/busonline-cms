@@ -112,7 +112,8 @@
 		SET name =#{map.stopname},
 		 lat =#{map.lat}, 
 		 lon =#{map.lon}, 
-		 stop_type =#{map.stoptype}
+		 stop_type =#{map.stoptype},
+		 update_time =#{map.modifytime}
 		WHERE
 			id =#{map.id}
 </update>
@@ -125,7 +126,8 @@
 		 line_type = #{map.linetype},
 		 linkdir = #{map.linkdir},
 		 installation_number = #{map.installationnumber},
-		 match_number = #{map.matchnumber}
+		 match_number = #{map.matchnumber},
+		 update_time =#{map.modifytime}
 		WHERE
 			id =#{map.id}
 </update>

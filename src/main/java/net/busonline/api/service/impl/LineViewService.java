@@ -1,5 +1,7 @@
 package net.busonline.api.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,6 +116,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 		map.put("lat", lat);
 		map.put("lon", lon);
 		map.put("stoptype", stoptype);
+		map.put("modifytime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		try {
 			 lineViewMapper.updatestopbyid(map);
 			 return this.jsonSuccess();
@@ -151,6 +154,7 @@ public class LineViewService extends BaseService implements ILineViewService {
         map.put("linkdir", linkdir);
         map.put("installationnumber", installationnumber);
         map.put("matchnumber", matchnumber);
+    	map.put("modifytime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         map.put("id", id);
         lineViewMapper.updateLinebyid(map);
         try {
