@@ -21,11 +21,11 @@
 					}
 					for (var j = 0; j < linetypes.length; j++) {
 						linetypecon += '<label><input name="networkType" class="networkType" type="checkbox" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
-						linetypeconRadio+= '<label><input name="networkTypeRadio" class="networkType" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
+						linetypeconRadio+= '<label><input name="networkTypeRadio" class="networkTypeRadio" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
 					}
 					$("#citylist").html(citysCon);
-					$(".network").eq(0).html(linetypecon);
-					$(".network").eq(1).html(linetypeconRadio);
+			
+					$(".networkTypeRadio").html(linetypeconRadio);
 					citysCon = "",
 					linetypecon = "",
 					linetypeconRadio = "";
