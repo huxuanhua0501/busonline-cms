@@ -157,6 +157,7 @@
 		       var busName=$("#busName").val();
 		       var price=$(".price").eq(savaIdx).html();
 		       cityid=$citylist.find("option:selected").val();
+		       //cityval=$citylist.find("option:selected").text();
 		       var  datas = {};
 					datas.start_time = starttime;
 					datas.end_time = endtime;
@@ -164,6 +165,7 @@
 					datas.linename_bd = busNameBd;
 					datas.linkdir = linkdirval;
 					datas.city_id = cityid;
+					datas.city_name = cityval;
 					datas.linetype = networkType;
 					datas.price = price;
 					datas.site = sitearr;
@@ -192,7 +194,7 @@
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
 		  	  $.ajax({
-		  	 	url:'/iBusGather/validate.do?buslinename='+busNamNew+'&cityid='+cityid,
+		  	 	url:'/iBusGather/validate.do?buslinename='+busNamNew+'&cityname='+cityval,
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	success:function(res){
@@ -209,7 +211,7 @@
         //点击保存按钮
         $("#save").click(function(){
         	 busNamNew=$("#busName").val();
-        	 cityid=$citylist.find("option:selected").val();
+        	  cityval=$citylist.find("option:selected").text();
         	if(busNamNew){
                ajaxTestInsert();//验证是否可以插入
         	}

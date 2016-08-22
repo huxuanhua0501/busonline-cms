@@ -14,9 +14,9 @@ ul li{list-style: none;}
 #r-result {width:100%;}
 .topbar{width:100%;   position: fixed; top:0;left:0;z-index:10;}
 .topbar_1{width: 100%;height: 50px;background-color: #0644f5;color: #fff; font-size: 14px;}
-.topbar_1 span{ display: inline-block;margin:10px 0 0 20px;}
+.topbar_1 span{ display: inline-block;margin:10px 20px 0 20px; font-size: 18px;}
 .topbar_1 ul{display: inline-block;}
-.topbar_1 ul li{ display: inline-block;margin: 0 20px; }
+.topbar_1 ul li{ display: inline-block;margin: 0 20px;padding: 0 10px; font-size: 14px;}
 .topbar_1 select,.cityBtn{margin: 10px 20px;}
 .topbar_2{width:100%; height: 25px;padding:10px; background-color: #e6e7d8; position: relative;}
 .topbar_2 input[type="button"]{width:80px;height: 30px;margin-left: 20px;}
@@ -44,8 +44,8 @@ ul li{list-style: none;}
 .topbar_1 ul li.caiji ul,.topbar_1 ul li.shuju ul，.topbar_1 ul li.yewu ul，.topbar_1 ul li.zidian ul{font-size: 12px;}
 .topbar_1 ul li.caiji,.topbar_1 ul li.shuju,.topbar_1 ul li.yewu,.topbar_1 ul li.zidian{position: relative;}
 .topbar_1 a{color: #fff;}
-.caiji ul,.shuju ul,.yewu ul,.zidian ul{display: none;position: absolute;background-color: #0644f5;z-index: 1000;}
-.caiji ul li,.shuju ul li,.yewu ul li,.zidian ul li{margin:0;font-size: 12px;width: 100%;text-align: center;padding:5px 0;}
+.caiji ul,.shuju ul,.yewu ul,.zidian ul{display: none;position: absolute;background-color: #0644f5;z-index: 100;left:10px; }
+.caiji ul li,.shuju ul li,.yewu ul li,.zidian ul li{margin:0;font-size: 12px;width: 100%;text-align: center;padding:5px 20px 0 0px; text-align: center; line-height: 30px;}
 .caiji:hover ul,.shuju:hover ul,.yewu:hover ul,.zidian:hover ul{display: block;}
 .caiji ul li:hover,.shuju ul li:hover,.yewu ul li:hover,.zidian ul li:hover{color: #fff;}
 .tianjia{padding:20px;}
