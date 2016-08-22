@@ -184,11 +184,9 @@
 						         	$(".stationsbox,.popup").hide();
 									busline.getBusList(busNameval);
 								} 
-                                if(res.code == 501){
-                                	alert("没有找到该线路");
-                                }
+                             
 								else {
-									alert("数据异常");
+									alert("插入失败");
 								}
 							}
 						});
@@ -204,9 +202,13 @@
 		  	 	success:function(res){
 					if (res.code == 200) {
                         ajaxSave();
-					} else {
-						alert("插入失败");
 					}
+					  if(res.code == 501){
+                                	alert("没有找到该线路");
+                                }
+								else {
+									alert("数据异常");
+								}
 		  	 	}
 		  	 });
               
