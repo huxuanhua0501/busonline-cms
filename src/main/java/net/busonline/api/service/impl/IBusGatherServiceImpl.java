@@ -111,7 +111,7 @@ public class IBusGatherServiceImpl implements IBusGatherService{
 		try{
 		  stmt = conn.createStatement();
 		  //String sql= "select id from bus_line where name = " + busLineName.trim()+" and area_id="+cityid;
-		  String sql = "select t.id from bus_line t inner JOIN area t1 on t.area_id = t1.id where t1.name = '"+cityName.trim()+"' and t.name = " + busLineName.trim();
+		  String sql = "select t.id from bus_line t inner JOIN area t1 on t.area_id = t1.id where t1.name = '"+cityName.trim()+"' and t.name = '" + busLineName.trim()+"'";
 		  logger.info("sql===="+sql);
 		  rs = stmt.executeQuery(sql);
 		  while (rs.next()){
