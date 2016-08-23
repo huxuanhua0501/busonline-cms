@@ -130,7 +130,8 @@
 								$(".identity").eq(h).html("已采集").parent().css({
 									"background-color": "#f00",
 									"border-color": "#f00"
-								});
+								}).addClass("insert");
+
 							}
 						}
 					} 
@@ -222,7 +223,13 @@
         	 busNamNew=$("#busName").val();
         	  cityval=$citylist.find("option:selected").text();
         	if(busNamNew){
-               ajaxTestInsert();//验证是否可以插入
+        		if($(".open").parent(".onbuslineBlock_l").find(".insert")){
+        			alert("已经采集过");return false;
+        		}
+        		else{
+        			 ajaxTestInsert();//验证是否可以插入
+        		}
+              
         	}
         	else{
         		alert("请输入线路名称");
