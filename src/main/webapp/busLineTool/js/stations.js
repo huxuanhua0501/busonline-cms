@@ -130,7 +130,8 @@
 								$(".identity").eq(h).html("已采集").parent().css({
 									"background-color": "#f00",
 									"border-color": "#f00"
-								}).addClass("insert");
+								});
+								$(".showhid").eq(h).addClass("insert");
 
 							}
 						}
@@ -223,7 +224,7 @@
         	 busNamNew=$("#busName").val();
         	  cityval=$citylist.find("option:selected").text();
         	if(busNamNew){
-        		if($(".open").parent(".onbuslineBlock_l").find(".insert")){
+        		if($(".open").hasClass("insert")){
         			alert("已经采集过");return false;
         		}
         		else{
