@@ -131,7 +131,7 @@
 									"background-color": "#f00",
 									"border-color": "#f00"
 								});
-								$(".showhid").eq(h).addClass("insert");
+								$(".buslineSites").eq(h).addClass("insert");
 
 							}
 						}
