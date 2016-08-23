@@ -57,7 +57,7 @@
        }
        html += '<tr><td>'+curList+'</td><td>'+info[i].linename+'</td><td>'+info[i].linetype+'</td><td>'+info[i].companyname+'</td><td>'+info[i].dictionaryname+'</td><td>'+dir+'</td><td>'+info[i].matchnumber+'</td><td>'+info[i].installationnumber+
        '</td><td>'+info[i].startstop+'</td><td>'+info[i].endstop+'</td><td>'+info[i].totalstop+'</td><td><a class="stationList" data-id="'+info[i].id+'">查看站点</a><a  class="busUpdate"  data-id="'+info[i].id+'">修改</a>'+
-       '<a  class="busDelete"  data-id="'+info[i].id+'">删除</a></td></tr>';
+       '<a  class="busDelete"  data-id="'+info[i].id+'">删除</a></td><td>'+info[i].createtime+'</td></tr>';
      }
      e.after(html);
    };
