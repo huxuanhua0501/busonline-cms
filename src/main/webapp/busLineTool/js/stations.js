@@ -28,6 +28,7 @@
 				}
 			}, //新加的获取经纬度
 			onBusLineHtmlSet: function(html) {
+				$(".stationsbox").html(" ");
 				html = "";
 				// $("img[id*='imgBLIcon']").click(function(){
 				// 	tmpRetIndex = $("img[id*='imgBLIcon']").index(this);
@@ -54,6 +55,8 @@
 					}
 					//$("#lineGeo").val(html);
 							$(".stationsbox").eq(tmpRetIndex).append(stations);
+							stations="";
+							$(".showhid").eq(tmpRetIndex).html("-途经站点"+sites.length+"个");
 							$(".popup").show();
 							$(".times").eq(tmpRetIndex).html("首末班：<span class='startTime'>" + startTime + "</span>-<span class='endTime'>" + endTime+"</span>");
 
@@ -128,6 +131,8 @@
 									"background-color": "#f00",
 									"border-color": "#f00"
 								});
+								$(".buslineSites").eq(h).addClass("insert");
+
 							}
 						}
 					} 
@@ -184,11 +189,9 @@
 						         	$(".stationsbox,.popup").hide();
 									busline.getBusList(busNameval);
 								} 
-                                if(res.code == 501){
-                                	alert("没有找到该线路");
-                                }
+                             
 								else {
-									alert("数据异常");
+									alert("插入失败");
 								}
 							}
 						});
@@ -204,20 +207,30 @@
 		  	 	success:function(res){
 					if (res.code == 200) {
                         ajaxSave();
-					} else {
-						alert("插入失败");
 					}
+					else if (res.code == 501){
+                                	alert("与业务数据不匹配，请联系管理员");
+                    }
+					else {
+						alert("数据异常");
+						}
 		  	 	}
 		  	 });
               
-		  }
+		  };
 		
         //点击保存按钮
         $("#save").click(function(){
         	 busNamNew=$("#busName").val();
         	  cityval=$citylist.find("option:selected").text();
         	if(busNamNew){
-               ajaxTestInsert();//验证是否可以插入
+        		if($(".open").hasClass("insert")){
+        			alert("已经采集过");return false;
+        		}
+        		else{
+        			 ajaxTestInsert();//验证是否可以插入
+        		}
+              
         	}
         	else{
         		alert("请输入线路名称");

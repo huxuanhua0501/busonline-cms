@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.busonline.api.dao.BusLineDao;
 import net.busonline.api.dao.LineViewMapper;
 import net.busonline.api.service.ILineViewService;
 import net.busonline.core.base.BaseService;
@@ -58,10 +60,12 @@ public class LineViewService extends BaseService implements ILineViewService {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<Map<String, Object>> listMap = lineViewMapper.getAllLine(map);
 		for(int i = 0 ; i<listMap.size();i++){
-			
+			BusLineDao dao = new BusLineDao();
+			ConcurrentHashMap<String,Object> map2= dao.getcompanyNameBylineid(listMap.get(i).get("lineid").toString());
 			String endstop = lineViewMapper.selectendstop(listMap.get(i).get("id").toString());
 			String startstop = lineViewMapper.selectstartstop(listMap.get(i).get("id").toString());
 			Long totalstop = lineViewMapper.selectstopcount(listMap.get(i).get("id").toString());
+			listMap.get(i).put("companyname", map2.get("companyname"));
 			listMap.get(i).put("startstop", startstop);
 			listMap.get(i).put("endstop", endstop);
 			listMap.get(i).put("totalstop", totalstop);
@@ -128,13 +132,16 @@ public class LineViewService extends BaseService implements ILineViewService {
 
 	public String getLineById(String id){
 //		Map<String, Object> map = new HashMap<String, Object>();
+		BusLineDao dao = new BusLineDao();
 		Map<String, Object> map =lineViewMapper.getLineById(id);
+		ConcurrentHashMap<String,Object> map2= dao.getcompanyNameBylineid(map.get("lineid").toString());
 		Long totalstop = lineViewMapper.selectstopcount(id);
 		String endstop = lineViewMapper.selectendstop(id);
 		String startstop = lineViewMapper.selectstartstop(id);
 		map.put("totalstop", totalstop);
 		map.put("endstop", endstop);
 		map.put("startstop", startstop);
+		map.put("companyname",map2.get("companyname"));
 		try {
 		return this.jsonSuccess(map);
 		} catch (Exception e) {

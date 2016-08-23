@@ -21,7 +21,7 @@
 					}
 					for (var j = 0; j < linetypes.length; j++) {
 						linetypecon += '<label><input name="networkType" class="networkType" type="checkbox" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
-						linetypeconRadio+= '<label><input name="networkTypeRadio" class="networkType" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
+						linetypeconRadio+= '<label><input name="networkTypeRadio" class="networkTypeRadio" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
 					}
 					$("#citylist").html(citysCon);
 					$(".network").eq(0).html(linetypecon);
@@ -55,15 +55,11 @@
        else{
        	  dir="上行";
        }
-       html += '<tr><td>'+curList+'</td><td>'+info[i].linename+'</td><td>'+info[i].linetype+'</td><td>'+info[i].linetype+'</td><td>'+info[i].dictionaryname+'</td><td>'+dir+'</td><td>'+info[i].matchnumber+'</td><td>'+info[i].installationnumber+
+       html += '<tr><td>'+curList+'</td><td>'+info[i].linename+'</td><td>'+info[i].linetype+'</td><td>'+info[i].companyname+'</td><td>'+info[i].dictionaryname+'</td><td>'+dir+'</td><td>'+info[i].matchnumber+'</td><td>'+info[i].installationnumber+
        '</td><td>'+info[i].startstop+'</td><td>'+info[i].endstop+'</td><td>'+info[i].totalstop+'</td><td><a class="stationList" data-id="'+info[i].id+'">查看站点</a><a  class="busUpdate"  data-id="'+info[i].id+'">修改</a>'+
        '<a  class="busDelete"  data-id="'+info[i].id+'">删除</a></td></tr>';
      }
      e.after(html);
-       buslevel="";
-       network="";
-       buslinedir="";
-
    };
    var loadData = function() {
      var loadFlag = false;
@@ -129,15 +125,19 @@
                   buslinedir+=$(this).attr('value')+",";
               }
             });
-             if(!oBusName&&!buslevel&&!network&&!buslinedir){
-             	alert("请选择查询条件");
-             }
-            else{
+    
               loadData();
-
-            }
+              network="";
+              buslinedir="";
+              buslevel="";
+            
             
 	   });
+      //切换城市
+    $citylist.on("change", function() {
+      cityval = $citylist.find("option:selected").text();
+      loadData();
+    });
 	 var lineId;
 	 //修改按钮
      var  busLineUpdate=function(){
@@ -155,14 +155,19 @@
 					    $("#dirction").val(resData.linkdir);
 					    $("input[type=radio][name=networkTypeRadio][value="+resData.dictionaryid+"]").attr("checked",'checked');
 					    $("#linetype").val(resData.linetype);
-						$(".matchNumber").val(resData.matchnumber);
-						$(".installationNumber").val(resData.installationnumber);
-						$(".company").html("暂无公司信息");
+              if(resData.matchnumber){
+                $(".matchNumber").val(resData.matchnumber);
+              }
+						 if(resData.installationnumber){
+                $(".installationNumber").val(resData.installationnumber);
+              }
+						
+						$(".company").html(resData.companyname);
 						$(".startStation").html(resData.startstop);
 						$(".endtStation").html(resData.endstop);
-						$(".stationNum").html(resData.totalstop);
+						$(".stationNum").html(resData.totalstop+"个");
 						$(".stationTime").html(resData.starttime+"-"+resData.endtime);
-						$(".stationPrice").html(resData.price);
+						$(".stationPrice").html(resData.price+"元");
 						$(".updateWindow").show();
 
 				}
@@ -181,9 +186,9 @@
 	  	 		dictionaryid:dictionaryid,
 	  	 		linetype:linetype,
 	  	 		linkdir:linkdir,
-                installationnumber:installationnumber,
-                matchnumber:matchnumber,
-                id:lineId
+          installationnumber:installationnumber,
+          matchnumber:matchnumber,
+          id:lineId
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
@@ -230,7 +235,7 @@
 					var resData=res.data;
 				    var stationsAll="";
 					for(var i=0;i<resData.length;i++){
-                        stationsAll+='<tr><td>'+resData[i].stopseq+'</td><td class="endstop">'+resData[i].endstop+'</td><td class="stoptype">'+resData[i].stoptype+'</td><td class="lons">'+resData[i].lon+'</td><td class="lats">'+resData[i].lat+
+                        stationsAll+='<tr><td>'+(i+1)+'</td><td class="endstop">'+resData[i].endstop+'</td><td class="stoptype">'+resData[i].stoptype+'</td><td class="lons">'+resData[i].lon+'</td><td class="lats">'+resData[i].lat+
                         '</td><td><a  class="stationUpdate" data-station="'+resData[i].id+'">修改</a></td></tr>';
 					}
 					$(".buslineStation").after(stationsAll);
@@ -267,7 +272,7 @@
           updateName=$(".updateName").val();
           linkdir = $("#dirction").find("option:selected").val();
           linetype= $("#linetype").find("option:selected").val();
-          dictionaryid=$("input[type='networkTypeRadio']:checked").val();
+          dictionaryid=$("input[name='networkTypeRadio']:checked").val();
           matchnumber =$(".matchNumber").val();
           installationnumber=$(".installationNumber").val();
           saveLineBus();
@@ -276,6 +281,9 @@
       	$(".conditionBox").show();
       });
        $("#cancelCondition").click(function(){
+        $("input[name = networkType]").attr("checked", false);
+        $(".buslineLeve").attr("checked", false);
+        $(".buslineDir").attr("checked", false);
       	$(".conditionBox").hide();
       });
        $(".main").on("click",".busUpdate",function(){
@@ -326,7 +334,7 @@
            $(".stationUpdateName").val(endstop);
             $("#lon").val(lons);
             $("#lat").val(lats);
-            $(".stationsLevel").find("option[text="+stoptype+"]").attr("selected",true);
+            $("#stationsLevel").val(stoptype);
            $(".updateStaionWindow").show();
        });
       $("#cancelstationUpdate,.closestation").click(function(){

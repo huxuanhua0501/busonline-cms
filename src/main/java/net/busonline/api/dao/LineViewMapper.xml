@@ -144,7 +144,8 @@
 				IFNULL(b.installation_number,'') AS installationnumber,
 		        IFNULL(b.match_number,'') AS matchnumber,
 				IFNULL(b.dictionary_id ,'')as dictionaryid,
-		        IFNULL(b.id,'')as id
+		        IFNULL(b.id,'')as id,
+		        IFNULL(b.line_id,'')as lineid
 		
 		FROM
 			bus_line b
