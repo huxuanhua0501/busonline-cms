@@ -14,7 +14,8 @@
 		    IFNULL(bl.installation_number,'') AS installationnumber,
 		    IFNULL(bl.match_number,'') AS matchnumber,
 		    IFNULL(dc.dictionary_name ,'') AS dictionaryname,
-		    IFNULL(bl.dictionary_id,'')AS dictionaryid
+		    IFNULL(bl.dictionary_id,'')AS dictionaryid,
+		    IFNULL(bl.create_time ,'')AS createtime
 		FROM
 			bus_line bl
 		LEFT JOIN city ct ON ct.id = bl.city_id
@@ -49,6 +50,8 @@
 	             #{item2}
 	        </foreach>
 		</if>
+		 ORDER BY    bl.create_time  DESC,
+                     bl.line_name asc
 			limit #{map.page.offset},#{map.page.pageSize}		
 	</select>
 	
