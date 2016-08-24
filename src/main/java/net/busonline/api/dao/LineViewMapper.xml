@@ -112,7 +112,7 @@
 	 
 	 <update id="updatestopbyid">
 		UPDATE bus_stop
-		SET name =#{map.stopname},
+		SET stop_name =#{map.stopname},
 		 lat =#{map.lat}, 
 		 lon =#{map.lon}, 
 		 stop_type =#{map.stoptype},
@@ -171,7 +171,7 @@
 			bs.lat AS lat,
 			bs.lon AS lon,
 			bs.stop_type AS stoptype,
-		  bs.name AS endstop,
+		  bs.stop_name AS endstop,
 		  bs.stopseq AS stopseq
 		FROM
 			bus_stop bs
@@ -182,7 +182,7 @@
 </select>
 <select id="selectstartstop" resultType="java.lang.String" >
 		   SELECT
-			name AS startstop
+			stop_name AS startstop
 		FROM
 			bus_stop
 		WHERE
@@ -193,7 +193,7 @@ LIMIT 1
 </select>
 <select id="selectendstop" resultType="java.lang.String">
 	  SELECT
-		name AS endstop
+		stop_name AS endstop
 	FROM
 		bus_stop
 	WHERE
