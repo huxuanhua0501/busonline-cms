@@ -42,11 +42,12 @@ public class AllocationService extends BaseService implements IAllocationService
 				for (int j = 0; j < listline.size(); j++) {
 					Map<String, Object> signline = allocationMapper.selectsignlinebyid(signid,
 							listline.get(j).get("id").toString());
-					if (signline.size() != 0) {
+					if (!PubMethod.isEmpty(signline)&&signline.size() > 0) {
 						listline.get(j).put("signtype", 0);
 					} else {
 						listline.get(j).put("signtype", 1);
 					}
+					 
 				}
 				map.put("city", listcity.get(i));
 				map.put("line", listline);
