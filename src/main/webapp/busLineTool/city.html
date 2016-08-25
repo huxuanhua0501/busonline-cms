@@ -49,7 +49,7 @@
 	var cityName,cityNameEn,cityid;
 		//城市列表
 	var cityLists=function(){
-		 $(".cityTable").after().remove();
+		 $(".cityTable").nextAll().remove(); 
 		$.ajax({
 			url: '../allocation/selectcity',
 			type: 'post',
@@ -61,7 +61,6 @@
 					for(var i=0;i<resData.length;i++){
 						html+='<tr><td>'+(i+1)+'</td><td class="namecn">'+resData[i].namecn+'</td><td class="nameen">'+resData[i].nameen+'</td><td><a class="updateAdmin" data-id='+resData[i].cityid+'>修改</a></td></tr>';
 					}
-					console.log(html);
                     $(".adminList").after(html);
 				} else {
 					alert("修改失败");
