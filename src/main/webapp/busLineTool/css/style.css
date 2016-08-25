@@ -18,7 +18,7 @@ ul li{list-style: none;}
 .topbar_1 ul{display: inline-block;}
 .topbar_1 ul li{ display: inline-block;margin: 0 20px;padding: 0 10px; font-size: 14px;}
 .topbar_1 select,.cityBtn{margin: 10px 20px;}
-.topbar_2{width:100%; height: 25px;padding:10px; background-color: #e6e7d8; position: relative;}
+.topbar_2{width:100%; height: 25px;padding:65px 10px 20px; background-color: #e6e7d8; position: relative;}
 .topbar_2 input[type="button"]{width:80px;height: 30px;margin-left: 20px;}
 
 .onbuslineShow{ position: absolute; left: 0; top:45px;background-color: #fff;width:500px; height: 850px;  overflow-x: hidden; display: none;}
@@ -45,10 +45,10 @@ ul li{list-style: none;}
 .topbar_1 ul li.caiji,.topbar_1 ul li.shuju,.topbar_1 ul li.yewu,.topbar_1 ul li.zidian{position: relative;}
 .topbar_1 a{color: #fff;}
 .caiji ul,.shuju ul,.yewu ul,.zidian ul{display: none;position: absolute;background-color: #0644f5;z-index: 100;left:10px; }
-.caiji ul li,.shuju ul li,.yewu ul li,.zidian ul li{margin:0;font-size: 12px;width: 100%;text-align: center;padding:5px 20px 0 0px; text-align: center; line-height: 30px;}
+.caiji ul li,.shuju ul li,.yewu ul li,.zidian ul li{margin:0;font-size: 12px;width: 100%;text-align: center;padding:5px 20px 0 0px; text-align: center; line-height: 20px;}
 .caiji:hover ul,.shuju:hover ul,.yewu:hover ul,.zidian:hover ul{display: block;}
 .caiji ul li:hover,.shuju ul li:hover,.yewu ul li:hover,.zidian ul li:hover{color: #fff;}
-.tianjia{padding:20px;}
+.tianjia{padding:60px 20px 20px;}
 .add{margin-left: 10px;}
 .label_name{margin-right: 20px;width: 200px;text-align: right;float: left;}
 .tianjia_box{overflow: hidden;}
@@ -56,7 +56,7 @@ ul li{list-style: none;}
 .tianjia_in{margin-bottom: 10px;margin-top: 10px;}
 .tianjia_in span{margin-right: 5px;}
 .tips{font-size: 12px;color: #3c8dbc;margin-left: 220px;}
-.liebiao{width:80%;height: 800px; overflow-y: scroll;}
+.liebiao{width:80%;height: 800px; overflow-y: scroll;padding-top: 70px;}
 .liebiao table tr:first-child{border-bottom: 1px solid red;}
 .liebiao table tr th,td{padding:8px;background-color: #fff;text-align: left;}
 .liebiao table tr td{background-color: #f9f9f9;}
@@ -82,8 +82,27 @@ ul li{list-style: none;}
 .closeStation{cursor: pointer;}
 .stationTableList{ position: relative;}
 .closeStation{position: absolute;right:-15px; top:-20px; background-color: red;  display:inline-block;width:30px;height:30px;border-radius: 30px; text-align: center;}
-
-
+.admin{width: 50%;margin:20px; padding-top: 50px;}
+.admin h2{ width:100%; font-size: 20px; font-weight: normal; float: left; position: relative;}
+.addAdminPop{width:340px; padding:20px;overflow: hidden; background-color: #fff;border:1px solid #f0eded; position: absolute; right: 0; top:40px; z-index: 10;  font-size: 14px; border-radius: 5px; display: none;}
+.addAdminPop ul li,.updateAdminPop ul li{line-height: 40px;}
+.addAdminPop input[type="button"],.updateAdminPop input[type="button"]{width:80px;height: 30px;margin-left: 40px;margin-top:30px;}
+.addAdminPop input[type="text"],.updateAdminPop input[type="text"]{border:1px solid #dedede; height: 30px; line-height: 30px;}
+.admin h2 a{ display: inline-block;float: right;  background-color: #0692f4; border-radius: 5px; color: #fff;padding: 3px 30px;cursor: pointer;}
+.adminList{width:100%;margin-top: 10px; float: left;}
+.adminList tr th{background-color: #d4faec;}
+.adminList tr td,.adminList tr th{border:1px solid #333; line-height: 40px; text-align: center;}
+.updateAdmin,.deleteAdmin{color: #036dc6;margin-right: 20px;cursor: pointer;}
+.updateAdminPop{width:300px; padding:20px;overflow: hidden; background-color: #fff;border:1px solid #f0eded;left: 18%; top:20%; position: fixed;z-index: 11;border-radius: 5px; display: none;}
+.resetPassword,.outLogin{margin-left: 30px;cursor: pointer;}
+/*login*/
+    .login{width: 380px;height: 200px;border:1px solid #ccc;margin:150px auto 0;padding:50px 55px 30px;}
+    .login li{margin-bottom: 10px;}
+    .login li input[type="text"]{border:1px solid #dedede; height: 30px; line-height: 30px;}
+    .login li input[type="button"]{width:80px;height: 30px;}
+    .user_info{width: 80px;text-align: right;display: inline-block;}
+    .code {font-family:Arial;font-style:italic;color:blue;  border:0;display: inline-block;border:1px solid #ccc;background-color:#fff;padding:1px 8px;margin:0 10px;}
+    .login_btn{text-align: center;margin-top: 30px;}
 /*分页插件*/
 .pager{width:100%; text-align: center;padding: 20px 0;}
 .pager a {
