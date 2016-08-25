@@ -13,24 +13,31 @@
          <div class="addAdminPop">
          	<ul>
          		<li>
-         			城市名:
+         			城市名中文:
          			<input type="text" id="cityName"></li>
+         			<li>
+         			城市名拼音::
+         			<input type="text" id="cityNameEn"></li>
          			<li>
          			<input type="button" class="addAdminSave" value="保存"><input type="button" class="cancelAddUser" value="取消"></li>
          	</ul>
          </div>
 	</h2>
 	<table class="adminList" border="0" style="border-collapse:collapse;">
-		 <tr><th>序号</th><th>城市名称</th><th>操作</th></tr>
-		 <tr><td>1</td><td>nggs</td><td><a class="updateAdmin">修改</a><a class="deleteAdmin">删除</a></td></tr>
+		 <tr class="cityTable"><th>序号</th><th>城市名称</th><th>城市名拼音</th><th>操作</th></tr>
+		 
 	</table>
 </div>
  <div class="updateAdminPop">
          	<ul>
          		<li>
-         			城市名:
+         			城市名中文:
          			<input type="text" id="updateCityName"></li>
          			<li>
+         			<li>
+         			城市名拼音:
+         			<input type="text" id="updateCityNameEn"></li>
+         			<li>	
          			<input type="button" value="保存" class="updateUser"><input type="button" class="updateCancel" value="取消"></li>
          	</ul>
 </div>
@@ -39,31 +46,51 @@
 			<script type="text/javascript" src = "js/header.js"></script>
   <script>
 (function(){
-	var cityName;
-	//新增用户保存
-	// var addSave=function(){
-	// 	$.ajax({
-	// 		url: '/lineview/updateLinebyid',
-	// 		type: 'post',
-	// 		dataType: 'json',
-	// 		data: {
-	// 			linename: userName,
-	// 			dictionaryid: userNi,
-	// 			linetype: userEmail
-	// 			id: lineId
-	// 		},
-	// 		success: function(res) {
-	// 			if (res.code == 200) {
-	// 				alert("修改成功");
-	// 			} else {
-	// 				alert("修改失败");
-	// 			}
-	// 		}
-	// 	})
-	// };
+	var cityName,cityNameEn,cityid;
+		//城市列表
+	var addSave=function(){
+		 $(".cityTable").after().remove();
+		$.ajax({
+			url: '../allocation/selectcity',
+			type: 'post',
+			dataType: 'json',
+			success: function(res) {
+				if (res.code == 200) {
+					var resData=res.data;
+					var html="";
+					for(var i=0;i<resData.length;i++){
+						html+='<tr><td>'+(i+1)+'</td><td>'+resData[i].namecn+'</td><td>'+resData[i].nameen+'</td><td><a class="updateAdmin" data-id='+resData[i].cityid+'>修改</a></td></tr>';
+					}
+                    $(".cityTable").after(html);
+				} else {
+					alert("修改失败");
+				}
+			}
+		})
+	};
+	//城市保存
+	var addSave=function(){
+		$.ajax({
+			url: '../allocation/insertcity',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				namecn: cityName,
+				nameen: cityNameEn
+			},
+			success: function(res) {
+				if (res.code == 200) {
+					alert("保存成功");
+				} else {
+					alert("保存失败");
+				}
+			}
+		})
+	};
 	$(".addAdminSave").click(function(){
         cityName=$("#cityName").val();
-       	if (!cityName) {
+        cityNameEn=$("#cityNameEn").val();
+       	if (!cityName||!cityNameEn) {
 			alert("请输入城市名");
 			return false;
 		}
@@ -71,32 +98,33 @@
 			alert("城市名用中文");
 			return false;
 		}
-		//addSave();
+		addSave();
 	});
-	//修改用户保存
-	// var updateSave=function(){
-	// 	$.ajax({
-	// 		url: '/lineview/updateLinebyid',
-	// 		type: 'post',
-	// 		dataType: 'json',
-	// 		data: {
-	// 			linename: userName,
-	// 			dictionaryid: userNi,
-	// 			linetype: userEmail
-	// 			id: lineId
-	// 		},
-	// 		success: function(res) {
-	// 			if (res.code == 200) {
-	// 				alert("修改成功");
-	// 			} else {
-	// 				alert("修改失败");
-	// 			}
-	// 		}
-	// 	})
-	// };
+	//修改城市
+	var updateSave=function(){
+		$.ajax({
+			url: '../allocation/modifycitybyid',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				cityid:cityid,
+				namecn: cityName,
+				nameen: cityNameEn
+			},
+			success: function(res) {
+				if (res.code == 200) {
+					alert("修改成功");
+				} else {
+					alert("修改失败");
+				}
+			}
+		})
+	};
 	$(".updateUser").click(function(){
         cityName=$("#updateCityName").val();
-       	if (!cityName) {
+        cityNameEn=$("#updateCityNameEn").val();
+        cityid=$(this).attr("data-id");
+       	if (!cityName||!cityNameEn) {
 			alert("请输入城市名");
 			return false;
 		}
@@ -104,7 +132,7 @@
 			alert("城市名用中文");
 			return false;
 		}
-		//updateSave();
+		updateSave();
 	});
 	$(".adminList").on("click",".updateAdmin",function(){
        $(".updateAdminPop").show();
@@ -118,11 +146,7 @@
 	$(".addAdmin").click(function(){
 		$(".addAdminPop").show();
 	});
-	$(".adminList").on("click",".deleteAdmin",function(){
-       if(confirm("确定要删除吗")){
-       	 console.log(1);
-       }
-	});
+	
 })()
   </script>
 

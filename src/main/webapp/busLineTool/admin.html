@@ -27,9 +27,10 @@
          </div>
 	</h2>
 	<table class="adminList" border="0" style="border-collapse:collapse;">
-		 <tr><th>序号</th><th>用户名</th><th>邮箱</th><th>昵称</th><th>操作</th></tr>
-		 <tr><td>1</td><td>nggs</td><td>邮箱</td><td>123</td><td><a class="updateAdmin">修改</a><a class="deleteAdmin">删除</a></td></tr>
+		 <tr id="ajax_content"><th>序号</th><th>用户名</th><th>邮箱</th><th>昵称</th><th>操作</th></tr>
+		
 	</table>
+	<div id='ajax_pager' class='pager'></div>
 </div>
  <div class="updateAdminPop">
          	<ul>
@@ -48,9 +49,62 @@
 
 	<script type="text/javascript" src = "js/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src = "js/header.js"></script>
+		<script type="text/javascript" src = "js/ampager.js"></script>
   <script>
 (function(){
-	var userName,userNi,$userEmail;
+	var userName,userNi,$userEmail,userId;
+    //查询数据分页
+   var pageNum = 0;
+   var $content = $('#ajax_content'); //数据列表容器
+   var size = 10; //每页显示条数据
+   //组装数据
+   var inintData = function(e, data, cur) {
+     e.nextAll().remove(); //先清空遗留数据
+     var html = '';
+     var curList = (cur - 1) * size;
+     var info = data.data.users;
+     var dir;
+     for (var i = 0; i < info.length; i++) {
+       curList++;
+       html += '<tr><td>'+curList+'</td><td class="uName">'+info[i].username+'</td><td class="uEmail">'+info[i].email+'</td><td class="uNick">'+info[i].nickname+'</td><td><a class="updateAdmin" data-id="'+info[i].id+'">修改</a>'+
+       '<a class="deleteAdmin" data-id="'+info[i].id+'">删除</a></td></tr>';
+     }
+     e.after(html);
+   };
+   var loadData = function() {
+     var loadFlag = false;
+     $.getJSON('/user/getUsers.do', {
+       "currentPage": 1,
+       "pageSize": size
+     }, function(data) { //第一次先访问第一页获取总条数
+       //组装数据
+       inintData($content, data, 1); //第一次得到的数据
+       //设置分页
+       $content.ampager({
+         'pagerName': 'ajax_pager',
+         'mode': 'ajax',
+         'needNumInput': true,
+         'dataCount': data.data.total, //后台获取总条数
+         'viewCount': size, //配置每页显示
+         'listCount': 7,
+         'callback': function(e, i, c) { //分别代表e：数据父容器，i：当前页，c：每页显示多少条数据
+           //(首次加载不进入此步骤)
+           if (!loadFlag)
+             return false;
+           $.getJSON('/user/getUsers.do', {
+             "currentPage": i,
+             "pageSize": c
+           }, function(data2) {
+             inintData(e, data2, i); //这里用$content也行
+           });
+         }
+       });
+       loadFlag = true;
+     });
+   };
+   //页面第一次加载并分页
+   loadData();
+	
 	var regTest=function(name,nic,em){
 		if (!/^[A-Za-z]+[0-9]?/.test(name)) {
 			alert("用户名英文、数字的组合");
@@ -69,49 +123,51 @@
 	//新增用户保存
 	// var addSave=function(){
 	// 	$.ajax({
-	// 		url: '/lineview/updateLinebyid',
+	// 		url: '/user/addUser.do',
 	// 		type: 'post',
 	// 		dataType: 'json',
 	// 		data: {
-	// 			linename: userName,
-	// 			dictionaryid: userNi,
-	// 			linetype: userEmail
-	// 			id: lineId
+	// 			username: userName,
+	// 			email: userEmail,
+	// 			nickname: userNi
 	// 		},
 	// 		success: function(res) {
 	// 			if (res.code == 200) {
-	// 				alert("修改成功");
+	// 				alert("新增成功");
+	// 				loadData();
 	// 			} else {
-	// 				alert("修改失败");
+	// 				alert("新增失败");
 	// 			}
 	// 		}
 	// 	})
 	// };
 	$(".addAdminSave").click(function(){
-        userName=$("#userName").val(),userNi=$("#userNi").val(),userEmail=$("#userEmail").val();
+        userName=$("#userName").val();userNi=$("#userNi").val();userEmail=$("#userEmail").val();
+
        	if (!userName || !userNi || !userEmail) {
 			alert("请检查，不能为空");
 			return false;
 		}
        if(regTest(userName,userNi,userEmail)){
-       	 console.log(1);
+       	  addSave();
        }
 	});
 	//修改用户保存
 	// var updateSave=function(){
 	// 	$.ajax({
-	// 		url: '/lineview/updateLinebyid',
+	// 		url: '/user/upUser.do',
 	// 		type: 'post',
 	// 		dataType: 'json',
 	// 		data: {
-	// 			linename: userName,
-	// 			dictionaryid: userNi,
-	// 			linetype: userEmail
-	// 			id: lineId
+	// 			username: userName,
+	// 			email: userEmail,
+	// 			nickname: userNi,
+	// 			id: userId
 	// 		},
 	// 		success: function(res) {
 	// 			if (res.code == 200) {
 	// 				alert("修改成功");
+	// 				loadData();
 	// 			} else {
 	// 				alert("修改失败");
 	// 			}
@@ -119,13 +175,14 @@
 	// 	})
 	// };
 	$(".updateUser").click(function(){
-        userName=$("#updateUserName").val(),userNi=$("#updateUserNi").val(),userEmail=$("#updateUserEmail").val();
+        userName=$("#updateUserName").val();userNi=$("#updateUserNi").val();userEmail=$("#updateUserEmail").val();
+        userId=$(this).attr("data-id");
        	if (!userName || !userNi || !userEmail) {
 			alert("请检查，不能为空");
 			return false;
 		}
        if(regTest(userName,userNi,userEmail)){
-       	 console.log(1);
+       	   updateSave();
        }
 	});
 	$(".adminList").on("click",".updateAdmin",function(){
@@ -140,9 +197,29 @@
 	$(".addAdmin").click(function(){
 		$(".addAdminPop").show();
 	});
+	//删除
+	// var deleteUser=function(){
+	// 	$.ajax({
+	// 		url: '/user/delUser.do',
+	// 		type: 'post',
+	// 		dataType: 'json',
+	// 		data: {
+	// 			id: userId
+	// 		},
+	// 		success: function(res) {
+	// 			if (res.code == 200) {
+	// 				alert("删除成功");
+	// 				loadData();
+	// 			} else {
+	// 				alert("删除失败");
+	// 			}
+	// 		}
+	// 	})
+	// };
 	$(".adminList").on("click",".deleteAdmin",function(){
+		 userId=$(this).attr("data-id");
        if(confirm("确定要删除吗")){
-       	 console.log(1);
+       	 deleteUser();
        }
 	});
 })()
