@@ -74,8 +74,10 @@ public class AllocationService extends BaseService implements IAllocationService
 			allocationMapper.delsignline(signid);
 			// 插入签名线路
 			String[] lineid = lineidl.split(",");
-			for (int i = 0; i < lineid.length; i++) {
-				allocationMapper.insertsignline(signid, lineid[i]);
+			List<Map<String,Object>>listlineid = allocationMapper.selectidbylineid(lineid);
+			//添加一个查询
+			for (int i = 0; i < listlineid.size(); i++) {
+				allocationMapper.insertsignline(signid, listlineid.get(i).get("id").toString());
 			}
 			return this.jsonSuccess();
 		} catch (Exception e) {
@@ -157,7 +159,12 @@ public class AllocationService extends BaseService implements IAllocationService
 			citymap.put("namecn", namecn);
 			citymap.put("nameen", nameen);
 			citymap.put("createtime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-			allocationMapper.insertcity(citymap);
+			Long count = allocationMapper.selectcitylive(citymap);
+			if(count==0){
+				allocationMapper.insertcity(citymap);
+			}else{
+				return this.jsonFailure3();
+			}
 			return this.jsonSuccess();
 		} catch (Exception e) {
 			logger.debug("查询异常", e);

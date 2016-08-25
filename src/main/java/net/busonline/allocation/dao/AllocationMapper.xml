@@ -44,12 +44,15 @@
 	<select id="selectlinebycityid" resultType="java.util.Map">
 		 SELECT
 			b.id AS id,
+			b.line_id AS lineid,
 			b.city_id AS cityid,
 			b.line_name AS linename
 		FROM
 			bus_line b
 			WHERE
-			b.city_id = #{cityid};
+			b.city_id = #{cityid}
+			GROUP BY  line_id;
+			
 		 
 	</select>
 	<select id="selectallsign" resultType="java.util.Map">
@@ -78,9 +81,9 @@
 	<delete id="delsignline">
 	   DELETE
 		FROM
-			sign_line s
+			sign_line 
 		WHERE
-		s.sign_id =#{signid}
+		sign_id =#{signid}
 	</delete>
 	<insert id="insertsignline">
 	  INSERT sign_line
@@ -90,4 +93,28 @@
 	#{signid},
 	#{lineid})
 	</insert>
+	
+	<select id="selectidbylineid" resultType="java.util.Map">
+		   SELECT
+		id AS id
+	FROM
+		bus_line b
+	WHERE
+		b.line_id IN  
+	 <foreach item="item1" index="index" collection="lineid" 
+	              open="(" separator="," close=")">
+	             #{item1}
+	        </foreach>
+	</select>
+	
+	<select id="selectcitylive" resultType="java.lang.Long">
+			SELECT
+			COUNT(1)
+		FROM
+			city
+		WHERE
+			name_cn =#{map.namecn}
+		OR name_en =#{map.nameen}
+			
+	</select>
 	</mapper>

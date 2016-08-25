@@ -67,6 +67,16 @@ public interface AllocationMapper {
 	 * @param lineid
 	 */
 	public void insertsignline(@Param("signid")String signid,@Param("lineid")String lineid);
+	/**
+	 * 查询线路id,通过基础库的id
+	 * @param lineid
+	 * @return
+	 */
+	public List<Map<String, Object>> selectidbylineid(@Param("lineid")String[] lineid);
+	
+	public Long selectcitylive(@Param("map") Map<String, Object> map);
+
+	
 	
 	
 }
