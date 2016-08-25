@@ -46,12 +46,12 @@
 			<script type="text/javascript" src = "js/header.js"></script>
   <script>
 (function(){
-	var cityName,cityNameEn,cityid;
+	var cityName,cityNameEn,cityId;
 		//城市列表
 	var cityLists=function(){
 		 $(".cityTable").nextAll().remove(); 
 		$.ajax({
-			url: '../allocation/selectcity',
+			url: '../allocation/selectcity.do',
 			type: 'post',
 			dataType: 'json',
 			success: function(res) {
@@ -72,7 +72,7 @@
 	//城市保存
 	var addSave=function(){
 		$.ajax({
-			url: '../allocation/insertcity',
+			url: '../allocation/insertcity.do',
 			type: 'post',
 			dataType: 'json',
 			data: {
@@ -82,6 +82,9 @@
 			success: function(res) {
 				if (res.code == 200) {
 					alert("保存成功");
+					$("#cityName").val("");
+                    $("#cityNameEn").val("");
+					$(".addAdminPop").hide();
 				} else {
 					alert("保存失败");
 				}
@@ -104,17 +107,18 @@
 	//修改城市
 	var updateSave=function(){
 		$.ajax({
-			url: '../allocation/modifycitybyid',
+			url: '../allocation/modifycitybyid.do',
 			type: 'post',
 			dataType: 'json',
 			data: {
-				cityid:cityid,
+				cityid:cityId,
 				namecn: cityName,
 				nameen: cityNameEn
 			},
 			success: function(res) {
 				if (res.code == 200) {
 					alert("修改成功");
+					$(".updateAdminPop").hide();
 				} else {
 					alert("修改失败");
 				}
@@ -124,7 +128,7 @@
 	$(".updateUser").click(function(){
         cityName=$("#updateCityName").val();
         cityNameEn=$("#updateCityNameEn").val();
-        cityid=$(this).attr("data-id");
+        cityId=$(this).attr("data-id");
        	if (!cityName||!cityNameEn) {
 			alert("请输入城市名");
 			return false;
