@@ -86,6 +86,9 @@
                     $("#cityNameEn").val("");
 					$(".addAdminPop").hide();
 					cityLists();
+				}
+				else if(res.code == 300){
+                   alert("城市已存在");
 				} else {
 					alert("保存失败");
 				}
