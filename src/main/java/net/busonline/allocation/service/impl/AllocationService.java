@@ -66,10 +66,10 @@ public class AllocationService extends BaseService implements IAllocationService
 			logger.debug("net.busonline.allocation.service.impl.AllocationService.updatesignline.001===signid签名参数异常");
 			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.updatesignline.001", "signid签名参数异常");
 		}
-		if (PubMethod.isEmpty(lineidl)) {
-			logger.debug("net.busonline.allocation.service.impl.AllocationService.updatesignline.002===lineid签名参数异常");
-			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.updatesignline.002", "lineid参数异常");
-		}
+//		if (PubMethod.isEmpty(lineidl)) {
+//			logger.debug("net.busonline.allocation.service.impl.AllocationService.updatesignline.002===lineid签名参数异常");
+//			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.updatesignline.002", "lineid参数异常");
+//		}
 		try {
 			// 删除签名线路
 			allocationMapper.delsignline(signid);
