@@ -18,7 +18,7 @@ public interface AllocationMapper {
 	 * @return
 	 */
 
-	public List<Map<String, Object>> selectcitybyid(String cityid);
+	public List<Map<String, Object>> selectcitybyid(@Param("cityid")String cityid);
 	/**
 	 * 更改城市通过城市id
 	 * @param map
@@ -54,19 +54,19 @@ public interface AllocationMapper {
 	 * @return
 	 */
 	
-	public Map<String, Object> selectsignlinebyid(String signid,String lineid);
+	public Map<String, Object> selectsignlinebyid(@Param("signid")String signid,@Param("lineid")String lineid);
 	/**
 	 * 删除签名线路
 	 * @param signid
 	 * @param lineid
 	 */
-	public void delsignline(String signid);
+	public void delsignline(@Param("signid")String signid);
 	/**
 	 * 插入签名线路
 	 * @param signid
 	 * @param lineid
 	 */
-	public void insertsignline(String signid,String lineid);
+	public void insertsignline(@Param("signid")String signid,@Param("lineid")String lineid);
 	
 	
 }

@@ -48,6 +48,7 @@
 			b.line_name AS linename
 		FROM
 			bus_line b
+			WHERE
 			b.city_id = #{cityid};
 		 
 	</select>

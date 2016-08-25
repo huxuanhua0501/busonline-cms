@@ -38,9 +38,7 @@ public class AllocationController {
 	
 	
 	/**
-	 * 更改签名路线
-	 * @param lineid
-	 * @param signid
+	 *查询所有企业签名
 	 * @return
 	 */
 	@RequestMapping(value = "/selectallsign", method = { RequestMethod.GET, RequestMethod.POST })
