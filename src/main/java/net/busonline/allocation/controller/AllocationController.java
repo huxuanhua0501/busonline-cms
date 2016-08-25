@@ -50,7 +50,6 @@ public class AllocationController {
 	
 	/**
 	 * 查询所有城市
-	 * @param signid
 	 * @return
 	 */
 	@RequestMapping(value = "/selectcity", method = { RequestMethod.GET, RequestMethod.POST })

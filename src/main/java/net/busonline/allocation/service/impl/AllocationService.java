@@ -87,8 +87,7 @@ public class AllocationService extends BaseService implements IAllocationService
 	public String selectcitybyid(String cityid) {
 		// TODO Auto-generated method stub
 		try {
-			this.jsonSuccess(allocationMapper.selectcitybyid(cityid));
-			return null;
+			return this.jsonSuccess(allocationMapper.selectcitybyid(cityid));
 		} catch (Exception e) {
 			logger.debug("查询异常", e);
 			return this.jsonFailure();
