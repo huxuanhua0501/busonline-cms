@@ -93,6 +93,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 		try {
 			lineViewMapper.delstopbylineid(id);
 			lineViewMapper.delLinebyid(id);
+			lineViewMapper.delsignline(id);
 			return this.jsonSuccess();
 		} catch (Exception e) {
 			logger.debug("异常数据===="+e);

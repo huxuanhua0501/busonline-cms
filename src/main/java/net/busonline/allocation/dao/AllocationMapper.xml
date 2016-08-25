@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.busonline.allocation.dao.AllocationMapper">
+	
+	<select id="selectcity"  resultType="java.util.Map">
+		   SELECT
+			ct.id AS cityid,
+			ct.name_cn AS namecn,
+			ct.name_en AS nameen,
+			ct.create_time AS createtime
+		FROM
+			city ct
+		ORDER BY id ASC
+	</select>
+	<select id="selectcitybyid"  resultType="java.util.Map">
+		   SELECT
+			ct.id AS cityid,
+			ct.name_cn AS namecn,
+			ct.name_en AS nameen,
+			ct.create_time AS createtime
+		FROM
+			city ct
+		WHERE
+			ct.id =#{cityid}
+	</select>
+	<update id="modifycitybyid">
+		UPDATE city
+		SET name_cn = #{map.namecn},
+		 name_en = #{map.nameen},
+		 modify_time = #{map.modifytime}
+		WHERE
+			id =#{map.cityid}
+	</update>
+	<insert id="insertcity">
+	   INSERT INTO city (
+		name_cn,
+		name_en,
+		create_time)
+	   VALUES
+		  (#{map.namecn}, 
+	        #{map.nameen}, 
+	        #{map.createtime})
+	</insert>
+	<select id="selectlinebycityid" resultType="java.util.Map">
+		 SELECT
+			b.id AS id,
+			b.city_id AS cityid,
+			b.line_name AS linename
+		FROM
+			bus_line b
+			b.city_id = #{cityid};
+		 
+	</select>
+	<select id="selectallsign" resultType="java.util.Map">
+		 SELECT
+		s.id AS signid,
+		s.e_name AS ename,
+		s.e_namecn AS enamecn,
+		s.type AS type
+	FROM
+		sign s
+	</select>
+	
+	
+	<select id="selectsignlinebyid" resultType="java.util.Map">
+		SELECT
+				s.e_namecn AS enamecn,
+				s.e_name AS ename,
+				slx.line_id AS lineid
+			FROM
+				sign_line slx
+			LEFT JOIN sign s ON slx.sign_id = s.id
+			WHERE
+				slx.line_id = #{lineid}
+				 AND slx.sign_id=#{signid}
+	</select>
+	<delete id="delsignline">
+	   DELETE
+		FROM
+			sign_line s
+		WHERE
+		s.sign_id =#{signid}
+	</delete>
+	<insert id="insertsignline">
+	  INSERT sign_line
+	      (sign_id, line_id)
+     VALUES
+	(
+	#{signid},
+	#{lineid})
+	</insert>
+	</mapper>

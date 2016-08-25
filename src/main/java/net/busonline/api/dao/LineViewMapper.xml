@@ -202,4 +202,11 @@ LIMIT 1
 		stopseq DESC
 	LIMIT 1
 </select>
+<delete id="delsignline">
+   DELETE
+FROM
+	sign_line
+WHERE
+	line_id =#{lineid}
+</delete>
 </mapper>

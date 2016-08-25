@@ -91,6 +91,12 @@ public interface LineViewMapper {
 	 * @param map
 	 */
 	public void updateLinebyid(@Param("map")Map<String,Object>map);
+	/**
+	 * 删除签名线路
+	 * @param lineid
+	 */
+	public void delsignline(String lineid);
+	
  
 	 
 }
