@@ -85,6 +85,7 @@
 					$("#cityName").val("");
                     $("#cityNameEn").val("");
 					$(".addAdminPop").hide();
+					cityLists();
 				} else {
 					alert("保存失败");
 				}
@@ -119,6 +120,7 @@
 				if (res.code == 200) {
 					alert("修改成功");
 					$(".updateAdminPop").hide();
+					cityLists();
 				} else {
 					alert("修改失败");
 				}
