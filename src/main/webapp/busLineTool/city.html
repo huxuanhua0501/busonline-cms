@@ -61,7 +61,8 @@
 					for(var i=0;i<resData.length;i++){
 						html+='<tr><td>'+(i+1)+'</td><td>'+resData[i].namecn+'</td><td>'+resData[i].nameen+'</td><td><a class="updateAdmin" data-id='+resData[i].cityid+'>修改</a></td></tr>';
 					}
-                    $(".cityTable").after(html);
+					console.log(html);
+                    $(".adminList").append(html);
 				} else {
 					alert("修改失败");
 				}

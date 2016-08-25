@@ -44,7 +44,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 (function(){
 	var company;
 	//点击三角展开收起
-	$(".show_btn").click(function() {
+	$(".city_box").on("click",".show_btn",function() {
 		var idx = $(".show_btn").index(this);
 		if ($(".city_inner").eq(idx).css("display") == "block") {
 			$(".city_inner").eq(idx).css("display", "none");
@@ -53,7 +53,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 		}
 	});
 	//全选
-	$(".check_btn").click(function() {
+	$(".city_box").on("click",".check_btn",function() {
 		var idx = $(".check_btn").index(this);
 		if ($(this).attr("checked")) {
 			$(".city_inner").eq(idx).find(".check_btn_list").attr("checked", true);
