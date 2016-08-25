@@ -76,6 +76,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 							com+='<option value="'+resData[i].signid+'">'+resData[i].enamecn+'</option>';
 						}
 						$(".companyList").append(com);
+						com="";
 						company=$(".companyList").find("option:selected").val();
 					} else {
 						alert("接口异常");
@@ -102,6 +103,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 								 listline+='<li><input type="checkbox" class="check_btn_list" data-sign="'+resData[i].line[j].signtype+'" data-id="'+resData[i].line[j].id+'"/>'+resData[i].line[j].linename+'</li>';
 							}
 							list+='<div class="city_top"><span class="show_btn"></span><input type="checkbox" class="check_btn"  />'+resData[i].city.namecn+'<ul class="city_inner"  style="display:none;">'+listline+'</ul></div>';
+							listline="";
 						}
 						$(".city_box").append(list);
 						$(".check_btn_list").each(function() {

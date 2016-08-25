@@ -59,10 +59,10 @@
 					var resData=res.data;
 					var html="";
 					for(var i=0;i<resData.length;i++){
-						html+='<tr><td>'+(i+1)+'</td><td>'+resData[i].namecn+'</td><td>'+resData[i].nameen+'</td><td><a class="updateAdmin" data-id='+resData[i].cityid+'>修改</a></td></tr>';
+						html+='<tr><td>'+(i+1)+'</td><td class="namecn">'+resData[i].namecn+'</td><td class="nameen">'+resData[i].nameen+'</td><td><a class="updateAdmin" data-id='+resData[i].cityid+'>修改</a></td></tr>';
 					}
 					console.log(html);
-                    $(".adminList").append(html);
+                    $(".adminList").after(html);
 				} else {
 					alert("修改失败");
 				}
@@ -138,6 +138,8 @@
 	});
 	$(".adminList").on("click",".updateAdmin",function(){
        $(".updateAdminPop").show();
+       $("#updateCityName").val($(this).parent().siblings(".namecn").html());
+        $("#updateCityNameEn").val($(this).parent().siblings(".nameen").html());
 	});
 	$(".cancelAddUser").click(function(){
 		$(".addAdminPop").hide();
