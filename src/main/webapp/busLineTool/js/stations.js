@@ -88,7 +88,7 @@
        //请求字典信息接口
 	  var ajaxDictionaries=function(){
 	  	 $.ajax({
-	  	 	url:'/iBusGather/dictionary.do',
+	  	 	url:'../iBusGather/dictionary.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	success:function(res){
@@ -119,7 +119,7 @@
       //查询是否采集接口
 		  var ajaxcollectionbus=function(){
 		  	  $.ajax({
-		  	 	url:'/iBusGather/busName.do?cityid='+cityid+'&busline='+busNameval,
+		  	 	url:'../iBusGather/busName.do?cityid='+cityid+'&busline='+busNameval,
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	success:function(res){
@@ -201,7 +201,7 @@
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
 		  	  $.ajax({
-		  	 	url:'/iBusGather/validate.do?buslinename='+busNamNew+'&cityname='+cityval,
+		  	 	url:'../iBusGather/validate.do?buslinename='+busNamNew+'&cityname='+cityval,
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	success:function(res){

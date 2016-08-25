@@ -6,7 +6,7 @@
 	    //请求字典信息接口
 	  var ajaxDictionaries=function(){
 	  	 $.ajax({
-	  	 	url:'/iBusGather/dictionary.do',
+	  	 	url:'../iBusGather/dictionary.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	success:function(res){
@@ -63,7 +63,7 @@
    };
    var loadData = function() {
      var loadFlag = false;
-     $.getJSON('/lineview/getallLine', {
+     $.getJSON('../lineview/getallLine.do', {
        "currentPage": 1,
        "pageSize": size,
        'cityname': cityval,
@@ -86,7 +86,7 @@
            //(首次加载不进入此步骤)
            if (!loadFlag)
              return false;
-           $.getJSON('/lineview/getallLine', {
+           $.getJSON('../lineview/getallLine.do', {
              "currentPage": i,
              "pageSize": c,
              'cityname': cityval,
@@ -142,7 +142,7 @@
 	 //修改按钮
      var  busLineUpdate=function(){
            $.ajax({
-	  	 	url:'/lineview/getLineById',
+	  	 	url:'../lineview/getLineById.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
@@ -178,7 +178,7 @@
     var updateName,dictionaryid,linetype,linkdir,installationnumber,matchnumber;
     var saveLineBus=function(){
     	  $.ajax({
-	  	 	url:'/lineview/updateLinebyid',
+	  	 	url:'../lineview/updateLinebyid.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
@@ -204,7 +204,7 @@
     };
      var busLineDelete=function(){
     	  $.ajax({
-	  	 	url:'/lineview/delLineandstopbyid',
+	  	 	url:'../lineview/delLineandstopbyid.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
@@ -224,7 +224,7 @@
      var busLineStationList=function(){
      	$(".buslineStation").nextAll().remove(); 
     	  $.ajax({
-	  	 	url:'/lineview/selectendstop',
+	  	 	url:'../lineview/selectendstop.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
@@ -246,7 +246,7 @@
     };
     var stationSave=function(){
     	 $.ajax({
-	  	 	url:'/lineview/updatestopbyid',
+	  	 	url:'../lineview/updatestopbyid.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{

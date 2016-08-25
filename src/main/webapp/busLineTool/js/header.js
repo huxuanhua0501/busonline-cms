@@ -6,7 +6,7 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
  $("body").before(header);
 		$(".topbar").on("click", ".outLogin", function() {
 			$.ajax({
-				url: '/user/logout.do',
+				url: '../user/logout.do',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -23,7 +23,7 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
 		});
 		$(".topbar").on("click", ".resetPassword", function() {
 			$.ajax({
-				url: '/user/resetPsw.do',
+				url: '../user/resetPsw.do',
 				type: 'post',
 				dataType: 'json',
 				data: {

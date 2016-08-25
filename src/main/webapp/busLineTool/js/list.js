@@ -4,7 +4,7 @@
 	    var listShow=function(){
 	    	$(".first").nextAll().remove();
             $.ajax({
-				url: '/dict/selectDicItme',
+				url: '../dict/selectDicItme.do',
 				type: 'post',
 				dataType: 'json',
 				success: function(res) {
@@ -32,7 +32,7 @@
 	    listShow();
 		var update = function() {
 			$.ajax({
-				url: '/dict/updateDicname',
+				url: '../dict/updateDicname.do',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -55,7 +55,7 @@
 		};
        var deleteLevel2 = function() {
 			$.ajax({
-				url: '/dict/delDicTwo',
+				url: '../dict/delDicTwo.do',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -76,7 +76,7 @@
 		};
 		  var deleteLevel1 = function() {
 			$.ajax({
-				url: '/dict/delDic',
+				url: '../dict/delDic.do',
 				type: 'post',
 				dataType: 'json',
 				data: {

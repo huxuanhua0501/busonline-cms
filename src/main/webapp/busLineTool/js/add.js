@@ -7,7 +7,7 @@
 	    	  $(".tianjia_box").html(" ");
 	    	  $(".levelone").html(" ");
             $.ajax({
-				url: '/dict/selectDicOne',
+				url: '../dict/selectDicOne.do',
 				type: 'post',
 				dataType: 'json',
 				success: function(res) {
@@ -36,7 +36,7 @@
 	     	$(".leve2con").html(" ");
 	     	 leve2=$('.levelone option:selected').val();
             $.ajax({
-				url: '/dict/selectDicTwo',
+				url: '../dict/selectDicTwo.do',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -60,7 +60,7 @@
         }
 		var addlevel = function() {
 			$.ajax({
-				url: '/dict/insertdict',
+				url: '../dict/insertdict.do',
 				type: 'post',
 				dataType: 'json',
 				data: {

@@ -64,7 +64,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 	var companys = function() {
 		$(".companyList").html("");
 			$.ajax({
-				url: '../allocation/selectallsign',
+				url: '../allocation/selectallsign.do',
 				type: 'post',
 				async: false,
 				dataType: 'json',
@@ -88,7 +88,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 	var companyList = function() {
 		$(".city_box").html("");
 			$.ajax({
-				url: '../allocation/selectcityAndLine',
+				url: '../allocation/selectcityAndLine.do',
 				type: 'post',
 				dataType: 'json',
 				data:{
