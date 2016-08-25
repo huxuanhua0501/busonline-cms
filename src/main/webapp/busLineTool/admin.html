@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link href="css/style.css" rel="stylesheet">
+	<title>用户管理</title>
+</head>
+<body>
+
+<div class="admin">
+	<h2><a  class="addAdmin">增加</a>
+         <div class="addAdminPop">
+         	<ul>
+         		<li>
+         			用户名:
+         			<input type="text" id="userName"><span>(英文、数字组合)</span></li>
+         		<li>
+         			昵 &nbsp;&nbsp;称:
+         			<input type="text" id="userNi"><span>(只能输入中文)</span></li>
+         		<li>
+         			邮 &nbsp;&nbsp;箱:
+         			<input type="text" id="userEmail"></li>
+         			<li>
+         			<input type="button" class="addAdminSave" value="保存"><input type="button" class="cancelAddUser" value="取消"></li>
+         	</ul>
+         </div>
+	</h2>
+	<table class="adminList" border="0" style="border-collapse:collapse;">
+		 <tr><th>序号</th><th>用户名</th><th>邮箱</th><th>昵称</th><th>操作</th></tr>
+		 <tr><td>1</td><td>nggs</td><td>邮箱</td><td>123</td><td><a class="updateAdmin">修改</a><a class="deleteAdmin">删除</a></td></tr>
+	</table>
+</div>
+ <div class="updateAdminPop">
+         	<ul>
+         		<li>
+         			用户名:<input type="text" id="updateUserName"></li>
+         		<li>
+         			昵 &nbsp;&nbsp;称:
+         			<input type="text" id="updateUserNi"></li>
+         		<li>
+         			邮 &nbsp;&nbsp;箱:
+         			<input type="text" id="updateUserEmail"></li>
+         			<li>
+         			<input type="button" value="保存" class="updateUser"><input type="button" class="updateCancel" value="取消"></li>
+         	</ul>
+</div>
+
+	<script type="text/javascript" src = "js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src = "js/header.js"></script>
+  <script>
+(function(){
+	var userName,userNi,$userEmail;
+	var regTest=function(name,nic,em){
+		if (!/^[A-Za-z]+[0-9]?/.test(name)) {
+			alert("用户名英文、数字的组合");
+			return false;
+		}
+		if (!/^[\u4e00-\u9fa5]+/.test(nic)) {
+			alert("昵称只能汉字");
+			return false;
+		}
+		if (!/^[A-Za-z0-9]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/.test(em)) {
+			alert("邮箱格式不正确");
+			return false;
+		}
+		return true;
+	};
+	//新增用户保存
+	// var addSave=function(){
+	// 	$.ajax({
+	// 		url: '/lineview/updateLinebyid',
+	// 		type: 'post',
+	// 		dataType: 'json',
+	// 		data: {
+	// 			linename: userName,
+	// 			dictionaryid: userNi,
+	// 			linetype: userEmail
+	// 			id: lineId
+	// 		},
+	// 		success: function(res) {
+	// 			if (res.code == 200) {
+	// 				alert("修改成功");
+	// 			} else {
+	// 				alert("修改失败");
+	// 			}
+	// 		}
+	// 	})
+	// };
+	$(".addAdminSave").click(function(){
+        userName=$("#userName").val(),userNi=$("#userNi").val(),userEmail=$("#userEmail").val();
+       	if (!userName || !userNi || !userEmail) {
+			alert("请检查，不能为空");
+			return false;
+		}
+       if(regTest(userName,userNi,userEmail)){
+       	 console.log(1);
+       }
+	});
+	//修改用户保存
+	// var updateSave=function(){
+	// 	$.ajax({
+	// 		url: '/lineview/updateLinebyid',
+	// 		type: 'post',
+	// 		dataType: 'json',
+	// 		data: {
+	// 			linename: userName,
+	// 			dictionaryid: userNi,
+	// 			linetype: userEmail
+	// 			id: lineId
+	// 		},
+	// 		success: function(res) {
+	// 			if (res.code == 200) {
+	// 				alert("修改成功");
+	// 			} else {
+	// 				alert("修改失败");
+	// 			}
+	// 		}
+	// 	})
+	// };
+	$(".updateUser").click(function(){
+        userName=$("#updateUserName").val(),userNi=$("#updateUserNi").val(),userEmail=$("#updateUserEmail").val();
+       	if (!userName || !userNi || !userEmail) {
+			alert("请检查，不能为空");
+			return false;
+		}
+       if(regTest(userName,userNi,userEmail)){
+       	 console.log(1);
+       }
+	});
+	$(".adminList").on("click",".updateAdmin",function(){
+       $(".updateAdminPop").show();
+	});
+	$(".cancelAddUser").click(function(){
+		$(".addAdminPop").hide();
+	});
+	$(".updateCancel").click(function(){
+		$(".updateAdminPop").hide();
+	});
+	$(".addAdmin").click(function(){
+		$(".addAdminPop").show();
+	});
+	$(".adminList").on("click",".deleteAdmin",function(){
+       if(confirm("确定要删除吗")){
+       	 console.log(1);
+       }
+	});
+})()
+  </script>
+
+</body>
+</html>

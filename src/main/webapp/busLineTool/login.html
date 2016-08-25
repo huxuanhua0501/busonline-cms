@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<!-- <link href="css/style.css" rel="stylesheet"> -->
+	<link href="css/style.css" rel="stylesheet">
+	<title>登陆</title>
+</head>
+<body>
+	<ul class="login">
+		<li><label for="" class="user_info">用户名：</label><input type="text" id="loginName"/></li>
+		<li><label for="" class="user_info">密码：</label><input type="text" id="loginPassword"/></li>
+		<li><label for="" class="user_info">验证码：</label><input type="text" id="inputCode"/><div class="code" id="checkCode" onclick="createCode()">P2AJ</div><a href="#" onclick="createCode()">换一张</a></li>
+		<li class="login_btn"><input id="Button1" onclick="validateCode();" type="button" value="登陆"></li>
+	</ul>
+
+	<script type="text/javascript" src = "js/jquery-1.8.3.min.js"></script>
+	<!-- <script type="text/javascript" src = "js/ampager.js"></script>
+	<script type="text/javascript" src = "js/stationline.js"></script> -->
+	<script>
+(function() {
+	var code, inputCode, loginName, loginPassword;
+	function createCode() {
+		code = "";
+		var codeLength = 4; //验证码的长度
+		var checkCode = document.getElementById("checkCode");
+		var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
+		for (var i = 0; i < codeLength; i++) {
+			var charNum = Math.floor(Math.random() * 52);
+			code += codeChars[charNum];
+		}
+		if (checkCode) {
+			checkCode.className = "code";
+			checkCode.innerHTML = code;
+		}
+	}
+	function validateCode() {
+		inputCode = document.getElementById("inputCode").value;
+		loginName = document.getElementById("loginName").value;
+		loginPassword = document.getElementById("loginPassword").value;
+		if (!loginName || !loginPassword || !inputCode) {
+			alert("用户名、密码、验证码均不能为空");
+			return false;
+		}
+		if (inputCode.toUpperCase() != code.toUpperCase()) {
+			alert("验证码输入有误！");
+			createCode();
+		}
+		//login();
+	}
+	// function login(){
+	// 	 $.ajax({
+	//   	 	url:'/lineview/updateLinebyid',
+	//   	 	type:'post',
+	//   	 	dataType:'json',
+	//   	 	data:{
+	//   	 		inputCode:updateName,
+	//   	 		loginName:dictionaryid,
+	//   	 		loginPassword:linetype
+	//   	 	},
+	//   	 	success:function(res){
+	// 			if (res.code == 200) {
+	// 				alert("修改成功");
+	// 			}
+	// 			else{
+	// 				alert("修改失败");
+	// 			}
+	//   	 	}
+	//   	 });   
+	// }
+})()
+
+</script>
+
+</body>
+</html>
