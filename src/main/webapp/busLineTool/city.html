@@ -136,9 +136,10 @@
 		updateSave();
 	});
 	$(".adminList").on("click",".updateAdmin",function(){
-       $(".updateAdminPop").show();
-       $("#updateCityName").val($(this).parent().siblings(".namecn").html());
+		  $("#updateCityName").val($(this).parent().siblings(".namecn").html());
         $("#updateCityNameEn").val($(this).parent().siblings(".nameen").html());
+       $(".updateAdminPop").show();
+     
 	});
 	$(".cancelAddUser").click(function(){
 		$(".addAdminPop").hide();
