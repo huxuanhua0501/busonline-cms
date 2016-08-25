@@ -95,6 +95,7 @@ ul li{list-style: none;}
 .updateAdmin,.deleteAdmin{color: #036dc6;margin-right: 20px;cursor: pointer;}
 .updateAdminPop{width:300px; padding:20px;overflow: hidden; background-color: #fff;border:1px solid #f0eded;left: 18%; top:20%; position: fixed;z-index: 11;border-radius: 5px; display: none;}
 .resetPassword,.outLogin{margin-left: 30px;cursor: pointer;}
+.adminList tr td{line-height: 20px;}
 /*login*/
     .login{width: 380px;height: 200px;border:1px solid #ccc;margin:150px auto 0;padding:50px 55px 30px;}
     .login li{margin-bottom: 10px;}
