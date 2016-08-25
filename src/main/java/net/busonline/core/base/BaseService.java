@@ -64,8 +64,14 @@ public class BaseService {
 	
 	protected String jsonFailure() {
 		Map<String, Object> allMap = new HashMap<String, Object>();
-		allMap.put("code", 200);
+		allMap.put("code", 300);
 		allMap.put("msg", "error");
+		return JSON.toJSONString(allMap);
+	}
+	protected String jsonFailure3() {
+		Map<String, Object> allMap = new HashMap<String, Object>();
+		allMap.put("code", 300);
+		allMap.put("msg", "城市已存在");
 		return JSON.toJSONString(allMap);
 	}
 	protected String jsonFailure2() {
