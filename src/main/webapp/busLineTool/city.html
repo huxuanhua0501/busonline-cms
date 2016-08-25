@@ -128,7 +128,7 @@
 	$(".updateUser").click(function(){
         cityName=$("#updateCityName").val();
         cityNameEn=$("#updateCityNameEn").val();
-        cityId=$(this).attr("data-id");
+     
        	if (!cityName||!cityNameEn) {
 			alert("请输入城市名");
 			return false;
@@ -142,6 +142,7 @@
 	$(".adminList").on("click",".updateAdmin",function(){
 		  $("#updateCityName").val($(this).parent().siblings(".namecn").html());
         $("#updateCityNameEn").val($(this).parent().siblings(".nameen").html());
+           cityId=$(this).attr("data-id");
        $(".updateAdminPop").show();
      
 	});
