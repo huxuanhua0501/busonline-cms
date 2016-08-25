@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3&ak=m9SOYnHfGRGK8GezoC3hCqo5"></script>
+
+	<link href="css/style.css" rel="stylesheet">
+	<title>企业配置</title>
+	<style>
+.city_box{ position: absolute;top:110px;left:0; z-index:10;width:400px; height:500px; overflow-y:scroll;background-color: #fff;border:1px solid #dedede;padding: 20px 30px;}
+.check_btn,.check_btn_list{width: 20px;height: 20px;border:1px solid red;display: inline-block;vertical-align: middle;margin-right: 5px;}
+.city_top{margin-bottom: 8px;}
+.city_inner{width: 180px;margin-left: 50px;}
+.city_inner li{margin-bottom: 5px; line-height: 35px;}
+.show_btn{ display: inline-block;width:0;   
+height:0;   
+border-top:8px solid transparent;   
+border-bottom: 8px solid transparent;   
+border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
+</style>
+</head>
+<body>
+	
+	<div class="topbar_2 fl">
+		<select name="city" id="citylist" style="display:none;">
+				<option value="1">北京</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+		<select style="width:80px;height:30px;" class="companyList">
+		
+		</select>
+		<div class="city_box">			
+			
+		</div>
+		<input type="button" class="saveLineBtn"  value="保存"/>
+		<input type="button" style="width:100px;"  value="导出用户列表"/>
+	</div>
+
+<script type="text/javascript" src = "js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src = "js/header.js"></script>
+<script>
+(function(){
+	var company;
+	//点击三角展开收起
+	$(".show_btn").click(function() {
+		var idx = $(".show_btn").index(this);
+		if ($(".city_inner").eq(idx).css("display") == "block") {
+			$(".city_inner").eq(idx).css("display", "none");
+		} else {
+			$(".city_inner").eq(idx).css("display", "block");
+		}
+	});
+	//全选
+	$(".check_btn").click(function() {
+		var idx = $(".check_btn").index(this);
+		if ($(this).attr("checked")) {
+			$(".city_inner").eq(idx).find(".check_btn_list").attr("checked", true);
+		} else {
+			$(".city_inner").eq(idx).find(".check_btn_list").attr("checked", false);
+		}
+	});
+	var companys = function() {
+		$(".companyList").html("");
+			$.ajax({
+				url: '../allocation/selectallsign',
+				type: 'post',
+				async: false,
+				dataType: 'json',
+				success: function(res) {
+					if (res.code == 200) {
+						var resData=res.data;
+						var com="";
+						for(var i=0;i<resData.length;i++){
+							com+='<option value="'+resData[i].signid+'">'+resData[i].enamecn+'</option>';
+						}
+						$(".companyList").append(com);
+						company=$(".companyList").find("option:selected").val();
+					} else {
+						alert("接口异常");
+					}
+				}
+			})
+		};
+	companys();
+	var companyList = function() {
+		$(".city_box").html("");
+			$.ajax({
+				url: '../allocation/selectcityAndLine',
+				type: 'post',
+				dataType: 'json',
+				data:{
+                   signid:company
+				},
+				success: function(res) {
+					if (res.code == 200) {
+						var resData=res.data;
+						var list="",listline="";
+						for(var i=0;i<resData.length;i++){
+							for(var j=0;j<resData[i].line.length;j++){
+								 listline+='<li><input type="checkbox" class="check_btn_list" data-sign="'+resData[i].line[j].signtype+'" data-id="'+resData[i].line[j].id+'"/>'+resData[i].line[j].linename+'</li>';
+							}
+							list+='<div class="city_top"><span class="show_btn"></span><input type="checkbox" class="check_btn"  />'+resData[i].city.namecn+'<ul class="city_inner"  style="display:none;">'+listline+'</ul></div>';
+						}
+						$(".city_box").append(list);
+						$(".check_btn_list").each(function() {
+							if ($(this).attr("data-sign")==0) {
+								(this).attr("checked", true);
+							}
+						});
+					} else {
+						alert("接口异常");
+					}
+				}
+			})
+		}
+   companyList();
+	$(".companyList").change(function() {
+		company=$(this).find("option:selected").val();
+	    companyList();
+	});
+	var checkBox="",lineid="";
+	var companyUpdata = function() {
+			$.ajax({
+				url: '../allocation/updatesignline',
+				type: 'post',
+				dataType: 'json',
+				data:{
+                   signid:company,
+                   lineid:checkBox
+				},
+				success: function(res) {
+					if (res.code == 200) {
+						alert("保存成功");
+						companyList();
+					} else {
+						alert("保存失败");
+					}
+				}
+			})
+		}
+	$(".saveLineBtn").click(function(){
+		company=$(this).find("option:selected").val();
+		$(".check_btn_list").each(function(){
+			if($(this)[0].checked == true){
+              checkBox+=$(this).attr("data-id");
+			}
+		});
+		companyUpdata();
+	});
+		
+})()
+   
+</script>
+
+</body>
+</html>
