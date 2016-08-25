@@ -193,6 +193,23 @@
 		<property name="connectTimeout" value="10000" />
 		<property name="readTimeout" value="10000" />
 	</bean> -->
+	 <context:component-scan base-package="net.busonline.core.redis"/>
+    
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${config.redis.pool.maxIdle}" />
+		<property name="maxTotal" value="${config.redis.pool.maxTotal}" />
+		<property name="maxWaitMillis" value="${config.redis.pool.maxWaitMillis}" />
+		<property name="testOnBorrow" value="${config.redis.pool.testOnBorrow}" />
+		<property name="testOnReturn" value="${config.redis.pool.testOnReturn}" />
+	</bean>
+	
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="${config.redis.pool.host}" type="java.lang.String" />
+		<constructor-arg index="2" value="${config.redis.pool.port}" type="int" />
+		<constructor-arg index="3" value="${config.redis.pool.timeout}" />
+		<!-- <constructor-arg index="4"/> <constructor-arg index="5" value="15"/> -->
+	</bean>
 	
 	<beans profile="dev">
 		<context:property-placeholder location="classpath*:/config_develop.properties"

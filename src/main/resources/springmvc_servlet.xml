@@ -10,6 +10,16 @@
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 <!-- 解决ajax返回string乱码,需要在annotation-driven之前 -->
+<!--拦截器  -->
+<mvc:interceptors>  
+    <mvc:interceptor>  
+        <mvc:mapping path="/*/*.do"/>  
+        <bean class="net.busonline.core.interceptor.SecurityInterceptor">  
+        	
+            </bean>
+    </mvc:interceptor>  
+</mvc:interceptors> 
+
 <!-- 启用MVC注解 -->
     <mvc:annotation-driven />
 <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
