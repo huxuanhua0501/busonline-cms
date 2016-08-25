@@ -143,7 +143,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 			})
 		}
 	$(".saveLineBtn").click(function(){
-		company=$(this).find("option:selected").val();
+		company=$(".companyList").find("option:selected").val();
 		$(".check_btn_list").each(function(){
 			if($(this)[0].checked == true){
               checkBox+=$(this).attr("data-id")+",";
