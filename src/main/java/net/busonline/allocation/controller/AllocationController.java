@@ -79,8 +79,8 @@ public class AllocationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/modifycitybyid", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifycitybyid(String namecn,String nameen,String modifytime,String cityid) {
-		return  allocationService.modifycitybyid(namecn, nameen, modifytime, cityid);
+	public String modifycitybyid(String namecn,String nameen,String cityid) {
+		return  allocationService.modifycitybyid(namecn, nameen,cityid);
 
 	}
 	
@@ -88,12 +88,11 @@ public class AllocationController {
 	 * 插入城市信息
 	 * @param namecn
 	 * @param nameen
-	 * @param createtime
 	 * @return
 	 */
 	@RequestMapping(value = "/insertcity", method = { RequestMethod.GET, RequestMethod.POST })
-	public String insertcity(String namecn,String nameen,String createtime,String cityid) {
-		return  allocationService.insertcity(namecn, nameen, createtime);
+	public String insertcity(String namecn,String nameen) {
+		return  allocationService.insertcity(namecn, nameen);
 
 	}
 	

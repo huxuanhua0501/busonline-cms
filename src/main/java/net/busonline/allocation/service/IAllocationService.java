@@ -28,7 +28,7 @@ public interface IAllocationService {
 	 * @param cityid
 	 * @return
 	 */
-	public String modifycitybyid(String namecn,String nameen,String modifytime,String cityid);
+	public String modifycitybyid(String namecn, String nameen, String cityid);
 	
 	/**
 	 * 城市入库
@@ -38,7 +38,7 @@ public interface IAllocationService {
 	 * @param cityid
 	 * @return
 	 */
-	public String insertcity(String namecn,String nameen,String createtime);
+	public String insertcity(String namecn,String nameen);
 	
 	/**
 	 * 查询所有签名

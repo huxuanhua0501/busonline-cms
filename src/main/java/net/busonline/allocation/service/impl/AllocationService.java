@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import net.busonline.allocation.dao.AllocationMapper;
 import net.busonline.allocation.service.IAllocationService;
 import net.busonline.core.base.BaseService;
+import net.busonline.core.exception.ServiceException;
+import net.busonline.core.util.PubMethod;
 import net.busonline.dictionary.service.impl.DictionaryService;
 
 @Service
@@ -26,6 +28,10 @@ public class AllocationService extends BaseService implements IAllocationService
 	@Override
 	public String selectcityAndLine(String signid) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(signid)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.selectcityAndLine.001===signid签名参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.selectcityAndLine.001", "signid签名参数异常");
+		}
 		try {
 			List<Map<String, Object>> listcity = allocationMapper.selectcity();
 			List<Map<String, Object>> listresult = new ArrayList<Map<String, Object>>();
@@ -55,6 +61,14 @@ public class AllocationService extends BaseService implements IAllocationService
 	}
 
 	public String updatesignline(String lineidl, String signid) {
+		if (PubMethod.isEmpty(signid)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.updatesignline.001===signid签名参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.updatesignline.001", "signid签名参数异常");
+		}
+		if (PubMethod.isEmpty(lineidl)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.updatesignline.002===lineid签名参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.updatesignline.002", "lineid参数异常");
+		}
 		try {
 			// 删除签名线路
 			allocationMapper.delsignline(signid);
@@ -86,6 +100,10 @@ public class AllocationService extends BaseService implements IAllocationService
 	@Override
 	public String selectcitybyid(String cityid) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(cityid)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.selectcitybyid.001===cityid参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.selectcitybyid.001", "cityid参数异常");
+		}
 		try {
 			return this.jsonSuccess(allocationMapper.selectcitybyid(cityid));
 		} catch (Exception e) {
@@ -95,8 +113,20 @@ public class AllocationService extends BaseService implements IAllocationService
 	}
 
 	@Override
-	public String modifycitybyid(String namecn, String nameen, String modifytime, String cityid) {
+	public String modifycitybyid(String namecn, String nameen, String cityid) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(cityid)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.001===cityid参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.001", "cityid参数异常");
+		}
+		if (PubMethod.isEmpty(nameen)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.002===nameen参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.002", "nameen参数异常");
+		}
+		if (PubMethod.isEmpty(namecn)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.003===namecn参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.003", "namecn参数异常");
+		}
 		try {
 			Map<String, Object> citymap = new HashMap<String, Object>();
 			citymap.put("namecn", namecn);
@@ -112,8 +142,16 @@ public class AllocationService extends BaseService implements IAllocationService
 	}
 
 	@Override
-	public String insertcity(String namecn, String nameen, String createtime) {
+	public String insertcity(String namecn, String nameen) {
 		// TODO Auto-generated method stub
+		if (PubMethod.isEmpty(nameen)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.001===nameen参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.001", "nameen参数异常");
+		}
+		if (PubMethod.isEmpty(namecn)) {
+			logger.debug("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.002===namecn参数异常");
+			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.002", "namecn参数异常");
+		}
 		try {
 			Map<String, Object> citymap = new HashMap<String, Object>();
 			citymap.put("namecn", namecn);
