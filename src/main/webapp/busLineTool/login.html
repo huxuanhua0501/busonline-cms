@@ -64,8 +64,9 @@
 					var userLofinId=res.data.id;
 						 var sessionStorage=window.sessionStorage;
 						   sessionStorage.setItem("userLofinId",userLofinId);
+						   sessionStorage.setItem("userName",userLofinId);
 					
-					window.location.href="index.html";
+					//window.location.href="index.html";
 				}
 				else{
 					alert("账号或密码错误");
