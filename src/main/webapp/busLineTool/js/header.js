@@ -7,6 +7,7 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
 
   var user_Id=localStorage.getItem('userLofinId');
   function out(){
+  	console.log(1);
      $.ajax({
 				url: '../user/logout.do',
 				type: 'post',
@@ -25,6 +26,7 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
   }
 		
 		$(".body").on("click", ".resetPassword", function() {
+			  	console.log(21);
 			$.ajax({
 				url: '../user/resetPsw.do',
 				type: 'post',
