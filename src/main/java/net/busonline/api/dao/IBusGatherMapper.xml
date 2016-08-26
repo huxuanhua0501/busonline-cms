@@ -3,9 +3,9 @@
 <mapper namespace="net.busonline.api.dao.IBusGatherMapper">
 <!--插入线路信息  -->
 <insert id="insertBusLine" parameterType="net.busonline.api.model.vo.BusLine" useGeneratedKeys="true" keyProperty="id">
- insert into bus_line (line_id,city_id,linkdir,line_name,line_name_bd,price,start_time,end_time,dictionary_id,create_time)
+ insert into bus_line (line_id,city_id,linkdir,line_name,line_name_bd,price,start_time,end_time,dictionary_id,create_time,user_id)
  values(#{line_id},#{city_id},#{linkdir},#{linename},
- #{linename_bd},#{price},#{start_time},#{end_time},#{linetype},now())
+ #{linename_bd},#{price},#{start_time},#{end_time},#{linetype},now(),#{userid})
 </insert>
 <!--插入线路信息 -->
 <insert id="insertBusBite" parameterType="map" >
