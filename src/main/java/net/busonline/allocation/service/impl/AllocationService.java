@@ -61,7 +61,7 @@ public class AllocationService extends BaseService implements IAllocationService
 		}
 	}
 
-	public String updatesignline(String lineidl, String signid) {
+	public String updatesignline(String lineidl, String signid,String userid) {
 		if (PubMethod.isEmpty(signid)) {
 			logger.debug("net.busonline.allocation.service.impl.AllocationService.updatesignline.001===signid签名参数异常");
 			throw new ServiceException("net.busonline.allocation.service.impl.AllocationService.updatesignline.001", "signid签名参数异常");
@@ -78,7 +78,7 @@ public class AllocationService extends BaseService implements IAllocationService
 			List<Map<String,Object>>listlineid = allocationMapper.selectidbylineid(lineid);
 			//添加一个查询
 			for (int i = 0; i < listlineid.size(); i++) {
-				allocationMapper.insertsignline(signid, listlineid.get(i).get("id").toString());
+				allocationMapper.insertsignline(signid, listlineid.get(i).get("id").toString(),userid);
 			}
 			return this.jsonSuccess();
 		} catch (Exception e) {
@@ -116,7 +116,7 @@ public class AllocationService extends BaseService implements IAllocationService
 	}
 
 	@Override
-	public String modifycitybyid(String namecn, String nameen, String cityid) {
+	public String modifycitybyid(String namecn, String nameen, String cityid,String userid) {
 		// TODO Auto-generated method stub
 		if (PubMethod.isEmpty(cityid)) {
 			logger.debug("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.001===cityid参数异常");
@@ -136,6 +136,7 @@ public class AllocationService extends BaseService implements IAllocationService
 			citymap.put("nameen", nameen);
 			citymap.put("modifytime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 			citymap.put("cityid", cityid);
+			citymap.put("userid", userid);
 			allocationMapper.modifycitybyid(citymap);
 			return this.jsonSuccess();
 		} catch (Exception e) {
@@ -145,7 +146,7 @@ public class AllocationService extends BaseService implements IAllocationService
 	}
 
 	@Override
-	public String insertcity(String namecn, String nameen) {
+	public String insertcity(String namecn, String nameen,String userid) {
 		// TODO Auto-generated method stub
 		if (PubMethod.isEmpty(nameen)) {
 			logger.debug("net.busonline.allocation.service.impl.AllocationService.modifycitybyid.001===nameen参数异常");
@@ -159,6 +160,7 @@ public class AllocationService extends BaseService implements IAllocationService
 			Map<String, Object> citymap = new HashMap<String, Object>();
 			citymap.put("namecn", namecn);
 			citymap.put("nameen", nameen);
+			citymap.put("userid", userid);
 			citymap.put("createtime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 			Long count = allocationMapper.selectcitylive(citymap);
 			if(count==0){

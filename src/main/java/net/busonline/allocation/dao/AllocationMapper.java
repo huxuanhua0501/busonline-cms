@@ -66,7 +66,7 @@ public interface AllocationMapper {
 	 * @param signid
 	 * @param lineid
 	 */
-	public void insertsignline(@Param("signid")String signid,@Param("lineid")String lineid);
+	public void insertsignline(@Param("signid")String signid,@Param("lineid")String lineid,@Param("userid")String userid);
 	/**
 	 * 查询线路id,通过基础库的id
 	 * @param lineid

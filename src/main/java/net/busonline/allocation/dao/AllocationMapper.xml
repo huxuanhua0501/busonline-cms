@@ -27,7 +27,8 @@
 		UPDATE city
 		SET name_cn = #{map.namecn},
 		 name_en = #{map.nameen},
-		 modify_time = #{map.modifytime}
+		 modify_time = #{map.modifytime},
+		 user_id=#{map.userid}
 		WHERE
 			id =#{map.cityid}
 	</update>
@@ -35,11 +36,13 @@
 	   INSERT INTO city (
 		name_cn,
 		name_en,
-		create_time)
+		create_time,
+		user_id)
 	   VALUES
 		  (#{map.namecn}, 
 	        #{map.nameen}, 
-	        #{map.createtime})
+	        #{map.createtime},
+	         #{map.userid})
 	</insert>
 	<select id="selectlinebycityid" resultType="java.util.Map">
 		 SELECT
@@ -87,11 +90,12 @@
 	</delete>
 	<insert id="insertsignline">
 	  INSERT sign_line
-	      (sign_id, line_id)
+	      (sign_id, line_id,user_id)
      VALUES
 	(
 	#{signid},
-	#{lineid})
+	#{lineid},
+	#{userid})
 	</insert>
 	
 	<select id="selectidbylineid" resultType="java.util.Map">

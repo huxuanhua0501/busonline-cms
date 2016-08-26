@@ -31,8 +31,8 @@ public class AllocationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/updatesignline", method = { RequestMethod.GET, RequestMethod.POST })
-	public String updatesignline(String lineid, String signid) {
-		return  allocationService.updatesignline(lineid, signid);
+	public String updatesignline(String lineid, String signid,String userid) {
+		return  allocationService.updatesignline(lineid, signid,userid);
 
 	}
 	
@@ -79,8 +79,8 @@ public class AllocationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/modifycitybyid", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifycitybyid(String namecn,String nameen,String cityid) {
-		return  allocationService.modifycitybyid(namecn, nameen,cityid);
+	public String modifycitybyid(String namecn,String nameen,String cityid,String userid) {
+		return  allocationService.modifycitybyid(namecn, nameen,cityid,userid);
 
 	}
 	
@@ -91,8 +91,8 @@ public class AllocationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/insertcity", method = { RequestMethod.GET, RequestMethod.POST })
-	public String insertcity(String namecn,String nameen) {
-		return  allocationService.insertcity(namecn, nameen);
+	public String insertcity(String namecn,String nameen,String userid) {
+		return  allocationService.insertcity(namecn, nameen,userid);
 
 	}
 	
