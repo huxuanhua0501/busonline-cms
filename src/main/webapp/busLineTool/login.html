@@ -61,12 +61,11 @@
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
-					var userLofinId=res.data.id;
 						 var sessionStorage=window.sessionStorage;
-						   sessionStorage.setItem("userLofinId",userLofinId);
-						   sessionStorage.setItem("userName",userLofinId);
+						   sessionStorage.setItem("userLofinId",res.data.id);
+						   sessionStorage.setItem("userName",res.data.nickname);
 					
-					//window.location.href="index.html";
+					window.location.href="index.html";
 				}
 				else{
 					alert("账号或密码错误");
