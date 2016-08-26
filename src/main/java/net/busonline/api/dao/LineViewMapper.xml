@@ -14,6 +14,7 @@
 		    IFNULL(bl.installation_number,'') AS installationnumber,
 		    IFNULL(bl.match_number,'') AS matchnumber,
 		    IFNULL(dc.dictionary_name ,'') AS dictionaryname,
+		    IFNULL(bl.create_time ,'')AS createtime,
 		    IFNULL(us.nickname, '') AS nickname,
             IFNULL(us.username, '') AS username
      FROM
