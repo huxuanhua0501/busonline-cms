@@ -5,7 +5,7 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
 					'</ul></li><li class="zidian">账户管理 <ul><li><a href="admin.html"  title="">用户管理</a></li></ul></li><li>欢迎admin     <a class="outLogin" onclick="out();">退出</a><a class="resetPassword" onclick="resetPsd();">密码重置</a></li></ul> </div>';
  $("body").before(header);
 
-  var user_Id = localStorage.getItem('userLofinId');
+  var user_Id = sessionStorage.getItem('userLofinId');
 
   function out() {
   
