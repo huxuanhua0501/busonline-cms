@@ -20,6 +20,13 @@ public class BusLine {
 	private String start_time;
 	private String end_time;
 	private List<Site> site;
+	private String userid;
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public int getId() {
 		return id;
 	}
