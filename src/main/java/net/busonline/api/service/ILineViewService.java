@@ -34,7 +34,7 @@ public interface ILineViewService {
 	 * @param id
 	 * @return
 	 */
-	public String updatestopbyid(String id,String stopname,String lat,String lon,String stoptype);
+	public String updatestopbyid(String id,String stopname,String lat,String lon,String stoptype,String userid);
 	
 	/**
 	 * 查询线路通过线路id
@@ -53,7 +53,7 @@ public interface ILineViewService {
 	 * @return
 	 */
 	
-	public String updateLinebyid(String linename,String dictionaryid,String linetype,String linkdir,String installationnumber,String matchnumber,String id);
+	public String updateLinebyid(String linename,String dictionaryid,String linetype,String linkdir,String installationnumber,String matchnumber,String id,String userid);
 	
 	public String delLinebyid(String id);;
 }

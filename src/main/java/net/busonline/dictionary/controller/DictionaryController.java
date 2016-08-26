@@ -24,8 +24,8 @@ public class DictionaryController {
 	 */
 
 	@RequestMapping(value = "/insertdict", method = { RequestMethod.GET, RequestMethod.POST })
-	public String insertdict(String dictionaryname, String parentid) {
-		return  dictionaryService.insertdict(dictionaryname, parentid);
+	public String insertdict(String dictionaryname, String parentid,String userid) {
+		return  dictionaryService.insertdict(dictionaryname, parentid,userid);
 
 	}
 	/**
@@ -54,8 +54,8 @@ public class DictionaryController {
 	 * @return
 	 */
 	@RequestMapping(value = "/updateDicname", method = { RequestMethod.GET, RequestMethod.POST })
-	public String updateDicname(String dictionaryname, String id) {
-		return  dictionaryService.updateDicname(dictionaryname, id);
+	public String updateDicname(String dictionaryname, String id,String userid) {
+		return  dictionaryService.updateDicname(dictionaryname, id,userid);
 
 	}
 	/**

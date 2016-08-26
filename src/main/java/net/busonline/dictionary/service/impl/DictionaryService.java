@@ -27,7 +27,7 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	DictionaryMapper dictionaryMapper;
 
 	@Override
-	public String insertdict(String dictionaryname1, String parentid) {
+	public String insertdict(String dictionaryname1, String parentid ,String userid) {
 		// TODO Auto-generated method stub
 		if (PubMethod.isEmpty(dictionaryname1)) {
 			logger.debug("net.busonline.dictionary.service.impl.BusApiService.insertdict.001===dictionaryname参数异常");
@@ -48,6 +48,7 @@ public class DictionaryService extends BaseService implements IDictionaryService
 				map.put("dictionaryname", dictionaryname[i]);
 				map.put("parentid", parentid);
 				map.put("createtime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+				map.put("userid", userid);
 				dictionaryMapper.insertdict(map);	 
 			}
 			}
@@ -98,7 +99,7 @@ public class DictionaryService extends BaseService implements IDictionaryService
 	}
 
 	@Override
-	public String updateDicname(String dictionaryname, String id) {
+	public String updateDicname(String dictionaryname, String id,String userid) {
 		// TODO Auto-generated method stub
 		if (PubMethod.isEmpty(dictionaryname)) {
 			logger.debug("net.busonline.dictionary.service.impl.BusApiService.updateDicname.001===dictionaryname参数异常");
@@ -113,6 +114,7 @@ public class DictionaryService extends BaseService implements IDictionaryService
 			map.put("dictionaryname", dictionaryname);
 			map.put("id", id);
 			map.put("modifytime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+			map.put("userid", userid);
 			dictionaryMapper.updateDicname(map);
 			return this.jsonSuccess();
 		} catch (Exception e) {

@@ -61,9 +61,9 @@ public class LineViewController {
 	 */
 	@RequestMapping(value = "/updateLinebyid", method = { RequestMethod.POST, RequestMethod.GET })
 	public String updateLinebyid(String linename, String dictionaryid, String linetype, String linkdir,
-			String installationnumber, String matchnumber, String id) {
+			String installationnumber, String matchnumber, String id,String userid) {
 		return lineViewService.updateLinebyid(linename, dictionaryid, linetype, linkdir, installationnumber,
-				matchnumber, id);
+				matchnumber, id,userid);
 	}
 
 	/**
@@ -86,8 +86,8 @@ public class LineViewController {
 	 * @return
 	 */
 	@RequestMapping(value = "/updatestopbyid", method = { RequestMethod.POST, RequestMethod.GET })
-	public String updatestopbyid(String id, String stopname, String lat, String lon, String stoptype) {
-		return lineViewService.updatestopbyid(id, stopname, lat, lon, stoptype);
+	public String updatestopbyid(String id, String stopname, String lat, String lon, String stoptype,String userid) {
+		return lineViewService.updatestopbyid(id, stopname, lat, lon, stoptype,userid);
 	}
 
 

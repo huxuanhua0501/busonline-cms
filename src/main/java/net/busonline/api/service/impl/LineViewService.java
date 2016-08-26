@@ -113,7 +113,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 	}
 
 	@Override
-	public String updatestopbyid(String id,String stopname,String lat,String lon,String stoptype) {
+	public String updatestopbyid(String id,String stopname,String lat,String lon,String stoptype,String userid) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
@@ -121,6 +121,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 		map.put("lat", lat);
 		map.put("lon", lon);
 		map.put("stoptype", stoptype);
+		map.put("userid", userid);
 		map.put("modifytime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		try {
 			 lineViewMapper.updatestopbyid(map);
@@ -153,7 +154,7 @@ public class LineViewService extends BaseService implements ILineViewService {
 
 	@Override
 	public String updateLinebyid(String linename, String dictionaryid, String linetype, String linkdir,
-			String installationnumber, String matchnumber, String id) {
+			String installationnumber, String matchnumber, String id,String userid) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
         map.put("linename", linename);
@@ -162,6 +163,7 @@ public class LineViewService extends BaseService implements ILineViewService {
         map.put("linkdir", linkdir);
         map.put("installationnumber", installationnumber);
         map.put("matchnumber", matchnumber);
+    	map.put("userid", userid);
     	map.put("modifytime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         map.put("id", id);
         lineViewMapper.updateLinebyid(map);

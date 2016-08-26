@@ -5,12 +5,14 @@
 	INSERT INTO dictionary (
 		dictionary_name,
 		parent_id,
-		create_time
+		create_time,
+		user_id
 	)
 	VALUES 
         (#{map.dictionaryname}, 
         #{map.parentid}, 
-        #{map.createtime})
+        #{map.createtime},
+        #{map.userid})
 </insert>
 
 <select id="selectDicItme" resultType="java.util.Map">
@@ -64,7 +66,8 @@
 <update id="updateDicname">
 		UPDATE dictionary
 		SET dictionary_name = #{map.dictionaryname},
-		  	modify_time = #{map.modifytime}
+		  	modify_time = #{map.modifytime},
+		  	user_id = #{map.userid}
 		WHERE
 		id = #{map.id}
 </update>

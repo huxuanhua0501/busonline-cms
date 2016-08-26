@@ -14,12 +14,13 @@
 		    IFNULL(bl.installation_number,'') AS installationnumber,
 		    IFNULL(bl.match_number,'') AS matchnumber,
 		    IFNULL(dc.dictionary_name ,'') AS dictionaryname,
-		    IFNULL(bl.dictionary_id,'')AS dictionaryid,
-		    IFNULL(bl.create_time ,'')AS createtime
-		FROM
-			bus_line bl
-		LEFT JOIN city ct ON ct.id = bl.city_id
-        LEFT JOIN  dictionary dc ON dc.id = bl.dictionary_id
+		    IFNULL(us.nickname, '') AS nickname,
+            IFNULL(us.username, '') AS username
+     FROM
+	      bus_line bl
+			LEFT JOIN city ct ON ct.id = bl.city_id
+			LEFT JOIN dictionary dc ON dc.id = bl.dictionary_id
+			LEFT JOIN users us ON us.id = bl.user_id
 		WHERE 1=1
 	   <if test="map.linename!=null and map.linename!=''">
 		AND	bl.line_name like  CONCAT('%',#{map.linename},'%') 
@@ -63,6 +64,7 @@
 			bus_line bl
 		LEFT JOIN city ct ON ct.id = bl.city_id
         LEFT JOIN  dictionary dc ON dc.id = bl.dictionary_id
+        LEFT JOIN users us ON us.id = bl.user_id
 		WHERE 1=1
 	   <if test="map.linename!=null and map.linename!=''">
 		AND	bl.line_name like  CONCAT('%',#{map.linename},'%') 
@@ -116,7 +118,8 @@
 		 lat =#{map.lat}, 
 		 lon =#{map.lon}, 
 		 stop_type =#{map.stoptype},
-		 update_time =#{map.modifytime}
+		 update_time =#{map.modifytime},
+		 user_id==#{map.userid}
 		WHERE
 			id =#{map.id}
 </update>
@@ -130,7 +133,8 @@
 		 linkdir = #{map.linkdir},
 		 installation_number = #{map.installationnumber},
 		 match_number = #{map.matchnumber},
-		 update_time =#{map.modifytime}
+		 update_time =#{map.modifytime},
+		  user_id==#{map.userid}
 		WHERE
 			id =#{map.id}
 </update>
@@ -172,9 +176,12 @@
 			bs.lon AS lon,
 			bs.stop_type AS stoptype,
 		  bs.stop_name AS endstop,
-		  bs.stopseq AS stopseq
+		  bs.stopseq AS stopseq,
+		  us.nickname,
+          us.username
 		FROM
-			bus_stop bs
+			bus_stop bs 
+      LEFT JOIN users us ON bs.user_id=us.id
 		WHERE
 			line_id = #{lineid}
 		ORDER BY
