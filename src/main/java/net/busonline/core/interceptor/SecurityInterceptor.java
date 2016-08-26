@@ -60,8 +60,11 @@ public class SecurityInterceptor implements HandlerInterceptor{
 		}else{
 			String userid = req.getParameter("userid");
 			if(!jedisResultSet.isExists(CACHE_KEY.SESSION+"_"+userid)){
-				res.sendRedirect(LOGIN_URL);  
+				//res.sendRedirect(LOGIN_URL);  
 	            //System.out.println("登录失败跳转登录页面");
+				res.setContentType("application/json;charset=utf-8");
+				res.getWriter().write("{'code':420}");
+				res.getWriter().close();
 				return false;
 			}
 			
