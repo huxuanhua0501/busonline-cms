@@ -120,7 +120,7 @@
 		 lon =#{map.lon}, 
 		 stop_type =#{map.stoptype},
 		 update_time =#{map.modifytime},
-		 user_id==#{map.userid}
+		 user_id=#{map.userid}
 		WHERE
 			id =#{map.id}
 </update>
@@ -135,7 +135,7 @@
 		 installation_number = #{map.installationnumber},
 		 match_number = #{map.matchnumber},
 		 update_time =#{map.modifytime},
-		  user_id==#{map.userid}
+		  user_id=#{map.userid}
 		WHERE
 			id =#{map.id}
 </update>
