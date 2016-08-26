@@ -18,7 +18,7 @@ public class SecurityInterceptor implements HandlerInterceptor{
 	@Autowired
 	private JedisResultSet jedisResultSet;
 	private List<String> uncheckUrls;  
-	private static final String LOGIN_URL = "../busLineTool/login.html";
+	private static final String LOGIN_URL = "../../busLineTool/login.html";
 	
 	
 	public JedisResultSet getJedisResultSet() {
