@@ -1,13 +1,14 @@
 (function() {
 	  var $buslineName=$("#lineName"),$citylist = $("#citylist"),
 	      oBusName,buslevel="",network="",buslinedir="";
-	  var  cityval = $citylist.find("option:selected").text();
+	  var  cityval;
 	  
 	    //请求字典信息接口
 	  var ajaxDictionaries=function(){
 	  	 $.ajax({
 	  	 	url:'../iBusGather/dictionary.do',
 	  	 	type:'post',
+        async: false,
 	  	 	dataType:'json',
 	  	 	success:function(res){
 				if (res.code == 200) {
@@ -24,6 +25,7 @@
 						linetypeconRadio+= '<label><input name="networkTypeRadio" class="networkTypeRadio" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
 					}
 					$("#citylist").html(citysCon);
+          cityval = $citylist.find("option:selected").text();
 					$(".network").eq(0).html(linetypecon);
 					$(".network").eq(1).html(linetypeconRadio);
 					citysCon = "",

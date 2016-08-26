@@ -54,6 +54,9 @@
 			url: '../allocation/selectcity.do',
 			type: 'post',
 			dataType: 'json',
+			data:{
+				userid:12
+			}
 			success: function(res) {
 				if (res.code == 200) {
 					var resData=res.data;
@@ -76,6 +79,7 @@
 			type: 'post',
 			dataType: 'json',
 			data: {
+				userid:12,
 				namecn: cityName,
 				nameen: cityNameEn
 			},
@@ -115,6 +119,7 @@
 			type: 'post',
 			dataType: 'json',
 			data: {
+				userid:12,
 				cityid:cityId,
 				namecn: cityName,
 				nameen: cityNameEn
@@ -152,6 +157,8 @@
      
 	});
 	$(".cancelAddUser").click(function(){
+		$("#cityName").val("");
+        $("#cityNameEn").val("");
 		$(".addAdminPop").hide();
 	});
 	$(".updateCancel").click(function(){

@@ -8,10 +8,10 @@
 </head>
 <body>
 	<ul class="login">
-		<li><label for="" class="user_info">用户名：</label><input type="text" id="loginName"/></li>
-		<li><label for="" class="user_info">密码：</label><input type="text" id="loginPassword"/></li>
+		<li><label for="" class="user_info">用户名：</label><input type="text" id="loginName" placeholder="用户名或邮箱"/></li>
+		<li><label for="" class="user_info">密码：</label><input type="password" id="loginPassword"/></li>
 		<li><label for="" class="user_info">验证码：</label><input type="text" id="inputCode"/><div class="code" id="checkCode" onclick="createCode()">P2AJ</div><a href="#" onclick="createCode()">换一张</a></li>
-		<li class="login_btn"><input id="Button1" onclick="validateCode();" type="button" value="登陆"></li>
+		<li class="login_btn"><input id="Button1"  type="button" value="登陆"></li>
 	</ul>
 
 	<script type="text/javascript" src = "js/jquery-1.8.3.min.js"></script>
@@ -34,7 +34,7 @@
 			checkCode.innerHTML = code;
 		}
 	}
-	function validateCode() {
+	$("#Button1").click(function(){
 		inputCode = document.getElementById("inputCode").value;
 		loginName = document.getElementById("loginName").value;
 		loginPassword = document.getElementById("loginPassword").value;
@@ -46,27 +46,28 @@
 			alert("验证码输入有误！");
 			createCode();
 		}
-		//login();
+		login();
+	})
+
+	 function login(){
+		 $.ajax({
+	  	 	url:'../user/checkUser.do',
+	  	 	type:'post',
+	  	 	dataType:'json',
+	  	 	data:{
+	  	 		username:loginName,
+	  	 		password:loginPassword
+	  	 	},
+	  	 	success:function(res){
+				if (res.code == 200) {
+					window.location.href="index.html";
+				}
+				else{
+					alert("账号或密码错误");
+				}
+	  	 	}
+	  	 });   
 	}
-	// function login(){
-	// 	 $.ajax({
-	//   	 	url:'../user/checkUser.do',
-	//   	 	type:'post',
-	//   	 	dataType:'json',
-	//   	 	data:{
-	//   	 		username:loginName,
-	//   	 		password:loginPassword
-	//   	 	},
-	//   	 	success:function(res){
-	// 			if (res.code == 200) {
-	// 				window.location.href="index.html";
-	// 			}
-	// 			else{
-	// 				alert("修改失败");
-	// 			}
-	//   	 	}
-	//   	 });   
-	// }
 })()
 
 </script>
