@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+
+import net.busonline.core.model.Response;
 import net.busonline.core.redis.JedisResultSet;
 import net.busonline.core.util.CACHE_KEY;
 
@@ -63,7 +66,7 @@ public class SecurityInterceptor implements HandlerInterceptor{
 				//res.sendRedirect(LOGIN_URL);  
 	            //System.out.println("登录失败跳转登录页面");
 				res.setContentType("application/json;charset=utf-8");
-				res.getWriter().write("{'code':420}");
+				res.getWriter().write(JSON.toJSONString(new Response().failure("登录超时", "420")));
 				res.getWriter().close();
 				return false;
 			}
