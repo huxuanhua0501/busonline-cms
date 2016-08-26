@@ -69,6 +69,8 @@ public class SecurityInterceptor implements HandlerInterceptor{
 				res.getWriter().write(JSON.toJSONString(new Response().failure("登录超时", "420")));
 				res.getWriter().close();
 				return false;
+			}else{
+				jedisResultSet.expire(CACHE_KEY.SESSION+"_"+userid);
 			}
 			
 		}
