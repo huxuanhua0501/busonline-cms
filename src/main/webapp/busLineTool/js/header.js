@@ -18,7 +18,6 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
   		},
   		success: function(res) {
   			if (res.code == 200) {	
-  				console.log(1);
   				window.location.href = "login.html";
   			} else {
   				alert("退出失败");
@@ -28,13 +27,12 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
   };
 
   function resetPsd() {
-  	console.log(2);
   	$.ajax({
   		url: '../user/resetPsw.do',
   		type: 'post',
   		dataType: 'json',
   		data: {
-  			userid: user_Id
+  			id: user_Id
   		},
   		success: function(res) {
   			if (res.code == 200) {
