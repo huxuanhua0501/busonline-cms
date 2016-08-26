@@ -25,7 +25,7 @@
 						linetypeconRadio+= '<label><input name="networkTypeRadio" class="networkTypeRadio" type="radio" value="' + linetypes[j].id + '"/>' + linetypes[j].name + ' </label>';
 					}
 					$("#citylist").html(citysCon);
-          cityval = $citylist.find("option:selected").text();
+                    cityval = $citylist.find("option:selected").val();
 					$(".network").eq(0).html(linetypecon);
 					$(".network").eq(1).html(linetypeconRadio);
 					citysCon = "",
@@ -137,7 +137,7 @@
 	   });
       //切换城市
     $citylist.on("change", function() {
-      cityval = $citylist.find("option:selected").text();
+      cityval = $citylist.find("option:selected").val();
       loadData();
     });
 	 var lineId;

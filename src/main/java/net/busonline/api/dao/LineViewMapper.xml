@@ -25,7 +25,7 @@
 		AND	bl.line_name like  CONCAT('%',#{map.linename},'%') 
 		</if>
 		<if test="map.cityname!=null and map.cityname!=''">
-		AND ct.name_cn=#{map.cityname}
+		AND ct.id=#{map.cityname}
 		</if>
 	<if test="map.linkdir!=null and map.linkdir!=''">
 	     AND bl.linkdir IN
@@ -68,7 +68,7 @@
 		AND	bl.line_name like  CONCAT('%',#{map.linename},'%') 
 		</if>
 		<if test="map.cityname!=null and map.cityname!=''">
-		AND ct.name_cn=#{map.cityname}
+		AND ct.id=#{map.cityname}
 		</if>
 	<if test="map.linkdir!=null and map.linkdir!=''">
 	     AND bl.linkdir IN
