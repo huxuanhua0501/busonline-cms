@@ -32,7 +32,7 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
   		type: 'post',
   		dataType: 'json',
   		data: {
-  			id: user_Id
+  			userid: user_Id
   		},
   		success: function(res) {
   			if (res.code == 200) {
