@@ -91,6 +91,9 @@
 	  	 	url:'../iBusGather/dictionary.do',
 	  	 	type:'post',
 	  	 	dataType:'json',
+	  	 	data:{
+	  	 		userid:user_Id
+	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
 					var citys = res.data.city,
@@ -119,7 +122,7 @@
       //查询是否采集接口
 		  var ajaxcollectionbus=function(){
 		  	  $.ajax({
-		  	 	url:'../iBusGather/busName.do?cityid='+cityid+'&busline='+busNameval,
+		  	 	url:'../iBusGather/busName.do?cityid='+cityid+'&busline='+busNameval+'&userid='+user_Id,
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	success:function(res){
@@ -175,7 +178,7 @@
 					datas.price = price;
 					datas.site = sitearr;
 						$.ajax({
-							url: '/iBusGather/upload.do',
+							url: '../iBusGather/upload.do?userid='+user_Id,
 							type: 'post',
 							dataType: 'json',
 							data:{
@@ -201,7 +204,7 @@
 	     //验证是否可以插入接口
 		  var ajaxTestInsert=function(){
 		  	  $.ajax({
-		  	 	url:'../iBusGather/validate.do?buslinename='+busNamNew+'&cityname='+cityval,
+		  	 	url:'../iBusGather/validate.do?buslinename='+busNamNew+'&cityname='+cityval+'&userid='+user_Id,
 		  	 	type:'post',
 		  	 	dataType:'json',
 		  	 	success:function(res){

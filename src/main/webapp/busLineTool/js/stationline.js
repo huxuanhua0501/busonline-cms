@@ -10,6 +10,9 @@
 	  	 	type:'post',
         async: false,
 	  	 	dataType:'json',
+        data:{
+             userid:user_Id
+        },
 	  	 	success:function(res){
 				if (res.code == 200) {
 					var citys = res.data.city,
@@ -72,7 +75,8 @@
        'linename': oBusName,
        "linkdir": buslinedir,
        "linetype": buslevel,
-       'dictionaryid': network
+       'dictionaryid': network,
+         'userid':user_Id
      }, function(data) { //第一次先访问第一页获取总条数
        //组装数据
        inintData($content, data, 1); //第一次得到的数据
@@ -95,7 +99,8 @@
              'linename': oBusName,
              'linkdir': buslinedir,
              'linetype': buslevel,
-             'dictionaryid': network
+             'dictionaryid': network,
+              'userid':user_Id
            }, function(data2) {
              inintData(e, data2, i); //这里用$content也行
            });
@@ -148,7 +153,8 @@
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
-	  	 		id:lineId
+	  	 		id:lineId,
+          userid:user_Id
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
@@ -190,7 +196,8 @@
 	  	 		linkdir:linkdir,
           installationnumber:installationnumber,
           matchnumber:matchnumber,
-          id:lineId
+          id:lineId,
+          userid:user_Id
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
@@ -210,7 +217,8 @@
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
-                id:lineId
+                id:lineId,
+                userid:user_Id
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
@@ -230,7 +238,8 @@
 	  	 	type:'post',
 	  	 	dataType:'json',
 	  	 	data:{
-                lineid:lineId
+                lineid:lineId,
+                userid:user_Id
 	  	 	},
 	  	 	success:function(res){
 				if (res.code == 200) {
@@ -247,28 +256,29 @@
 	  	 });   
     };
     var stationSave=function(){
-    	 $.ajax({
-	  	 	url:'../lineview/updatestopbyid.do',
-	  	 	type:'post',
-	  	 	dataType:'json',
-	  	 	data:{
-                id:stationsId,
-                stopname:stationUpdateName,
-                lon:lon,
-                lat:lat,
-                stoptype:stationsLevel
-	  	 	},
-	  	 	success:function(res){
-				if (res.code == 200) {
-					alert("修改成功");$(".updateStaionWindow").hide();
-					busLineStationList();
-				}
-				else{
-					alert("修改失败");
-				}
-				
-	  	 	}
-	  	 });   
+        $.ajax({
+          url: '../lineview/updatestopbyid.do',
+          type: 'post',
+          dataType: 'json',
+          data: {
+            id: stationsId,
+            stopname: stationUpdateName,
+            lon: lon,
+            lat: lat,
+            stoptype: stationsLevel,
+            userid:user_Id
+          },
+          success: function(res) {
+            if (res.code == 200) {
+              alert("修改成功");
+              $(".updateStaionWindow").hide();
+              busLineStationList();
+            } else {
+              alert("修改失败");
+            }
+
+          }
+        });
     }
     $("#saveLine").click(function(){
           updateName=$(".updateName").val();

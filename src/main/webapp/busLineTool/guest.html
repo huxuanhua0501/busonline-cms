@@ -68,6 +68,9 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 				type: 'post',
 				async: false,
 				dataType: 'json',
+				data:{
+					userid:user_Id
+				}
 				success: function(res) {
 					if (res.code == 200) {
 						var resData=res.data;
@@ -92,6 +95,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 				type: 'post',
 				dataType: 'json',
 				data:{
+				   userid:user_Id,
                    signid:company
 				},
 				success: function(res) {
@@ -129,6 +133,7 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 				type: 'post',
 				dataType: 'json',
 				data:{
+				   userid:user_Id,
                    signid:company,
                    lineid:checkBox
 				},

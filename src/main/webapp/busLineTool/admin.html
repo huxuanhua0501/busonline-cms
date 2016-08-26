@@ -75,7 +75,8 @@
      var loadFlag = false;
      $.getJSON('/user/getUsers.do', {
        "currentPage": 1,
-       "pageSize": size
+       "pageSize": size,
+       "userid":user_Id
      }, function(data) { //第一次先访问第一页获取总条数
        //组装数据
        inintData($content, data, 1); //第一次得到的数据
@@ -93,7 +94,8 @@
              return false;
            $.getJSON('/user/getUsers.do', {
              "currentPage": i,
-             "pageSize": c
+             "pageSize": c,
+             "userid":user_Id
            }, function(data2) {
              inintData(e, data2, i); //这里用$content也行
            });
@@ -121,26 +123,29 @@
 		return true;
 	};
 	//新增用户保存
-	// var addSave=function(){
-	// 	$.ajax({
-	// 		url: '/user/addUser.do',
-	// 		type: 'post',
-	// 		dataType: 'json',
-	// 		data: {
-	// 			username: userName,
-	// 			email: userEmail,
-	// 			nickname: userNi
-	// 		},
-	// 		success: function(res) {
-	// 			if (res.code == 200) {
-	// 				alert("新增成功");
-	// 				loadData();
-	// 			} else {
-	// 				alert("新增失败");
-	// 			}
-	// 		}
-	// 	})
-	// };
+	var addSave=function(){
+		$.ajax({
+			url: '/user/addUser.do',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				userid:user_Id,
+				username: userName,
+				email: userEmail,
+				nickname: userNi
+			},
+			success: function(res) {
+				if (res.code == 200) {
+					alert("新增成功");
+					$("#userName").val("");$("#userNi").val("");$("#userEmail").val("");
+					$(".addAdminPop").hide();
+					loadData();
+				} else {
+					alert("新增失败");
+				}
+			}
+		})
+	};
 	$(".addAdminSave").click(function(){
         userName=$("#userName").val();userNi=$("#userNi").val();userEmail=$("#userEmail").val();
 
@@ -153,30 +158,32 @@
        }
 	});
 	//修改用户保存
-	// var updateSave=function(){
-	// 	$.ajax({
-	// 		url: '/user/upUser.do',
-	// 		type: 'post',
-	// 		dataType: 'json',
-	// 		data: {
-	// 			username: userName,
-	// 			email: userEmail,
-	// 			nickname: userNi,
-	// 			id: userId
-	// 		},
-	// 		success: function(res) {
-	// 			if (res.code == 200) {
-	// 				alert("修改成功");
-	// 				loadData();
-	// 			} else {
-	// 				alert("修改失败");
-	// 			}
-	// 		}
-	// 	})
-	// };
+	var updateSave=function(){
+		$.ajax({
+			url: '/user/upUser.do',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				userid:user_Id,
+				username: userName,
+				email: userEmail,
+				nickname: userNi,
+				id: userId
+			},
+			success: function(res) {
+				if (res.code == 200) {
+					alert("修改成功");
+					$(".updateAdminPop").hide();
+					loadData();
+				} else {
+					alert("修改失败");
+				}
+			}
+		})
+	};
 	$(".updateUser").click(function(){
         userName=$("#updateUserName").val();userNi=$("#updateUserNi").val();userEmail=$("#updateUserEmail").val();
-        userId=$(this).attr("data-id");
+       
        	if (!userName || !userNi || !userEmail) {
 			alert("请检查，不能为空");
 			return false;
@@ -186,6 +193,10 @@
        }
 	});
 	$(".adminList").on("click",".updateAdmin",function(){
+		 userId=$(this).attr("data-id");
+		$("#updateUserName").val($(this).parent().siblings('.uName').html());
+		$("#updateUserNi").val($(this).parent().siblings('.uNick').html());
+		$("#updateUserEmail").val($(this).parent().siblings('.uEmail').html());
        $(".updateAdminPop").show();
 	});
 	$(".cancelAddUser").click(function(){
@@ -198,24 +209,25 @@
 		$(".addAdminPop").show();
 	});
 	//删除
-	// var deleteUser=function(){
-	// 	$.ajax({
-	// 		url: '/user/delUser.do',
-	// 		type: 'post',
-	// 		dataType: 'json',
-	// 		data: {
-	// 			id: userId
-	// 		},
-	// 		success: function(res) {
-	// 			if (res.code == 200) {
-	// 				alert("删除成功");
-	// 				loadData();
-	// 			} else {
-	// 				alert("删除失败");
-	// 			}
-	// 		}
-	// 	})
-	// };
+	var deleteUser=function(){
+		$.ajax({
+			url: '/user/delUser.do',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				userid:user_Id,
+				id: userId
+			},
+			success: function(res) {
+				if (res.code == 200) {
+					alert("删除成功");
+					loadData();
+				} else {
+					alert("删除失败");
+				}
+			}
+		})
+	};
 	$(".adminList").on("click",".deleteAdmin",function(){
 		 userId=$(this).attr("data-id");
        if(confirm("确定要删除吗")){
