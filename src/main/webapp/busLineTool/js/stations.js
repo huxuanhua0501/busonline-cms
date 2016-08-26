@@ -172,6 +172,7 @@
 		       cityid=$citylist.find("option:selected").val();
 		       //cityval=$citylist.find("option:selected").text();
 		       var  datas = {};
+		           datas.userid = user_Id;
 					datas.start_time = starttime;
 					datas.end_time = endtime;
 					datas.linename = busName;
@@ -240,7 +241,7 @@
         		if($(".open").hasClass("insert")){
         			alert("已经采集过");return false;
         		}
-      
+
         		else{
         			 ajaxTestInsert();//验证是否可以插入
         		}
