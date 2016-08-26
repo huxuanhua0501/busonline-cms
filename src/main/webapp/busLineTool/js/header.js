@@ -8,17 +8,18 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
   var user_Id = localStorage.getItem('userLofinId');
 
   function out() {
-  	console.log(1);
+  
   	$.ajax({
   		url: '../user/logout.do',
   		type: 'post',
   		dataType: 'json',
   		data: {
-  			id: user_Id
+  			userid: user_Id
   		},
   		success: function(res) {
-  			if (res.code == 200) {
-  				//window.location.href = "login.html";
+  			if (res.code == 200) {	
+  				console.log(1);
+  				window.location.href = "login.html";
   			} else {
   				alert("退出失败");
   			}
@@ -33,7 +34,7 @@ var header='<div class="topbar"><div class="topbar_1"><span>公交数据采集�
   		type: 'post',
   		dataType: 'json',
   		data: {
-  			id: user_Id
+  			userid: user_Id
   		},
   		success: function(res) {
   			if (res.code == 200) {
