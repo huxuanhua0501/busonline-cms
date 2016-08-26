@@ -240,9 +240,7 @@
         		if($(".open").hasClass("insert")){
         			alert("已经采集过");return false;
         		}
-        		else if(res.code == 420){
-					window.location.href="login.html";
-				}
+      
         		else{
         			 ajaxTestInsert();//验证是否可以插入
         		}
