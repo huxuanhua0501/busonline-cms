@@ -112,7 +112,9 @@
 					$("#network").html(linetypecon);
 					$("input[name=networkType]:eq(0),input[name=linkdir]:eq(0)").attr("checked", 'checked');
 				}
-				
+				else if(res.code == 420){
+					window.location.href="login.html";
+				}
 	  	 	}
 	  	 });        
 	  };
