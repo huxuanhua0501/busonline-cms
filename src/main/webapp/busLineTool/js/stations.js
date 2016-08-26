@@ -141,6 +141,9 @@
 							}
 						}
 					} 
+					else if(res.code == 420){
+					window.location.href="login.html";
+			    	}
 		  	 	}
 		  	 });	    
 		  }
@@ -194,7 +197,9 @@
 						         	$(".stationsbox,.popup").hide();
 									busline.getBusList(busNameval);
 								} 
-                             
+                               else if(res.code == 420){
+				                	window.location.href="login.html";
+				                }
 								else {
 									alert("插入失败");
 								}
@@ -213,6 +218,9 @@
 					if (res.code == 200) {
                         ajaxSave();
 					}
+					else if(res.code == 420){
+				     	window.location.href="login.html";
+				     }
 					else if (res.code == 501){
                                 	alert("与业务数据不匹配，请联系管理员");
                     }
@@ -232,6 +240,9 @@
         		if($(".open").hasClass("insert")){
         			alert("已经采集过");return false;
         		}
+        		else if(res.code == 420){
+					window.location.href="login.html";
+				}
         		else{
         			 ajaxTestInsert();//验证是否可以插入
         		}

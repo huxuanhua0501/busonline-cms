@@ -81,7 +81,9 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 						$(".companyList").append(com);
 						com="";
 						company=$(".companyList").find("option:selected").val();
-					} else {
+					} else if(res.code == 420){
+					window.location.href="login.html";
+				}else {
 						alert("接口异常");
 					}
 				}
@@ -115,7 +117,9 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 								$(this).attr("checked", true);
 							}
 						});
-					} else {
+					}else if(res.code == 420){
+					window.location.href="login.html";
+				} else {
 						alert("接口异常");
 					}
 				}
@@ -141,7 +145,9 @@ border-left: 8px solid green;margin:5px 8px 0 0; float: left;}
 					if (res.code == 200) {
 						alert("保存成功");
 						companyList();
-					} else {
+					}else if(res.code == 420){
+					window.location.href="login.html";
+				} else {
 						alert("保存失败");
 					}
 				}

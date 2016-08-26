@@ -27,7 +27,9 @@
                      options="";
                       selectList2();
                      
-                  }
+                  }else if(res.code == 420){
+          window.location.href="login.html";
+        }
                   else{
                   	alert("添加失败");
                   }
@@ -55,7 +57,9 @@
                   	 }
                       $(".leve2con").append(leveCon);
                      leveCon="";
-                  }
+                  }else if(res.code == 420){
+          window.location.href="login.html";
+        }
 				}
 			});
 	    };
@@ -85,7 +89,9 @@
                   	 $dictionaryname.val("");
                   	 $dictionaryname2.val("");
 
-                  }
+                  }else if(res.code == 420){
+          window.location.href="login.html";
+        }
                   else{
                   	alert("添加失败");
                   }

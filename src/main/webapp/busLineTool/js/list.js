@@ -28,7 +28,9 @@
                   	 $(".tableList").append(html);
                   	 html="";
 
-                  }
+                  }else if(res.code == 420){
+					window.location.href="login.html";
+				}
 				}
 			});
 	    };
@@ -50,7 +52,9 @@
                   	 $(".updataWindow").hide();
                   	
                   	
-                  }
+                  }else if(res.code == 420){
+					window.location.href="login.html";
+				}
                   else{
                   	 alert("修改失败");
                   }
@@ -72,7 +76,9 @@
                   	  alert("删除成功");
                   	   listShow();
 
-                  }
+                  }else if(res.code == 420){
+					window.location.href="login.html";
+				}
                   else{
                   	 alert("删除失败");
                   }
@@ -92,7 +98,9 @@
                   if(res.code==200){
                   	 alert("删除成功");
                   	  listShow();
-                  }
+                  }else if(res.code == 420){
+					window.location.href="login.html";
+				}
                   else{
                   	 alert("删除失败");
                   }

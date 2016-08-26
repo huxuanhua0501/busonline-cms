@@ -35,6 +35,9 @@
 					linetypecon = "",
 					linetypeconRadio = "";
 				}
+        else if(res.code == 420){
+          window.location.href="login.html";
+        }
 				
 	  	 	}
 	  	 });        
@@ -78,6 +81,9 @@
        'dictionaryid': network,
          'userid':user_Id
      }, function(data) { //第一次先访问第一页获取总条数
+        if(data.code == 420){
+          window.location.href="login.html";
+        }
        //组装数据
        inintData($content, data, 1); //第一次得到的数据
        //设置分页
@@ -179,6 +185,9 @@
 						$(".updateWindow").show();
 
 				}
+        else if(res.code == 420){
+          window.location.href="login.html";
+        }
 				
 	  	 	}
 	  	 });        
@@ -205,6 +214,9 @@
 					$(".updateWindow").hide();
 					loadData();
 				}
+        else if(res.code == 420){
+          window.location.href="login.html";
+        }
 				else{
 					alert("修改失败");
 				}
@@ -225,6 +237,9 @@
 					alert("删除成功");
 					loadData();
 				}
+        else if(res.code == 420){
+          window.location.href="login.html";
+        }
 				else{
 					alert("删除成功");
 				}
@@ -250,7 +265,9 @@
                         '</td><td><a  class="stationUpdate" data-station="'+resData[i].id+'">修改</a></td></tr>';
 					}
 					$(".buslineStation").after(stationsAll);
-				}
+				}else if(res.code == 420){
+          window.location.href="login.html";
+        }
 				
 	  	 	}
 	  	 });   
@@ -273,7 +290,9 @@
               alert("修改成功");
               $(".updateStaionWindow").hide();
               busLineStationList();
-            } else {
+            } else if(res.code == 420){
+          window.location.href="login.html";
+        }else {
               alert("修改失败");
             }
 

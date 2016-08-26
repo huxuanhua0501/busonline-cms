@@ -78,6 +78,9 @@
        "pageSize": size,
        "userid":user_Id
      }, function(data) { //第一次先访问第一页获取总条数
+     	  if(data.code == 420){
+          window.location.href="login.html";
+        }
        //组装数据
        inintData($content, data, 1); //第一次得到的数据
        //设置分页
@@ -140,6 +143,8 @@
 					$("#userName").val("");$("#userNi").val("");$("#userEmail").val("");
 					$(".addAdminPop").hide();
 					loadData();
+				}else if(res.code == 420){
+					window.location.href="login.html";
 				} else {
 					alert("新增失败");
 				}
@@ -175,6 +180,8 @@
 					alert("修改成功");
 					$(".updateAdminPop").hide();
 					loadData();
+				}else if(res.code == 420){
+					window.location.href="login.html";
 				} else {
 					alert("修改失败");
 				}
@@ -222,7 +229,9 @@
 				if (res.code == 200) {
 					alert("删除成功");
 					loadData();
-				} else {
+				} else if(res.code == 420){
+					window.location.href="login.html";
+				}else {
 					alert("删除失败");
 				}
 			}

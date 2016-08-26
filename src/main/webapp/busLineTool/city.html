@@ -65,7 +65,9 @@
 						html+='<tr><td>'+(i+1)+'</td><td class="namecn">'+resData[i].namecn+'</td><td class="nameen">'+resData[i].nameen+'</td><td><a class="updateAdmin" data-id='+resData[i].cityid+'>修改</a></td></tr>';
 					}
                     $(".cityTable").after(html);
-				} else {
+				} else if(res.code == 420){
+					window.location.href="login.html";
+				}else {
 					alert("修改失败");
 				}
 			}
@@ -93,6 +95,8 @@
 				}
 				else if(res.code == 300){
                    alert("城市已存在");
+				}else if(res.code == 420){
+					window.location.href="login.html";
 				} else {
 					alert("保存失败");
 				}
@@ -129,6 +133,8 @@
 					alert("修改成功");
 					$(".updateAdminPop").hide();
 					cityLists();
+				}else if(res.code == 420){
+					window.location.href="login.html";
 				} else {
 					alert("修改失败");
 				}
